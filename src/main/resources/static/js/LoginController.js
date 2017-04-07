@@ -7,9 +7,9 @@ angular.module('nikoApp').controller('LoginController', function ($scope, $resou
     $scope.test = function () {
         alert('Thanks');
     }
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+    // $(document).ready(function () {
+    //     $('[data-toggle="tooltip"]').tooltip();
+    // });
 
     $scope.saveUser = function () {
         var email = $scope.emailOfUser;
