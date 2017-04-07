@@ -1,6 +1,6 @@
 package com.dominika.controller;
 
-import com.dominika.model.User;
+import com.dominika.model.Uzytkownik;
 import com.dominika.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -23,12 +23,12 @@ public class UserController {
 
     @Transactional
     @PostMapping("add")
-    public ResponseEntity<?> addUser(@RequestBody    User user) {
+    public ResponseEntity<?> addUser(@RequestBody Uzytkownik user) {
         userRepository.save(user);
         if ((user.getId() != -1)) {
             return ResponseEntity.ok(user);
         }
-        return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
     }
 
 
@@ -36,9 +36,9 @@ public class UserController {
 
 
     @DeleteMapping("delete/id/{id}")
-    public ResponseEntity<User> deleteEmployee(@PathVariable Optional<Long> id) {
+    public ResponseEntity<Uzytkownik> deleteEmployee(@PathVariable Optional<Long> id) {
         if (!id.equals(null)) {
-            User u = userRepository.findOne(id.get());
+            Uzytkownik u = userRepository.findOne(id.get());
             userRepository.removeOne(id.get());
             if (u != null) {
                 return new ResponseEntity(u, new HttpHeaders(), HttpStatus.OK);
@@ -53,38 +53,38 @@ public class UserController {
 
 
     @RequestMapping(value = "/id/{id}")
-    public ResponseEntity<User> getDetailsOfUsers(@PathVariable Optional<Long> id) {
+    public ResponseEntity<Uzytkownik> getDetailsOfUsers(@PathVariable Optional<Long> id) {
         if (id.isPresent()) {
-            User user = userRepository.findOne(id.get());
+            Uzytkownik user = userRepository.findOne(id.get());
             if (user != null) {
-                return new ResponseEntity<User>(user, new HttpHeaders(), HttpStatus.OK);
+                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
             } else {
-                return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<Uzytkownik>(HttpStatus.NOT_FOUND);
             }
         }
-        return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
     }
 
 
 
 
     @PostMapping("/put/{id}")
-    public ResponseEntity<User> update(@PathVariable long id, @RequestBody User user) {
+    public ResponseEntity<Uzytkownik> update(@PathVariable long id, @RequestBody Uzytkownik user) {
         userRepository.update(id, user);
-        return new ResponseEntity<User>(user, new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/email/{email}")
-    public ResponseEntity<User> getOfUsersByEMail(@PathVariable String email) {
+    public ResponseEntity<Uzytkownik> getOfUsersByEMail(@PathVariable String email) {
         if (!email.isEmpty()) {
-            User user = userRepository.findOneByEmail(email);
+            Uzytkownik user = userRepository.findOneByEmail(email);
             if (user != null) {
-                return new ResponseEntity<User>(user, new HttpHeaders(), HttpStatus.OK);
+                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
             } else {
-                return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+                return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
             }
         }
-        return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
     }
 
 

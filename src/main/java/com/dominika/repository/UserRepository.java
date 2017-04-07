@@ -4,7 +4,7 @@
 
 package com.dominika.repository;
 
-import com.dominika.model.User;
+import com.dominika.model.Uzytkownik;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,20 +24,20 @@ public class UserRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public User save(User u) {
+    public Uzytkownik save(Uzytkownik u) {
         entityManager.persist(u);
         return u;
     }
 
-    public List<User> findAll() {
-        TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
+    public List<Uzytkownik> findAll() {
+        TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from User u", Uzytkownik.class);
         return query.getResultList();
     }
 
     @Transactional
     public ResponseEntity removeOne(long id) {
 
-        User u = entityManager.find(User.class, id);
+        Uzytkownik u = entityManager.find(Uzytkownik.class, id);
         if (u == null) {
             return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
         } else {
@@ -48,16 +48,16 @@ public class UserRepository {
     }
 
     @Transactional
-    public User findOne(long id) {
-        User u = entityManager.find(User.class, id);
+    public Uzytkownik findOne(long id) {
+        Uzytkownik u = entityManager.find(Uzytkownik.class, id);
         return u;
     }
 
 
-    public User findOneByEmail(String email) {
-        TypedQuery<User> query = entityManager.createQuery("select u from users u where u.email = :email", User.class);
+    public Uzytkownik findOneByEmail(String email) {
+        TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from users u where u.email = :email", Uzytkownik.class);
         query.setParameter("email", email);
-        List<User> userList = query.getResultList();
+        List<Uzytkownik> userList = query.getResultList();
         if (userList.isEmpty())
             return null;
         return userList.get(0);
@@ -65,8 +65,8 @@ public class UserRepository {
 
 
     @Transactional
-    public User update(long id, User u) {
-        User user = entityManager.find(User.class, id);
+    public Uzytkownik update(long id, Uzytkownik u) {
+        Uzytkownik user = entityManager.find(Uzytkownik.class, id);
         if (!u.getEmail().isEmpty()) {
             user.setEmail(u.getEmail());
         }

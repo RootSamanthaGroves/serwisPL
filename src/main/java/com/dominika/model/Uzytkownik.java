@@ -5,13 +5,14 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by Dominika on 2017-04-03.
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class Uzytkownik {
 
     @Id
     @NotNull
@@ -31,26 +32,28 @@ public class User {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToMany
+    private List<Auto> auto;
 
 
-    public User() {
+    public Uzytkownik() {
     }
 
-    public User(String firstName, String email, String password, Role roleAcount) {
+    public Uzytkownik(String firstName, String email, String password, Role roleAcount) {
         this.firstName = firstName;
         this.email = email;
         this.password = password;
         this.role = roleAcount;
     }
 
-    public User(String firstName, String email, String password) {
+    public Uzytkownik(String firstName, String email, String password) {
         this.firstName = firstName;
         this.email = email;
         this.password = password;
     }
 
 
-    public User(long id) {
+    public Uzytkownik(long id) {
         this.id = id;
     }
 
