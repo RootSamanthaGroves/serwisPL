@@ -24,8 +24,8 @@ public class Auto {
     @OneToMany
     private List<Czesci> czesc;
 
-
-
+    public Auto() {
+    }
 
     public Auto(String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwosia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa) {
         this.marka = marka;
@@ -38,7 +38,10 @@ public class Auto {
         this.mocSilnika = mocSilnika;
         this.rodzajPaliwa = rodzajPaliwa;
     }
+    public Auto(String marka) {
+        this.marka = marka;
 
+    }
 
     public long getId() {
         return id;

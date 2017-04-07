@@ -30,9 +30,9 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/rejestracja.html',
             controller: 'LoginController'
         })
-        .when('/1a', {
+        .when('/dodajAuto', {
             templateUrl: 'views/account.html',
-            controller: 'LoginController'
+            controller: 'AutoController'
         })
         .when('/2a', {
             templateUrl: 'views/account.html',

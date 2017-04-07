@@ -45,7 +45,7 @@
             <div class="col-sm-12">
                 <div class=" col-sm-offset-3 col-sm-3">
                     <li class="active">
-                        <a href="#1a" data-toggle="tab"> <span>   <i class="fa fa-automobile"
+                        <a href="#dodajAuto" data-toggle="tab"> <span>   <i class="fa fa-automobile"
                                                                      style="font-size:42px"></i></span></a>
                     </li>
                 </div>
@@ -72,13 +72,14 @@
         </ul>
 
         <div class="tab-content clearfix">
-            <div class="tab-pane active" id="1a">
+            <div class="tab-pane active" id="dodajAuto">
                 <h3>Dodaj auto</h3>
 
                 <form>
                     <div class="form-group">
-                        <label for="email">Marka:</label>
-                        <input type="email" class="form-control" id="Marka">
+                        <label >Marka:</label>
+                        <input id="Marka" type="marka" class="form-control" name="Marka" value=""
+                               placeholder="Marka" ng-model="markaAuto">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Model:</label>
@@ -114,7 +115,7 @@
                         <input type="password" class="form-control" id="pwd">
                     </div>
 
-                    <button type="submit" class="btn btn-default">Dodaj Auto</button>
+                    <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj Auto</button>
                 </form>
 
             </div>
