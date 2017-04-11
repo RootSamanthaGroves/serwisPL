@@ -1,0 +1,20 @@
+@RELATION test2
+
+@attribute pleć_g {Mezczyzna,Kobieta}
+@attribute MIEJSCEZAM {Miasto,Wies,brak}
+@attribute POCHODZENIE {Inteligenckie,brak,Chlopskie,Robotnicze,inne}
+
+@DATA
+Mezczyzna,Miasto,Inteligenckie
+Mezczyzna,Wies,brak
+Mezczyzna,Wies,brak
+Mezczyzna,Miasto,Chlopskie
+Mezczyzna,brak,Robotnicze
+Kobieta,Miasto,Inteligenckie
+Mezczyzna,Miasto,Inteligenckie
+Mezczyzna,Miasto,Inteligenckie
+Mezczyzna,Wies,Robotnicze
+Mezczyzna,Miasto,Robotnicze
+Mezczyzna,Miasto,Robotnicze
+Kobieta,Miasto,Robotnicze
+Mezczyzna,Wies,Chlopskie
