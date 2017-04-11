@@ -1,214 +1,213 @@
-<div class="account">
-
-
-
-
+<div class="account backgroundT">
 
 
     <!--<div class="container"><h1>Bootstrap  tab panel example (using nav-pills)  </h1></div>-->
     <!--<div id="exTab1" class="container">-->
-        <!--<ul  class="nav nav-pills">-->
-            <!--<li class="active">-->
-                <!--<a  href="#1a" data-toggle="tab">Overview</a>-->
-            <!--</li>-->
-            <!--<li><a href="#2a" data-toggle="tab">Using nav-pills</a>-->
-            <!--</li>-->
-            <!--<li><a href="#3a" data-toggle="tab">Applying clearfix</a>-->
-            <!--</li>-->
-            <!--<li><a href="#4a" data-toggle="tab">Background color</a>-->
-            <!--</li>-->
-        <!--</ul>-->
+    <!--<ul  class="nav nav-pills">-->
+    <!--<li class="active">-->
+    <!--<a  href="#1a" data-toggle="tab">Overview</a>-->
+    <!--</li>-->
+    <!--<li><a href="#2a" data-toggle="tab">Using nav-pills</a>-->
+    <!--</li>-->
+    <!--<li><a href="#3a" data-toggle="tab">Applying clearfix</a>-->
+    <!--</li>-->
+    <!--<li><a href="#4a" data-toggle="tab">Background color</a>-->
+    <!--</li>-->
+    <!--</ul>-->
 
-        <!--<div class="tab-content clearfix">-->
-            <!--<div class="tab-pane active" id="1a">-->
-                <!--<h3>Content's background color is the same for the tab</h3>-->
-            <!--</div>-->
-            <!--<div class="tab-pane" id="2a">-->
-                <!--<h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>-->
-            <!--</div>-->
-            <!--<div class="tab-pane" id="3a">-->
-                <!--<h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>-->
-            <!--</div>-->
-            <!--<div class="tab-pane" id="4a">-->
-                <!--<h3>We use css to change the background color of the content to be equal to the tab</h3>-->
-            <!--</div>-->
-        <!--</div>-->
+    <!--<div class="tab-content clearfix">-->
+    <!--<div class="tab-pane active" id="1a">-->
+    <!--<h3>Content's background color is the same for the tab</h3>-->
+    <!--</div>-->
+    <!--<div class="tab-pane" id="2a">-->
+    <!--<h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>-->
+    <!--</div>-->
+    <!--<div class="tab-pane" id="3a">-->
+    <!--<h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>-->
+    <!--</div>-->
+    <!--<div class="tab-pane" id="4a">-->
+    <!--<h3>We use css to change the background color of the content to be equal to the tab</h3>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--</div>-->
 
+    <div class="transbox">
+
+        <div id="exTab1">
+            <ul class="nav ">
+                <div class="col-sm-12">
+                    <div class=" col-sm-offset-3 col-sm-3">
+                        <li class="active">
+                            <a href="#dodajAuto" data-toggle="tab"> <span>   <i class="fa fa-automobile"
+                                                                                style="font-size:42px"></i></span></a>
+                        </li>
+                    </div>
 
 
+                    <div class="col-sm-3">
+                        <li><a href="#2a" data-toggle="tab"> <span class="glyphicon glyphicon-wrench logo-small"></span></a>
 
+                        </li>
 
+                    </div>
+                    <div class="col-sm-3">
+                        <li><a href="#3a" data-toggle="tab"> <span
+                                class="glyphicon glyphicon-calendar logo-small"></span></a>
 
-    <div id="exTab1" >
-        <ul class="nav ">
-            <div class="col-sm-12">
-                <div class=" col-sm-offset-3 col-sm-3">
-                    <li class="active">
-                        <a href="#dodajAuto" data-toggle="tab"> <span>   <i class="fa fa-automobile"
-                                                                     style="font-size:42px"></i></span></a>
-                    </li>
+                        </li>
+
+                    </div>
                 </div>
 
+            </ul>
+
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="dodajAuto">
+                    <h3>Dodaj auto</h3>
+
+                    <form>
+                        <div class="form-group">
+                            <label>Marka:</label>
+                            <input id="Marka" type="text" class="form-control" name="Marka" value="Marka"
+                                   placeholder="Marka" ng-model="markaAuto" >
+                        </div>
+                        <div class="form-group">
+                            <label>Model:</label>
+                            <input id="Model" type="text" class="form-control" name="Marka" value="Model"
+                                   placeholder="Model" ng-model="modelAuto">
+                        </div>
+                        <div class="form-group">
+                            <label >Numer VIN:</label>
+                            <input id="numerVINAuto" type="text" class="form-control" name="NumerVin" value=""
+                                   placeholder="Numer VIN" ng-model="numerVinAuto">
+                        </div>
+                        <div class="form-group">
+                            <label >Numer rejestracyjny:</label>
+                            <input id="numerRejAuto" type="text" class="form-control" name="numerRej" value=""
+                                   placeholder="Numer rejestracyjny" ng-model="numerRejAuto">
+                        </div>
+
+                        <div class="form-group">
+                            <label >Rok produkcji:</label>
+                            <input id="rokProAuto" type="text"  class="form-control" name="rokProAuto" value=""
+                                   placeholder="Rok produkcji " ng-model="rokProAuto">
+                        </div>
+                        <div class="form-group">
+                            <label >Rodzaj nadwozia:</label>
+                            <input id="rodzNadwoziaAuto" type="text" class="form-control" name="rodzNadwoziaAuto" value=""
+                                   placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaAuto">
+                        </div>
+                        <div class="form-group">
+                            <label >Pojemność silnika:</label>
+                            <input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto" value=""
+                                   placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
+                        </div>
+                        <div class="form-group">
+                            <label >Moc silnika:</label>
+                            <input id="mocAuto" type="number" class="form-control" name="mocAuto" value=""
+                                   placeholder=" Moc silnika" ng-model="mocAuto">
+                        </div>
+                        <div class="form-group">
+                            <label >Rodzaj paliwa:</label>
+                            <input id="rodzPaliwAuto" type="text" class="form-control" name="rodzajPaliwa" value=""
+                                   placeholder="Rodzaj Paliwa" ng-model="rodzajPaliwAuto">
 
 
+                        </div>
 
-
-                <div class="col-sm-3">
-                    <li><a href="#2a" data-toggle="tab">    <span class="glyphicon glyphicon-wrench logo-small"></span></a>
-
-                    </li>
+                        <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj Auto</button>
+                    </form>
 
                 </div>
-                <div class="col-sm-3">
-                    <li><a href="#3a" data-toggle="tab"> <span
-                            class="glyphicon glyphicon-calendar logo-small"></span></a>
+                <div class="tab-pane" id="2a">
 
-                    </li>
+
+                    <h3>Dodaj Naprawę</h3>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Data:</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Aktualny przebieg:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Rodzaj naprawy:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Opis:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Kosz naprawy:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-default">Dodaj</button>
+                    </form>
 
                 </div>
-            </div>
-
-        </ul>
-
-        <div class="tab-content clearfix">
-            <div class="tab-pane active" id="dodajAuto">
-                <h3>Dodaj auto</h3>
-
-                <form>
-                    <div class="form-group">
-                        <label >Marka:</label>
-                        <input id="Marka" type="marka" class="form-control" name="Marka" value=""
-                               placeholder="Marka" ng-model="markaAuto">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Model:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Numer VIN:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Numer rejestracyjny:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pwd">Rok produkcji:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Rodzaj nadwozia:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Pojemność silnika:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Moc silnika:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Rodzaj paliwa:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-
-                    <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj Auto</button>
-                </form>
-
-            </div>
-            <div class="tab-pane" id="2a">
+                <div class="tab-pane" id="3a">
 
 
-                <h3>Dodaj Naprawę</h3>
+                    <h3>Dodaj Polise</h3>
 
-                <form>
-                    <div class="form-group">
-                        <label for="email">Data:</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Aktualny przebieg:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Rodzaj naprawy:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Opis:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Kosz naprawy:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
+                    <form>
 
-
-                    <button type="submit" class="btn btn-default">Dodaj</button>
-                </form>
-
-            </div>
-            <div class="tab-pane" id="3a">
+                        <div class="form-group">
+                            <label for="email">Data dodania:</label>
+                            <input type="date" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Numer polisy:</label>
+                            <input type="number" class="form-control" id="pwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Okres ochrony OC:</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Data od: </label><input type="date" class="form-control" id="pwd">
+                            <label for="pwd"> do: </label><input type="date" class="form-control" id="pwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Składka OC:</label>
+                            <input type="number" class="form-control" id="pwd">
+                        </div>
 
 
-                <h3>Dodaj Polise</h3>
+                        <button type="submit" class="btn btn-default">Dodaj</button>
+                    </form>
 
-                <form>
+                    <h3>Dodaj badanie techniczne</h3>
 
-                    <div class="form-group">
-                        <label for="email">Data dodania:</label>
-                        <input type="date" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Numer polisy:</label>
-                        <input type="number" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Okres ochrony OC:</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Data od: </label><input type="date" class="form-control" id="pwd">
-                        <label for="pwd"> do: </label><input type="date" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Składka OC:</label>
-                        <input type="number" class="form-control" id="pwd">
-                    </div>
+                    <form>
+
+                        <div class="form-group">
+                            <label for="email">Data wykonania badania:</label>
+                            <input type="date" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Termin ważności badania:</label>
+                            <input type="number" class="form-control" id="pwd">
+                        </div>
 
 
-                    <button type="submit" class="btn btn-default">Dodaj</button>
-                </form>
+                        <button type="submit" class="btn btn-default">Dodaj</button>
+                    </form>
 
-                <h3>Dodaj badanie techniczne</h3>
-
-                <form>
-
-                    <div class="form-group">
-                        <label for="email">Data wykonania badania:</label>
-                        <input type="date" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Termin ważności badania:</label>
-                        <input type="number" class="form-control" id="pwd">
-                    </div>
-
-
-
-                    <button type="submit" class="btn btn-default">Dodaj</button>
-                </form>
-
+                </div>
             </div>
         </div>
     </div>
 
-</div>
-
-
-
-
 
 
 </div>
+
+
+</div>
+

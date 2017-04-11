@@ -32,6 +32,38 @@
 
     <style>
 
+
+        /*.ui-datepicker-calendar {*/
+            /*display: none;*/
+        /*}*/
+        /*.ui-datepicker-month {*/
+            /*display: none;*/
+        /*}*/
+        /*.ui-datepicker-next,.ui-datepicker-prev {*/
+            /*display:none;*/
+        /*}*/
+
+
+        div.background {
+            /*background: url(ikony/tło.jpg) repeat;*/
+            background-color: #0f0f0f;
+            border: 2px solid black;
+        }
+
+        div.transbox {
+            margin: 30px;
+            /*background-color: #ffffff;*/
+            border: 1px solid black;
+            opacity: 1.0;
+            filter: alpha(opacity=60); /* For IE8 and earlier */
+        }
+
+        div.transbox p {
+            margin: 5%;
+            font-weight: bold;
+            color: #000000;
+        }
+
         footer .glyphicon {
             font-size: 20px;
             margin-bottom: 20px;
@@ -121,13 +153,13 @@
         .account {
             margin-top: 50px;
             padding: 10px;
-            background-color: #303030;
+            /*background-color: rgba(0,0,0,.5);*/
+            background-color: transparent;
+            background-color: #0f0f0f;
+            /*filter: alpha(opacity=60); !* For IE8 and earlier *!*/
 
         }
 
-        .odstep {
-
-        }
 
         .logo-small {
             /* color: #f4511e;*/
@@ -201,41 +233,7 @@
             text-align: center;
         }
 
-        /*#section1 {*/
-        /*padding-top: 100px;*/
-        /*height: 700px;*/
-        /*color: #fff;*/
-        /*background-color: #1E88E5;*/
-        /*}*/
 
-        /*#section2 {*/
-        /*padding-top: 50px;*/
-        /*height: 700px;*/
-        /*color: #fff;*/
-        /*background-color: #673ab7;*/
-        /*}*/
-
-        /*#section3 {*/
-        /*padding-top: 50px;*/
-        /*height: 700px;*/
-        /*color: #fff;*/
-        /*background-color: #ff9800;*/
-        /*}*/
-
-        /*#section41 {*/
-        /*padding-top: 50px;*/
-        /*height: 700px;*/
-        /*color: #fff;*/
-        /*color: black;*/
-        /*}*/
-
-        /*!*background-color: #00bcd4;}*!*/
-        /*#section42 {*/
-        /*padding-top: 50px;*/
-        /*height: 700px;*/
-        /*color: #fff;*/
-        /*background-color: #ffffff;*/
-        /*}*/
 
         #exTab1 .tab-content {
             padding-top: 60px;
@@ -245,6 +243,9 @@
         }
 
 
+        .tooltip{
+            font-size: 18px;
+        }
     </style>
 </head>
 
@@ -271,7 +272,7 @@
                     <!--<li><a href="#home"><i class="fa fa-home"></i> Home</a></li>-->
                     <!--<li><a href="#people"><i class="fa fa-shield"></i>People</a></li>-->
                     <!--<li><a href="#about"><i class="fa fa-shield"></i> Główna</a></li>-->
-                    <li><a href="#account"><i class="glyphicon glyphicon-user"></i> Konto</a></li>
+                    <li><a href="#account"data-toggle="tooltip" data-placement="bottom" title="Twoje konto" ><i class="glyphicon glyphicon-user"></i> Konto</a></li>
                     <li><a href="#logowanie"><i class="fa fa-shield"></i> Logowanie</a></li>
                     <li><a href="#rejestracja"><i class="fa fa-shield"></i> Rejstracja</a></li>
                 </ul>
@@ -279,6 +280,8 @@
         </div>
     </nav>
 </header>
+
+
 <div ng-view>
 
     </br></br></br></br></br></br></br></br></br></br>
@@ -302,6 +305,13 @@
 
 
 <script>
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+    ///////////////////////////////////////////////
     $(document).ready(function () {
 // Add smooth scrolling to all links in navbar + footer link
         $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
@@ -336,6 +346,23 @@
             });
         });
     })
+
+    //////////////////////////////////
+
+//    $(function() {
+//        $('#datepicker').datepicker({
+//            changeYear: true,
+//            showButtonPanel: true,
+//            dateFormat: 'yy',
+//            onClose: function(dateText, inst) {
+//                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+//                $(this).datepicker('setDate', new Date(year, 1));
+//            }
+//        });
+//        $(".date-picker-year").focus(function () {
+//            $(".ui-datepicker-month").hide();
+//        });
+//    });
 </script>
 
 <!--<script src="js/jquery/jquery.min.js"></script>-->

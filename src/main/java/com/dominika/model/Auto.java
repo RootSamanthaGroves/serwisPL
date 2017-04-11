@@ -19,6 +19,10 @@ public class Auto {
     private String numerVIN;
     private String numerRejestracyjny;
     private Date rokProdukcji;
+    private String rodzajNadwozia;
+    private int pojemnoscSilnika;
+    private int mocSilnika;
+    private String rodzajPaliwa;
     @OneToMany
     private List<Naprawa> naprawa;
     @OneToMany
@@ -27,17 +31,19 @@ public class Auto {
     public Auto() {
     }
 
-    public Auto(String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwosia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa) {
+    public Auto(String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa) {
         this.marka = marka;
         this.model = model;
         this.numerVIN = numerVIN;
         this.numerRejestracyjny = numerRejestracyjny;
         this.rokProdukcji = rokProdukcji;
-        this.rodzajNadwosia = rodzajNadwosia;
+        this.rodzajNadwozia = rodzajNadwozia;
         this.pojemnoscSilnika = pojemnoscSilnika;
         this.mocSilnika = mocSilnika;
         this.rodzajPaliwa = rodzajPaliwa;
+
     }
+
     public Auto(String marka) {
         this.marka = marka;
 
@@ -91,12 +97,13 @@ public class Auto {
         this.rokProdukcji = rokProdukcji;
     }
 
-    public String getRodzajNadwosia() {
-        return rodzajNadwosia;
+    public String getRodzajNadwozia() {
+        return rodzajNadwozia;
     }
 
-    public void setRodzajNadwosia(String rodzajNadwosia) {
-        this.rodzajNadwosia = rodzajNadwosia;
+
+    public void setRodzajNadwozia(String rodzajNadwozia) {
+        this.rodzajNadwozia = rodzajNadwozia;
     }
 
     public int getPojemnoscSilnika() {
@@ -123,9 +130,5 @@ public class Auto {
         this.rodzajPaliwa = rodzajPaliwa;
     }
 
-    private String rodzajNadwosia;
-    private int pojemnoscSilnika;
-    private  int mocSilnika;
-    private String rodzajPaliwa;
 
 }
