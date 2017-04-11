@@ -1,36 +1,6 @@
 <div class="account backgroundT">
 
 
-    <!--<div class="container"><h1>Bootstrap  tab panel example (using nav-pills)  </h1></div>-->
-    <!--<div id="exTab1" class="container">-->
-    <!--<ul  class="nav nav-pills">-->
-    <!--<li class="active">-->
-    <!--<a  href="#1a" data-toggle="tab">Overview</a>-->
-    <!--</li>-->
-    <!--<li><a href="#2a" data-toggle="tab">Using nav-pills</a>-->
-    <!--</li>-->
-    <!--<li><a href="#3a" data-toggle="tab">Applying clearfix</a>-->
-    <!--</li>-->
-    <!--<li><a href="#4a" data-toggle="tab">Background color</a>-->
-    <!--</li>-->
-    <!--</ul>-->
-
-    <!--<div class="tab-content clearfix">-->
-    <!--<div class="tab-pane active" id="1a">-->
-    <!--<h3>Content's background color is the same for the tab</h3>-->
-    <!--</div>-->
-    <!--<div class="tab-pane" id="2a">-->
-    <!--<h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>-->
-    <!--</div>-->
-    <!--<div class="tab-pane" id="3a">-->
-    <!--<h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>-->
-    <!--</div>-->
-    <!--<div class="tab-pane" id="4a">-->
-    <!--<h3>We use css to change the background color of the content to be equal to the tab</h3>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
     <div class="transbox">
 
         <div id="exTab1">
@@ -45,13 +15,14 @@
 
 
                     <div class="col-sm-3">
-                        <li><a href="#2a" data-toggle="tab"> <span class="glyphicon glyphicon-wrench logo-small"></span></a>
+                        <li><a href="#dodajNaprawe" data-toggle="tab"> <span
+                                class="glyphicon glyphicon-wrench logo-small"></span></a>
 
                         </li>
 
                     </div>
                     <div class="col-sm-3">
-                        <li><a href="#3a" data-toggle="tab"> <span
+                        <li><a href="#dodajDaty" data-toggle="tab"> <span
                                 class="glyphicon glyphicon-calendar logo-small"></span></a>
 
                         </li>
@@ -69,7 +40,7 @@
                         <div class="form-group">
                             <label>Marka:</label>
                             <input id="Marka" type="text" class="form-control" name="Marka" value="Marka"
-                                   placeholder="Marka" ng-model="markaAuto" >
+                                   placeholder="Marka" ng-model="markaAuto">
                         </div>
                         <div class="form-group">
                             <label>Model:</label>
@@ -77,81 +48,96 @@
                                    placeholder="Model" ng-model="modelAuto">
                         </div>
                         <div class="form-group">
-                            <label >Numer VIN:</label>
+                            <label>Numer VIN:</label>
                             <input id="numerVINAuto" type="text" class="form-control" name="NumerVin" value=""
                                    placeholder="Numer VIN" ng-model="numerVinAuto">
                         </div>
                         <div class="form-group">
-                            <label >Numer rejestracyjny:</label>
+                            <label>Numer rejestracyjny:</label>
                             <input id="numerRejAuto" type="text" class="form-control" name="numerRej" value=""
                                    placeholder="Numer rejestracyjny" ng-model="numerRejAuto">
                         </div>
 
                         <div class="form-group">
-                            <label >Rok produkcji:</label>
-                            <input id="rokProAuto" type="text"  class="form-control" name="rokProAuto" value=""
+                            <label>Rok produkcji:</label>
+                            <input id="rokProAuto" type="text" class="form-control" name="rokProAuto" value=""
                                    placeholder="Rok produkcji " ng-model="rokProAuto">
                         </div>
                         <div class="form-group">
-                            <label >Rodzaj nadwozia:</label>
-                            <input id="rodzNadwoziaAuto" type="text" class="form-control" name="rodzNadwoziaAuto" value=""
+                            <label>Rodzaj nadwozia:</label>
+                            <input id="rodzNadwoziaAuto" type="text" class="form-control" name="rodzNadwoziaAuto"
+                                   value=""
                                    placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaAuto">
                         </div>
                         <div class="form-group">
-                            <label >Pojemność silnika:</label>
+                            <label>Pojemność silnika:</label>
                             <input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto" value=""
                                    placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
                         </div>
                         <div class="form-group">
-                            <label >Moc silnika:</label>
+                            <label>Moc silnika:</label>
                             <input id="mocAuto" type="number" class="form-control" name="mocAuto" value=""
                                    placeholder=" Moc silnika" ng-model="mocAuto">
                         </div>
                         <div class="form-group">
-                            <label >Rodzaj paliwa:</label>
+                            <label>Rodzaj paliwa:</label>
                             <input id="rodzPaliwAuto" type="text" class="form-control" name="rodzajPaliwa" value=""
                                    placeholder="Rodzaj Paliwa" ng-model="rodzajPaliwAuto">
 
 
                         </div>
 
-                        <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj Auto</button>
+                        <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj Auto
+                        </button>
                     </form>
 
                 </div>
-                <div class="tab-pane" id="2a">
+                <div class="tab-pane" id="dodajNaprawe">
 
 
                     <h3>Dodaj Naprawę</h3>
 
                     <form>
                         <div class="form-group">
-                            <label for="email">Data:</label>
-                            <input type="email" class="form-control" id="email">
+                            <label>Data:</label>
+                            <input id="dataNaprawy"type="date" class="form-control"
+                                   name="dataNaprawy" value=""
+                                   placeholder="data naprawy" ng-model="dataNaprawy">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Aktualny przebieg:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label>Przebieg:</label>
+                            <input id="przebiegAuto" type="number" class="form-control"
+                                   name="przebiegAuto" value=""
+                                   placeholder="Przebieg" ng-model="przebiegAuto">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Rodzaj naprawy:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label>Rodzaj:</label>
+                            <input id="rodzajNaprawy"type="text" class="form-control"
+                                   name="rodzajNaprawy" value=""
+                                   placeholder="Rodzaj naprawy" ng-model="rodzajNaprawy">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Opis:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label>Opis:</label>
+                            <input id="opisNaprawy" type="text" class="form-control"
+                                   name="opisNaprawy" value=""
+                                   placeholder="Opis naprawy" ng-model="opisNaprawy">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Kosz naprawy:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label>Kosz naprawy:</label>
+                            <input  id="kosztNaprawy"type="number" class="form-control"
+                                   name="kosztNaprawy" value=""
+                                   placeholder="Koszt naprawy" ng-model="kosztNaprawy">
                         </div>
 
 
-                        <button type="submit" class="btn btn-default">Dodaj</button>
+                        <button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">Dodaj
+                            informacje do bazy
+                        </button>
+
                     </form>
 
                 </div>
-                <div class="tab-pane" id="3a">
+                <div class="tab-pane" id="dodajDaty">
 
 
                     <h3>Dodaj Polise</h3>
@@ -203,7 +189,6 @@
             </div>
         </div>
     </div>
-
 
 
 </div>

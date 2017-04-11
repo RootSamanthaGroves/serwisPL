@@ -47,7 +47,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 rodzajPaliwa: $scope.rodzajPaliwAuto,
                 rokProdukcji: $scope.rokProAuto
             };
-        alert(autoObject.rodzajNadwozia);
+
         $http.post('/auto/add', autoObject).success(function () {
             alert('Twoje auto zostało dodane');
 

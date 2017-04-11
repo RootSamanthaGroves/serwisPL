@@ -17,19 +17,30 @@ public class Naprawa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private Date data;
-    private int aktualnyPrzeglad;
-    private String rodzajNaprawy;
+    private int przebieg;
+    private String rodzaj;
     private String opis;
-    private int KosztNaprawy;
+    private int koszt;
 
-    public Naprawa(Date data, int aktualnyPrzeglad, String rodzajNaprawy, String opis, int kosztNaprawy) {
-        this.data = data;
-        this.aktualnyPrzeglad = aktualnyPrzeglad;
-        this.rodzajNaprawy = rodzajNaprawy;
-        this.opis = opis;
-        KosztNaprawy = kosztNaprawy;
+    public Naprawa() {
     }
 
+
+    public Naprawa(Date data, int przebieg, String rodzaj, String opis, int koszt) {
+        this.data = data;
+        this.przebieg = przebieg;
+        this.rodzaj = rodzaj;
+        this.opis = opis;
+        this.koszt = koszt;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Date getData() {
         return data;
@@ -39,20 +50,20 @@ public class Naprawa {
         this.data = data;
     }
 
-    public int getAktualnyPrzeglad() {
-        return aktualnyPrzeglad;
+    public int getPrzebieg() {
+        return przebieg;
     }
 
-    public void setAktualnyPrzeglad(int aktualnyPrzeglad) {
-        this.aktualnyPrzeglad = aktualnyPrzeglad;
+    public void setPrzebieg(int przebieg) {
+        this.przebieg = przebieg;
     }
 
-    public String getRodzajNaprawy() {
-        return rodzajNaprawy;
+    public String getRodzaj() {
+        return rodzaj;
     }
 
-    public void setRodzajNaprawy(String rodzajNaprawy) {
-        this.rodzajNaprawy = rodzajNaprawy;
+    public void setRodzaj(String rodzaj) {
+        this.rodzaj = rodzaj;
     }
 
     public String getOpis() {
@@ -63,11 +74,11 @@ public class Naprawa {
         this.opis = opis;
     }
 
-    public int getKosztNaprawy() {
-        return KosztNaprawy;
+    public int getKoszt() {
+        return koszt;
     }
 
-    public void setKosztNaprawy(int kosztNaprawy) {
-        KosztNaprawy = kosztNaprawy;
+    public void setKoszt(int koszt) {
+        this.koszt = koszt;
     }
 }

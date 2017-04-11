@@ -34,13 +34,13 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/account.html',
             controller: 'AutoController'
         })
-        .when('/2a', {
+        .when('/dodajNaprawe', {
             templateUrl: 'views/account.html',
-            controller: 'LoginController'
+            controller: 'NaprawaController'
         })
-        .when('/3a', {
+        .when('/dodajDaty', {
             templateUrl: 'views/account.html',
-            controller: 'LoginController'
+            controller: 'DatyController'
         })
         .otherwise({redirectTo: '/'});
 });
