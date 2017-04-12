@@ -32,6 +32,11 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+
     <style>
 
 
@@ -213,10 +218,10 @@
             font-size: 28px;
         }
 
-        @media screen and (max-width: 1000px) {
-            #section1, #section2, #section3, #section41, #section42 {
-                margin-left: -10px;
-                /*margin-right: 150px;*/
+        /*@media screen and (max-width: 1000px) {*/
+            /*#section1, #section2, #section3, #section41, #section42 {*/
+                /*margin-left: -10px;*/
+                /*!*margin-right: 150px;*!*/
 
             }
         }
@@ -248,7 +253,7 @@
         div.ex2 {
             padding: 330px 50px 75px;
         }
-
+/*do navbara przezroczystkosc*/
         .navbar-inverse {
             margin-bottom: 0;
             background-color: #2d2d30;
@@ -257,7 +262,31 @@
             letter-spacing: 4px;
             opacity:0.9;
         }
-        
+
+
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {height: 550px}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #222222;
+            height: auto;
+            width:100px;
+        }
+
+        /* On small screens, set height to 'auto' for the grid */
+        @media screen and (max-width: 767px) {
+            .row.content {height: auto;}
+        }
+
     </style>
 </head>
 
