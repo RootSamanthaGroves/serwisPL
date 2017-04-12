@@ -51,7 +51,10 @@ public class Uzytkownik {
         this.email = email;
         this.password = password;
     }
-
+    public Uzytkownik( String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public Uzytkownik(long id) {
         this.id = id;

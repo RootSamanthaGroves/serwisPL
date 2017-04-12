@@ -25,9 +25,9 @@
                             </div>
 
                             <div>
-                                <div class="input-group col-ms-4">
+                                <div class="input-group col-ms-4"ng-app=""  ng-init="passwordOfUser=''">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="password" type="password" class="form-control" name="password" value=""
+                                    <input id="password" type="password" class="form-control" name="password" value="{{passwordOfUser}}"
                                            placeholder="Hasło" ng-model="passwordOfUser">
                                 </div>
                             </div>

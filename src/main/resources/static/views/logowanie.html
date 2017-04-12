@@ -12,7 +12,7 @@
 
                                     <div class="input-group col-sm-4">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="emailLog" type="email" class="form-control" name="email" value="" placeholder="Email">
+                                        <input id="emailLog" type="email" class="form-control" name="email" value="" placeholder="Email" ng-model="emailLog">
                                     </div>
 
 
@@ -21,13 +21,23 @@
                             <div>
                                 <div class="input-group col-sm-4">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="passwordLog" type="password" class="form-control" name="password" value="" placeholder="Hasło">
+                                    <input id="passwordLog" type="password" class="form-control" name="password" value="" placeholder="Hasło"
+                                           placeholder="Hasło" ng-model="passwordLog">
                                 </div>
                             </div>
 
                             <div class="input-group col-sm-4">
-                                <button  id="zaloguj" type="submit"class="btn btn-primary">Zaloguj się</button>
+                                <button  id="zaloguj" type="submit"class="btn btn-primary" ng-click="findDebil()">Zaloguj się</button>
+
                             </div>
+
+
+
+                            <p>Data : {{content}}</p>
+                            <!--<p>Status : {{statuscode}}</p>-->
+                            <!--<p>StatusText : {{statustext}}</p>-->
+
+                            <p id="demo">dobrze!</p>
                         </div>
                     </form>
                 </div>

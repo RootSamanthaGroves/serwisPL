@@ -29,6 +29,26 @@ public class UserRepository {
         return u;
     }
 
+
+
+    public Uzytkownik findByEmailAndPassword(String email, String password) {
+        TypedQuery<Uzytkownik> query = entityManager.createQuery(
+                "select u from Uzytkownik u where u.email = :email and u.password =:password", Uzytkownik.class);
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+        try{
+            System.out.println(query.getSingleResult());
+            return query.getSingleResult();
+
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+
+
+
+
     public List<Uzytkownik> findAll() {
         TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from User u", Uzytkownik.class);
         return query.getResultList();

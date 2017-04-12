@@ -32,9 +32,6 @@ public class UserController {
     }
 
 
-
-
-
     @DeleteMapping("delete/id/{id}")
     public ResponseEntity<Uzytkownik> deleteEmployee(@PathVariable Optional<Long> id) {
         if (!id.equals(null)) {
@@ -66,8 +63,6 @@ public class UserController {
     }
 
 
-
-
     @PostMapping("/put/{id}")
     public ResponseEntity<Uzytkownik> update(@PathVariable long id, @RequestBody Uzytkownik user) {
         userRepository.update(id, user);
@@ -87,7 +82,21 @@ public class UserController {
         return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping("/log/{a}/{b}")
 
+    public ResponseEntity<Uzytkownik> getByEmailAndPassword(@PathVariable String a, @PathVariable String b) {
+
+        System.out.println(a);
+        System.out.println(b);
+        Uzytkownik user = (Uzytkownik) userRepository.findByEmailAndPassword(a, b);
+        if (user != null) {
+            return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
+        }
+
+//      return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+    }
 
 
 }
