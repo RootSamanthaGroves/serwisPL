@@ -287,6 +287,66 @@
             .row.content {height: auto;}
         }
 
+        .chat-box-single-line {
+            border-bottom: 1px solid #008CBA;
+            height: 12px;
+            margin: 7px 0 20px;
+            position: relative;
+            text-align: center;
+            color: #2e6da4;
+        }
+        .timestamp {
+            background: #008CBA none repeat scroll 0 0;
+            color: #fff;
+            padding: 0 11px;
+        }
+
+        .popup-head-right .btn-group {
+            display: inline-flex;
+            margin: 0 8px 0 0;
+            vertical-align: top !important;
+        }
+
+        .container {
+            margin-left: 0px;
+            position: relative;
+            width: 50%;
+        }
+
+        .image {
+            display: block;
+            width: 20%;
+            height: auto;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #008CBA;
+        }
+
+        .container:hover .overlay {
+            opacity: 1;
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+
+
     </style>
 </head>
 
@@ -315,8 +375,8 @@
                 <!--<li><a href="#about"><i class="fa fa-shield"></i> Główna</a></li>-->
                 <li><a href="#account" data-toggle="tooltip" data-placement="bottom" title="Twoje konto"><i
                         class="glyphicon glyphicon-user"></i> Konto</a></li>
-                <li><a href="#logowanie"><i class="fa fa-shield"></i> Logowanie</a></li>
-                <li><a href="#rejestracja"><i class="fa fa-shield"></i> Rejstracja</a></li>
+                <li><a href="#logowanie"><i class="glyphicon glyphicon-lock"></i> Logowanie</a></li>
+                <li><a href="#rejestracja"><i class="glyphicon glyphicon-edit"></i> Rejstracja</a></li>
             </ul>
         </div>
     </div>

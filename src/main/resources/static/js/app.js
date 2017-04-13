@@ -42,5 +42,9 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/account.html',
             controller: 'DatyController'
         })
+        .when('/kokpit', {
+            templateUrl: 'views/account.html',
+            controller: 'AutoController'
+        })
         .otherwise({redirectTo: '/'});
 });

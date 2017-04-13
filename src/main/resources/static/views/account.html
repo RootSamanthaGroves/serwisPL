@@ -1,28 +1,31 @@
 <div class="account backgroundT">
 
 
-
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-2 sidenav ">
 
                 <ul class="nav  nav-stacked">
-                    <li class="active">
-                    <a href="#dodajAuto" data-toggle="tab"> <span>   <i class="fa fa-automobile"
-                    style="font-size:42px"></i></span></a></li>
-                    <li><a href="#dodajNaprawe" data-toggle="tab"> <span
-                            class="glyphicon glyphicon-wrench logo-small"></span></a></li>
-                    <li><a href="#dodajDaty" data-toggle="tab"> <span
-                    class="glyphicon glyphicon-calendar logo-small"></span></a></li>
 
-                </ul><br>
+
+                    <li><a href="#kokpit" data-toggle="tab"> <span class="glyphicon glyphicon-user logo-small"></span></a></li>
+                    <li><a href="#dodajAuto" data-toggle="tab"> <span><i class="fa fa-automobile" style="font-size:42px"></i></span></a></li>
+                    <li><a href="#dodajNaprawe" data-toggle="tab"> <span class="glyphicon glyphicon-wrench logo-small"></span></a></li>
+                    <li><a href="#dodajDaty" data-toggle="tab"> <span class="glyphicon glyphicon-calendar logo-small"></span></a></li>
+
+
+
+                </ul>
+                <br>
 
             </div>
 
             <div class="col-sm-10">
 
 
-                <div  class="tab-content clearfix">
+                <div class="tab-content clearfix">
+
+                    <div class="tab-pane" id="kokpit">
                     <div class="tab-pane active" id="dodajAuto">
                         <h3>Dodaj auto</h3>
 
@@ -83,169 +86,262 @@
                         </form>
 
                     </div>
+                    <div class="tab-pane" id="dodajNaprawe">
 
 
-                <!--<h4><small>RECENT POSTS</small></h4>-->
-                <!--<hr>-->
-                <!--<h2>I Love Food</h2>-->
-                <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
-                <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
-                <!--<p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
-                <!--<br><br>-->
+                        <h3>Dodaj Naprawę</h3>
 
-                <!--<h4><small>RECENT POSTS</small></h4>-->
-                <!--<hr>-->
-                <!--<h2>Officially Blogging</h2>-->
-                <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
-                <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
-                <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
-                <!--<hr>-->
+                        <form>
+                            <div class="form-group">
+                                <label>Data:</label>
+                                <input id="dataNaprawy" type="date" class="form-control"
+                                       name="dataNaprawy" value=""
+                                       placeholder="data naprawy" ng-model="dataNaprawy">
+                            </div>
+                            <div class="form-group">
+                                <label>Przebieg:</label>
+                                <input id="przebiegAuto" type="number" class="form-control"
+                                       name="przebiegAuto" value=""
+                                       placeholder="Przebieg" ng-model="przebiegAuto">
+                            </div>
+                            <div class="form-group">
+                                <label>Rodzaj:</label>
+                                <input id="rodzajNaprawy" type="text" class="form-control"
+                                       name="rodzajNaprawy" value=""
+                                       placeholder="Rodzaj naprawy" ng-model="rodzajNaprawy">
+                            </div>
+                            <div class="form-group">
+                                <label>Opis:</label>
+                                <input id="opisNaprawy" type="text" class="form-control"
+                                       name="opisNaprawy" value=""
+                                       placeholder="Opis naprawy" ng-model="opisNaprawy">
+                            </div>
+                            <div class="form-group">
+                                <label>Kosz naprawy:</label>
+                                <input id="kosztNaprawy" type="number" class="form-control"
+                                       name="kosztNaprawy" value=""
+                                       placeholder="Koszt naprawy" ng-model="kosztNaprawy">
+                            </div>
 
-                <!--<h4>Leave a Comment:</h4>-->
-                <!--<form role="form">-->
-                    <!--<div class="form-group">-->
-                        <!--<textarea class="form-control" rows="3" required></textarea>-->
-                    <!--</div>-->
-                    <!--<button type="submit" class="btn btn-success">Submit</button>-->
-                <!--</form>-->
-                <!--<br><br>-->
 
-                <!--<p><span class="badge">2</span> Comments:</p><br>-->
+                            <button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">Dodaj
+                                informacje do bazy
+                            </button>
 
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-2 text-center">-->
-                        <!--<img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-10">-->
-                        <!--<h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>-->
-                        <!--<p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                        <!--<br>-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-2 text-center">-->
-                        <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-10">-->
-                        <!--<h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>-->
-                        <!--<p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                        <!--<br>-->
-                        <!--<p><span class="badge">1</span> Comment:</p><br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-sm-2 text-center">-->
-                                <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
+                        </form>
+
+                    </div>
+                    <div class="tab-pane" id="dodajDaty">
+
+
+
+                        <h3>Dodaj Polise</h3>
+
+                        <form>
+
+                            <div class="form-group">
+                                <label for="email">Data dodania:</label>
+                                <!--<input type="date" class="form-control" id="email">-->
+                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label for="pwd">Numer polisy:</label>-->
+                                <!--<input type="number" class="form-control" id="pwd">-->
                             <!--</div>-->
-                            <!--<div class="col-xs-10">-->
-                                <!--<h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>-->
-                                <!--<p>Me too! WOW!</p>-->
-                                <!--<br>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="pwd">Okres ochrony OC:</label>-->
                             <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="pwd">Data od: </label><input type="date" class="form-control" id="pwd">-->
+                                <!--<label for="pwd"> do: </label><input type="date" class="form-control" id="pwd">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="pwd">Składka OC:</label>-->
+                                <!--<input type="number" class="form-control" id="pwd">-->
+                            <!--</div>-->
 
 
-                <div class="tab-pane" id="dodajNaprawe">
+                            <button type="submit" class="btn btn-default">Dodaj</button>
+                        </form>
+
+                        <h3>Dodaj badanie techniczne</h3>
+
+                        <form>
+
+                            <div class="form-group">
+                                <label for="email">Data wykonania badania:</label>
+                                <input type="date" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Termin ważności badania:</label>
+                                <input type="number" class="form-control" id="pwd">
+                            </div>
 
 
-                    <h3>Dodaj Naprawę</h3>
+                            <button type="submit" class="btn btn-default">Dodaj</button>
+                        </form>
 
-                    <form>
-                        <div class="form-group">
-                            <label>Data:</label>
-                            <input id="dataNaprawy" type="date" class="form-control"
-                                   name="dataNaprawy" value=""
-                                   placeholder="data naprawy" ng-model="dataNaprawy">
+                    </div>
+
+
+                        <h3>Dodaj Naprawę</h3>
+
+
+
+                    </div>
+
+                    <div class="col-sm-12">
+
+                            <div  >
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading"></div>
+                                    <div class="chat-box-single-line">
+                                        <abbr class="timestamp">October 8th, 2015</abbr>
+                                    </div>
+                                    <div class="container">
+                                        <img src="ikony/user.jpg" alt="Avatar" class="image">
+                                        <div class="overlay">
+                                            <div class="text">Hello World</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Users</h4>
+                                    <p>1 Million</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Pages</h4>
+                                    <p>100 Million</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Sessions</h4>
+                                    <p>10 Million</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Bounce</h4>
+                                    <p>30%</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Przebieg:</label>
-                            <input id="przebiegAuto" type="number" class="form-control"
-                                   name="przebiegAuto" value=""
-                                   placeholder="Przebieg" ng-model="przebiegAuto">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Text</p>
+                                    <p>Text</p>
+                                    <p>Text</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Text</p>
+                                    <p>Text</p>
+                                    <p>Text</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Text</p>
+                                    <p>Text</p>
+                                    <p>Text</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Rodzaj:</label>
-                            <input id="rodzajNaprawy" type="text" class="form-control"
-                                   name="rodzajNaprawy" value=""
-                                   placeholder="Rodzaj naprawy" ng-model="rodzajNaprawy">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="well">
+                                    <p>Text</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Text</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Opis:</label>
-                            <input id="opisNaprawy" type="text" class="form-control"
-                                   name="opisNaprawy" value=""
-                                   placeholder="Opis naprawy" ng-model="opisNaprawy">
-                        </div>
-                        <div class="form-group">
-                            <label>Kosz naprawy:</label>
-                            <input id="kosztNaprawy" type="number" class="form-control"
-                                   name="kosztNaprawy" value=""
-                                   placeholder="Koszt naprawy" ng-model="kosztNaprawy">
-                        </div>
+                    </div>
+                </div>
 
+                    <h4><small>RECENT POSTS</small></h4>
+                    <hr>
+                    <h2>I Love Food</h2>
+                    <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+                    <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+                    <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <br><br>
 
-                        <button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">Dodaj
-                            informacje do bazy
-                        </button>
+                    <h4><small>RECENT POSTS</small></h4>
+                    <hr>
+                    <h2>Officially Blogging</h2>
+                    <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
+                    <h5><span class="label label-success">Lorem</span></h5><br>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <hr>
 
+                    <h4>Leave a Comment:</h4>
+                    <form role="form">
+                    <div class="form-group">
+                    <textarea class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
                     </form>
+                    <br><br>
+
+                    <p><span class="badge">2</span> Comments:</p><br>
+
+                    <div class="row">
+                    <div class="col-sm-2 text-center">
+                    <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                    </div>
+                    <div class="col-sm-10">
+                    <h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
+                    <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <br>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                    <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                    </div>
+                    <div class="col-sm-10">
+                    <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
+                    <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <br>
+                    <p><span class="badge">1</span> Comment:</p><br>
+                    <div class="row">
+                    <div class="col-sm-2 text-center">
+                    <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                    </div>
+                    <div class="col-xs-10">
+                    <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
+                    <p>Me too! WOW!</p>
+                    <br>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
 
                 </div>
-                <div class="tab-pane" id="dodajDaty">
-
-
-                    <h3>Dodaj Polise</h3>
-
-                    <form>
-
-                        <div class="form-group">
-                            <label for="email">Data dodania:</label>
-                            <input type="date" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Numer polisy:</label>
-                            <input type="number" class="form-control" id="pwd">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Okres ochrony OC:</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Data od: </label><input type="date" class="form-control" id="pwd">
-                            <label for="pwd"> do: </label><input type="date" class="form-control" id="pwd">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Składka OC:</label>
-                            <input type="number" class="form-control" id="pwd">
-                        </div>
-
-
-                        <button type="submit" class="btn btn-default">Dodaj</button>
-                    </form>
-
-                    <h3>Dodaj badanie techniczne</h3>
-
-                    <form>
-
-                        <div class="form-group">
-                            <label for="email">Data wykonania badania:</label>
-                            <input type="date" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Termin ważności badania:</label>
-                            <input type="number" class="form-control" id="pwd">
-                        </div>
-
-
-                        <button type="submit" class="btn btn-default">Dodaj</button>
-                    </form>
-
-                </div>
+            </div>
 
 
         </div>
     </div>
-
-
-    </div>
-</div>
 </div>
 
 
