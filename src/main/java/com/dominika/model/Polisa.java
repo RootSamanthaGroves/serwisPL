@@ -18,14 +18,19 @@ public class Polisa {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date data;
     private String numerPolisy;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dataOd;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dataDo;
     private  int Skladka;
+
+
+    public Polisa() {
+
+    }
 
     public Polisa(Date data, String numerPolisy, Date dataOd, Date dataDo, int skladka) {
         this.data = data;

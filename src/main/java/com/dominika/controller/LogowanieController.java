@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -17,16 +18,24 @@ import java.util.Optional;
  */
 
 @RestController
-@RequestMapping("logowanie")
+@RequestMapping("log")
 public class LogowanieController {
-
-
-
     @Autowired
     LogowanieRepository logowanieRepository;
 
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll() {
+        List<Logowanie> ListOfLog = logowanieRepository.findAll();
+        if (ListOfLog.isEmpty())
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(ListOfLog);
+    }
+
+
+
     @Transactional
-    @PostMapping("logiiiiiiii")
+    @PostMapping("/  login")
     public ResponseEntity<?> loginUser(@RequestBody Logowanie l) {
         logowanieRepository.save(l);
         if ((l.getId() != -1)) {
