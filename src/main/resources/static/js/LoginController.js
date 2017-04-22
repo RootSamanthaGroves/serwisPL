@@ -1,10 +1,7 @@
 /**
  * Created by Dominika on 2017-04-03.
  */
-angular.module('nikoApp').controller('LoginController', function ($rootScope, $scope, LoginService, $resource, $http, $location,$localStorage) {
-
-
-
+angular.module('nikoApp').controller('LoginController', function ($rootScope, $scope, LoginService, $location, $localStorage) {
 
     $scope.test = function () {
         alert('Thanks');
@@ -144,19 +141,25 @@ angular.module('nikoApp').controller('LoginController', function ($rootScope, $s
         LoginService
             .login(userLoginAndPassword)
             .then(function (response) {
-                if (response.status == 200) {
-                    LoginService
-                        .getCurrentUser().then(function (response) {
-                        $localStorage.currentUser = response.data;
-                        $localStorage.showNavbar = true;
-                        $localStorage.showTopMenu = true;
-                        $rootScope.showNavbar = true;
-                        $rootScope.showTopMenu = true;
-                        $location.path('/');
-                    })
-                } else {
-                    $scope.errorMsg = 'Please check your credentials and try again.';
+                    if (response.status == 200) {
+                        LoginService
+                            .getCurrentUser().then(function (response) {
+                            $localStorage.currentUser = response.data;
+                            $localStorage.showNavbar = true;
+                            $localStorage.showTopMenu = true;
+                            $rootScope.showNavbar = true;
+                            $rootScope.showTopMenu = true;
+                            $location.path('/');
+                        })
+                    } else {
+                        if (response.status == 401) {
+                            alert("Nie można poprawnie dokonać autoryzacji \n Prawdopodobną przyczyną jest zły email lub/i hasło");
+                        } else {
+                            $scope.errorMsg = 'Please check your credentials and try again.';
+                        }
+                    }
+                    alert(response.status);
                 }
-            })
+            )
     }
 });

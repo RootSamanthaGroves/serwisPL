@@ -34,8 +34,9 @@ angular.module('nikoApp').controller('NavbarController', function ($rootScope, $
             .then(function (response) {
                 if (response.status == 200) {
                     alert('Zostałeś wylogowany.');
-                    $route.reload();
-                    $location.path("/");
+                    // $route.reload();
+                    $location.path("#/");
+                    $location.path("#/");
                 }
             })
     }
