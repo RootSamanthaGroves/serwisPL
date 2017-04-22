@@ -13,12 +13,18 @@
     <script type="text/javascript" src='js/PeopleController.js'></script>
     <!--wywalis people controller-->
     <script type="text/javascript" src='js/AccountController.js'></script>
+    <script type="text/javascript" src='js/services/LoginService.js'></script>
     <script type="text/javascript" src='js/LoginController.js'></script>
     <script type="text/javascript" src='js/AutoController.js'></script>
     <script type="text/javascript" src='js/NaprawaController.js'></script>
     <script type="text/javascript" src='js/DatyController.js'></script>
+    <script type="text/javascript" src='js/NavbarController.js'></script>
+    <!--serwisy-->
+    <script type="text/javascript" src='js/services/LoginService.js'></script>
+    <!--<script type="text/javascript" src='js/services/AuthSharedServise.js'></script>-->
 
     <script type="text/javascript" src='bootstrap/js/ui-bootstrap-tpls-2.1.3.min.js'></script>
+    <script type="text/javascript" src='AngularJS/ngStorage/ngStorage.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -38,8 +44,6 @@
 
 
     <style>
-
-
         /*.ui-datepicker-calendar {*/
         /*display: none;*/
         /*}*/
@@ -105,19 +109,33 @@
         }
 
         .navbar-nav li a:link {
-            color: #ffffff !important;
+
+            color: #f1eaff !important;
         }
 
         .navbar-nav li a:visited {
-            color: #ffffff !important;
+            background-color: #222222;
+            color: #f9fffd !important;
         }
 
         .navbar-nav li a:hover {
-            color: #ffffff !important;
+            color: rgb(251, 253, 255) !important;
         }
 
         .navbar-nav li a:active {
-            color: white !important;
+            color: rgb(178, 173, 186) !important;
+
+        }
+
+        /*kolory dropdown email*/
+        .navbar-nav ul {
+            background-color: #222222;
+            color: rgba(238, 248, 255, 0.85) !important;
+        }
+
+        .navbar-nav ul a:active {
+            background-color: #222222;
+            color: rgba(238, 248, 255, 0.85) !important;
         }
 
         .bg-2 {
@@ -129,12 +147,10 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-
         }
 
         .home {
             margin-top: 50px;
-
         }
 
         .about {
@@ -143,7 +159,6 @@
             /*background-image: url("https://www.tomswallpapers.com/pic/201503/1920x1080/tomswallpapers.com-18375.jpg");*! background-position: center top;*/
             min-height: 800px;
             margin-top: -20px;
-
             background-attachment: fixed;
             background-position: center;
             /*background-repeat: no-repeat;*/
@@ -152,7 +167,6 @@
 
         .people {
             margin-top: 50px;
-
         }
 
         .account {
@@ -162,7 +176,6 @@
             background-color: transparent;
             background-color: #0f0f0f;
             /*filter: alpha(opacity=60); !* For IE8 and earlier *!*/
-
         }
 
         .logo-small {
@@ -211,6 +224,7 @@
         ul.nav-pills {
             top: 50px;
             position: fixed;
+
         }
 
         div.col-sm-11 div {
@@ -219,16 +233,15 @@
         }
 
         /*@media screen and (max-width: 1000px) {*/
-            /*#section1, #section2, #section3, #section41, #section42 {*/
-                /*margin-left: -10px;*/
-                /*!*margin-right: 150px;*!*/
+        /*#section1, #section2, #section3, #section41, #section42 {*/
+        /*margin-left: -10px;*/
+        /*!*margin-right: 150px;*!*/
 
-            /*}*/
+        /*}*/
         /*}*/
 
         .nav-stacked {
             width: 0px;
-
         }
 
         .aboutNap {
@@ -253,17 +266,16 @@
         div.ex2 {
             padding: 330px 50px 75px;
         }
-/*do navbara przezroczystkosc*/
+
+        /*do navbara przezroczystkosc*/
         .navbar-inverse {
             margin-bottom: 0;
             background-color: #2d2d30;
             border: 0;
             font-size: 11px !important;
             letter-spacing: 4px;
-            opacity:0.9;
+            opacity: 0.9;
         }
-
-
 
         /* Set black background color, white text and some padding */
         footer {
@@ -273,18 +285,22 @@
         }
 
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {height: 550px}
+        .row.content {
+            height: 550px
+        }
 
         /* Set gray background color and 100% height */
         .sidenav {
             background-color: #222222;
             height: auto;
-            width:100px;
+            width: 100px;
         }
 
         /* On small screens, set height to 'auto' for the grid */
         @media screen and (max-width: 767px) {
-            .row.content {height: auto;}
+            .row.content {
+                height: auto;
+            }
         }
 
         .chat-box-single-line {
@@ -295,6 +311,7 @@
             text-align: center;
             color: #2e6da4;
         }
+
         .timestamp {
             background: #008CBA none repeat scroll 0 0;
             color: #fff;
@@ -354,7 +371,7 @@
 <body id="myPage">
 
 <!--<header>-->
-<nav class=" navbar-inverse navbar-fixed-top">
+<nav class=" navbar-inverse navbar-fixed-top" ng-controller="NavbarController">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -363,7 +380,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><i class="fa fa-car" style="font-size:24px"></i>
+            <a class="navbar-brand" href="#/"><i class="fa fa-car" style="font-size:24px"></i>
                 GarażPL</a>
             <!--<div class="navbar-header">-->
             <!--<a class="navbar-brand" href="/">Eserwisik</a>-->
@@ -374,10 +391,24 @@
                 <!--<li><a href="#home"><i class="fa fa-home"></i> Home</a></li>-->
                 <!--<li><a href="#people"><i class="fa fa-shield"></i>People</a></li>-->
                 <!--<li><a href="#about"><i class="fa fa-shield"></i> Główna</a></li>-->
-                <li><a href="#account" data-toggle="tooltip" data-placement="bottom" title="Twoje konto"><i
-                        class="glyphicon glyphicon-user"></i> Konto</a></li>
-                <li><a href="#logowanie"><i class="glyphicon glyphicon-lock"></i> Logowanie</a></li>
-                <li><a href="#rejestracja"><i class="glyphicon glyphicon-edit"></i> Rejstracja</a></li>
+
+                <li ng-if="!email"><a href="#logowanie"><i class="glyphicon glyphicon-lock"></i> Logowanie</a></li>
+
+                <li ng-if="email" class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i
+                            class="glyphicon glyphicon-user"></i>{{email}}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <li ng-if="email"><a href="#account" data-toggle="tooltip" data-placement="bottom"
+                                             title="Twoje konto"><i
+                                class="glyphicon glyphicon-user"></i> Konto</a></li>
+                        <li>
+                            <a href="" ng-click="removeUserFromStorage()">Wyloguj</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li ng-if="!email"><a href="#rejestracja"><i class="glyphicon glyphicon-edit"></i> Rejstracja</a></li>
             </ul>
         </div>
     </div>

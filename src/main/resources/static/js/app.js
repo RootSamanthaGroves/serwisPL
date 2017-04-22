@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngResource', 'ui.bootstrap']);
+var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngStorage']);
 
 nikoApp.config(function ($routeProvider) {
     $routeProvider
@@ -47,4 +47,10 @@ nikoApp.config(function ($routeProvider) {
             controller: 'AutoController'
         })
         .otherwise({redirectTo: '/'});
+});
+
+nikoApp.run(function ($localStorage, $rootScope, LoginService, $location) {
+    if ($localStorage.currentUser == undefined) {
+        $localStorage.currentUser = null;
+    }
 });

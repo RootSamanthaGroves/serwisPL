@@ -29,7 +29,6 @@ public class Polisa {
 
 
     public Polisa() {
-
     }
 
     public Polisa(Date data, String numerPolisy, Date dataOd, Date dataDo, int skladka) {
