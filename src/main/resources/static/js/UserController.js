@@ -11,28 +11,44 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
         var email = $scope.emailOfUser;
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
         var password = $scope.passwordOfUser;
-        // alert(firstName);
 
-        //to tylko dla testu czy dane sie pobieraja, w google chrome ctrl+shif j otwiera conosle do debuga
-        //degug //tak sie wlacza debugger w js
+        // if ( $scope.emailOfUser.length< 2) {
+        //     greeting = "Good day";
+        // } else {
+        //     greeting = "Good evening";
+        // }
 
-        //Potrzebujemy stworzyc nasz obiekt, ktorego zadamy w Javie patrz RequestBody
+
+        // var email = Boolean(100);
+       // $scope.firstName = Boolean(firstName.length<2);
+       //  alert('Nazwa użytkownika jest za krótka!');
+       //  var password = Boolean(password.length<5);
+       //  alert(firstName.length<2);
+
+        // document.getElementById("demo").innerHTML = email.length;
+        // document.getElementById("demo").innerHTML = firstName.length;
+
+
+        // alert('Podaj poprawne dane!');
+
+
         var userObject = {
             email: email,
             firstName: firstName,
-             password: password
+            password: password
 
 
         };
-        alert(userObject.firstName+userObject.email);
+        // alert(userObject.firstName+userObject.email);
+
         $http.post('/user/add',userObject).success(function () { //wywloujemy
-            alert('Thanks');
+            alert('Konto zostało utoworzone');
             $scope.emailOfUser = "";
             $scope.firstNameOfUser = ""; //pobieramy imie z pola w html
             $scope.passwordOfUser = "";
 
         }).error(function () {
-            alert('We have problem!');
+            alert(' Konto nie zostało utworzone. Możliwe że podany e-mail jest już używany.Podaj poprawne dane!');
         })
     };
 });
