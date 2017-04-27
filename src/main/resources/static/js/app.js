@@ -20,7 +20,7 @@ nikoApp.config(function ($routeProvider) {
         })
         .when('/account', {
             templateUrl: 'views/account.html',
-            controller: 'AboutController'
+            controller: 'AccountController'
         })
         .when('/logowanie', {
             templateUrl: 'views/logowanie.html',
@@ -28,7 +28,7 @@ nikoApp.config(function ($routeProvider) {
         })
         .when('/rejestracja', {
             templateUrl: 'views/rejestracja.html',
-            controller: 'LoginController'
+            controller: 'UserController'
         })
         .when('/dodajAuto', {
             templateUrl: 'views/account.html',
@@ -44,7 +44,7 @@ nikoApp.config(function ($routeProvider) {
         })
         .when('/kokpit', {
             templateUrl: 'views/account.html',
-            controller: 'AutoController'
+            controller: 'AccountController'
         })
         .otherwise({redirectTo: '/'});
 });

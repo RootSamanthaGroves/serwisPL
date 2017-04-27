@@ -105,6 +105,18 @@ public class SecurityController {
     String getText() {
         return "Text only for admin";
     }
+
+    @RequestMapping(value = "/security/newUser", method = RequestMethod.GET)
+    public @ResponseBody
+    Uzytkownik postUser() {
+        Uzytkownik user = usersRepository.findByEmail(SecurityUtils.getCurrentLogin());
+        if(user!=null)
+            user.setPassword(null);
+        return user;
+    }
+
+
+
 }
 
 

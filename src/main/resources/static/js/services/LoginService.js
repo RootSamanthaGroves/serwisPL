@@ -2,6 +2,28 @@
  * Created by Dominika on 2017-04-20.
  */
 angular.module('nikoApp').service('LoginService', function($http) {
+
+    this.createUser = function(user) {
+        var data = 'username=' + user.username + '&password=' + user.password + user.email;
+        return $http({
+            method: "POST",
+            url: 'authenticate',
+            data: data,
+            ignoreAuthModule: 'ignoreAuthModule',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function successCallback(response) {
+            return response;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    };
+
+
+
+
+
     this.login = function(userLoginAndPassword) {
         var data = 'username=' + userLoginAndPassword.username + '&password=' + userLoginAndPassword.password;
         return $http({

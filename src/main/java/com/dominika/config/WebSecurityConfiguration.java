@@ -40,7 +40,7 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
                 Uzytkownik user = userRepository.findByEmail(email);
                 if (user!=null) {
 
-                    return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true, AuthorityUtils.createAuthorityList(user.getRole().name()));
+                    return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword("admin"), true, true, true, true, AuthorityUtils.createAuthorityList(user.getRole("ROLE_ADMIN").name()));
                 }
                 throw new UsernameNotFoundException("could not find the user '"
                         + email + "'");

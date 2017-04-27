@@ -4,6 +4,7 @@
 angular.module('nikoApp').controller('NavbarController', function ($rootScope, $scope, $resource, $localStorage, LoginService, $location, $route) {
     $rootScope.email;
     $rootScope.admin;
+
     var loadCurrentUser = function () {
         LoginService
             .getCurrentUser()

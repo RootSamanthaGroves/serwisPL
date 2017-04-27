@@ -1,47 +1,16 @@
 /**
  * Created by Dominika on 2017-04-03.
  */
-angular.module('nikoApp').controller('LoginController', function ($rootScope, $scope, LoginService, $location, $localStorage) {
+angular.module('nikoApp').controller('LoginController', function ($rootScope, $scope, LoginService, $location, $localStorage, $resource, $http) {
 
     $scope.test = function () {
         alert('Thanks');
     }
-    // $(document).ready(function () {
-    //     $('[data-toggle="tooltip"]').tooltip();
-    // });
-
-    $scope.saveUser = function () {
-        var email = $scope.emailOfUser;
-        var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
-        var password = $scope.passwordOfUser;
-        // var acountRole ="ROLE_ADMIN";
-
-        // alert(firstName + email);
-        //to tylko dla testu czy dane sie pobieraja, w google chrome ctrl+shif j otwiera conosle do debuga
-        //degug //tak sie wlacza debugger w js
-
-        //Potrzebujemy stworzyc nasz obiekt, ktorego zadamy w Javie patrz RequestBody
-        var userObject = {
-            email: $scope.emailOfUser,
-            firstName: firstName,
-            password: password,
-            role: "ROLE_USER"
-        };
-        alert(userObject.firstName + userObject.email);
-        $http.post('/user/add', userObject).success(function () { //wywloujemy
-            alert('Twoje konto zostało utworzone');
-            $scope.emailOfUser = "";
-            $scope.firstNameOfUser = ""; //pobieramy imie z pola w html
-            $scope.passwordOfUser = "";
-
-        }).error(function () {
-            alert('Coś poszło nie tak' +
-                ' Możliwe ze konto o podanym adresie email już istnieje');
-        })
-    };
 
 
-    // $scope.findDebil = function () {
+
+
+    // $scope.findUser = function () {
     //     var e = $scope.emailLog;
     //     var p = $scope.passwordLog;
     //     alert(p + e);
@@ -94,13 +63,13 @@ angular.module('nikoApp').controller('LoginController', function ($rootScope, $s
     //         });
     // }
     //
-    // $scope.LogUser = function () {
+    // $scope.SaveUser = function () {
     //     var email = $scope.emailOfUser;
     //     var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
     //     var password = $scope.passwordOfUser;
     //     // var acountRole ="ROLE_ADMIN";
     //
-    //     // alert(firstName + email);
+    //      alert(firstName + email);
     //     //to tylko dla testu czy dane sie pobieraja, w google chrome ctrl+shif j otwiera conosle do debuga
     //     //degug //tak sie wlacza debugger w js
     //
@@ -112,7 +81,7 @@ angular.module('nikoApp').controller('LoginController', function ($rootScope, $s
     //         role: "ROLE_USER"
     //     };
     //     alert(userObject.firstName + userObject.email);
-    //     $http.post('/user/add', userObject).success(function () { //wywloujemy
+    //     $http.post('/log/newUser', userObject).success(function () { //wywloujemy
     //         alert('Twoje konto zostało utworzone');
     //         $scope.emailOfUser = "";
     //         $scope.firstNameOfUser = ""; //pobieramy imie z pola w html
@@ -138,28 +107,28 @@ angular.module('nikoApp').controller('LoginController', function ($rootScope, $s
             "username": $scope.username,
             "password": $scope.password
         }
-        LoginService
-            .login(userLoginAndPassword)
-            .then(function (response) {
-                    if (response.status == 200) {
-                        LoginService
-                            .getCurrentUser().then(function (response) {
-                            $localStorage.currentUser = response.data;
-                            $localStorage.showNavbar = true;
-                            $localStorage.showTopMenu = true;
-                            $rootScope.showNavbar = true;
-                            $rootScope.showTopMenu = true;
-                            $location.path('/');
-                        })
-                    } else {
-                        if (response.status == 401) {
-                            alert("Nie można poprawnie dokonać autoryzacji \n Prawdopodobną przyczyną jest zły email lub/i hasło");
+        if (userLoginAndPassword.password == "" || userLoginAndPassword.username == "") {
+        } else {
+            LoginService
+                .login(userLoginAndPassword)
+                .then(function (response) {
+                        if (response.status == 200) {
+                            LoginService
+                                .getCurrentUser().then(function (response) {
+                                $localStorage.currentUser = response.data;
+                                $localStorage.showNavbar = true;
+                                $localStorage.showTopMenu = true;
+                                $rootScope.showNavbar = true;
+                                $rootScope.showTopMenu = true;
+                                $location.path('/');
+                            })
                         } else {
+                            alert("Nie można poprawnie dokonać autoryzacji \nPrawdopodobną przyczyną jest zły email lub/i hasło");
                             $scope.errorMsg = 'Please check your credentials and try again.';
                         }
                     }
-                    alert(response.status);
-                }
-            )
+                )
+        }
     }
-});
+})
+;

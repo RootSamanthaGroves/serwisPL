@@ -36,7 +36,7 @@ public class Uzytkownik {
     private List<Auto> auto;
 
 
-    public Uzytkownik() {
+    public Uzytkownik(String diies, String email, String admin, String role_admin) {
     }
 
     public Uzytkownik(String firstName, String email, String password, Role roleAcount) {
@@ -56,11 +56,18 @@ public class Uzytkownik {
         this.password = password;
     }
 
+    public Uzytkownik( ) {
+      }
+//    public Uzytkownik( String email) {
+//        this.email = email;
+//
+//    }
+
     public Uzytkownik(long id) {
         this.id = id;
     }
 
-    public Role getRole() {
+    public Role getRole(String role_admin) {
         return role;
     }
 
@@ -68,7 +75,7 @@ public class Uzytkownik {
         this.role = role;
     }
 
-    public String getFirstName() {
+    public String getFirstName(String admin) {
         return firstName;
     }
 
@@ -86,7 +93,7 @@ public class Uzytkownik {
         return email;
     }
 
-    public String getPassword() {
+    public String getPassword(String admin) {
         return password;
     }
 

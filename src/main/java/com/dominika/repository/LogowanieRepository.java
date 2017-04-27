@@ -2,6 +2,7 @@ package com.dominika.repository;
 
 import com.dominika.model.Auto;
 import com.dominika.model.Logowanie;
+import com.dominika.model.Uzytkownik;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,17 @@ import java.util.List;
  */
 @Repository
 public class LogowanieRepository {
-
     @PersistenceContext
     private EntityManager entityManager;
+
+
+    @Transactional
+    public Uzytkownik save(Uzytkownik u) {
+        entityManager.persist(u);
+        return u;
+    }
+
+
 
     @Transactional
     public Logowanie save(Logowanie l) {

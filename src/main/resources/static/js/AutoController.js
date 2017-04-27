@@ -1,8 +1,8 @@
 /**
  * Created by Dominika on 2017-04-07.
  */
-angular.module('nikoApp').controller('AutoController', function ($scope, $resource, $http) {
-
+angular.module('nikoApp').controller('AutoController', function ($scope, $resource, $http, $localStorage) {
+    $scope.currUser = $localStorage.currentUser;
 
     $scope.test = function () {
         alert('Thanks');

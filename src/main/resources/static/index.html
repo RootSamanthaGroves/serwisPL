@@ -16,6 +16,7 @@
     <script type="text/javascript" src='js/PeopleController.js'></script>
     <!--wywalis people controller-->
     <script type="text/javascript" src='js/AccountController.js'></script>
+    <script type="text/javascript" src='js/UserController.js'></script>
     <script type="text/javascript" src='js/services/LoginService.js'></script>
     <script type="text/javascript" src='js/LoginController.js'></script>
     <script type="text/javascript" src='js/AutoController.js'></script>
@@ -29,9 +30,9 @@
     <!--<script type="text/javascript" src='bootstrap/js/ui-bootstrap-tpls-2.1.3.min.js'></script>-->
     <script type="text/javascript" src='AngularJS/ngStorage/ngStorage.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--do ikonki-->
@@ -396,7 +397,7 @@
                            aria-expanded="false"><i class="glyphicon glyphicon-user"></i>{{email}}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li ng-if="email"><a href="#/account" data-toggle="tooltip" data-placement="bottom"><i
+                            <li ng-if="email"><a href="#/kokpit" data-toggle="tooltip" data-placement="bottom"><i
                                     class="glyphicon glyphicon-user"></i> Konto</a></li>
                             <li><a href="" ng-click="removeUserFromStorage()">Wyloguj</a></li>
                         </ul>

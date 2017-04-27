@@ -3,6 +3,7 @@ package com.dominika.controller;
 import com.dominika.model.Logowanie;
 import com.dominika.model.Uzytkownik;
 import com.dominika.repository.LogowanieRepository;
+import com.dominika.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,25 @@ import java.util.Optional;
 @RestController
 @RequestMapping("log")
 public class LogowanieController {
+
+
     @Autowired
     LogowanieRepository logowanieRepository;
+    UserRepository userRepository;
 
+
+
+//    @PostMapping("/newUser")
+//    public ResponseEntity<Uzytkownik> postUser(@RequestBody Uzytkownik u) {
+//        System.out.println(u.getEmail());
+//        userRepository.save(u);
+//        if ((u.getId() != -1)) {
+//            return ResponseEntity.ok(u);
+//        }
+//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+//
+//
+//    }
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {

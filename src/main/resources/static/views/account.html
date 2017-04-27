@@ -1,74 +1,56 @@
 <div class="account backgroundT">
-
-
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-2 sidenav ">
 
                 <ul class="nav  nav-stacked">
 
-
-                    <li><a href="#kokpit" data-toggle="tab"> <span
+                    <li><a href="#kokpit" data-toggle="tab" class="tabs"> <span
                             class="glyphicon glyphicon-user logo-small"></span></a></li>
-                    <li><a href="#dodajAuto" data-toggle="tab"> <span><i class="fa fa-automobile"
-                                                                         style="font-size:42px"></i></span></a></li>
-                    <li><a href="#dodajNaprawe" data-toggle="tab"> <span
+                    <li><a href="#dodajAuto" data-toggle="tab" class="tabs"> <span><i class="fa fa-automobile"
+                                                                                      style="font-size:42px"></i></span></a>
+                    </li>
+                    <li><a href="#dodajNaprawe" data-toggle="tab" class="tabs"> <span
                             class="glyphicon glyphicon-wrench logo-small"></span></a></li>
-                    <li><a href="#dodajDaty" data-toggle="tab"> <span
+                    <li><a href="#dodajDaty" data-toggle="tab" class="tabs"> <span
                             class="glyphicon glyphicon-calendar logo-small"></span></a></li>
-
 
                 </ul>
                 <br>
-
             </div>
-
             <div class="col-sm-10">
 
-
                 <div class="tab-content clearfix">
-
-                    <div class="tab-pane" id="kokpit">
+                    <div class="tab-pane active" id="kokpit">
                         <h3>Kokpit</h3>
-                        <div>
-                            <div class="panel panel-primary">
-                                <div class="panel-heading"></div>
-                                <div class="chat-box-single-line">
-                                    <abbr class="timestamp">October 8th, 2015</abbr>
-                                </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"></div>
+                            <div class="chat-box-single-line">
+                                <abbr class="timestamp">Profil użytkownika</abbr>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-sm-2">
 
-                                <div class="row">
-                                    <div class="col-sm-2">
-
-                                        <div class="container">
-                                            <img src="ikony/user.jpg" alt="Avatar" class="image">
-                                            <div class="overlay">
-                                                <div class="text">Login</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-10" >
-
-
-                                        <div class=" well" style="margin-right: 20px; margin-left: 20px; margin-top: 10px">
-                                            <h2> Login</h2>
-                                            <h2>E-mail</h2>
-                                            <!--<h2>I Love Food</h2>-->
+                                    <div class="container">
+                                        <img src="ikony/user.jpg" alt="Avatar" class="image">
+                                        <div class="overlay">
+                                            <div class="text">Login</div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
+                                <div class="col-sm-10">
+                                    <div class="well">
+                                    <h2>Login:{{curUser.firstName}}</h2>
+                                    <h2>E-mail: {{curUser.email}}</h2>
+                                    <h2>Rola: {{curUser.role}}</h2>
+                                    <!--<h2>I Love Food</h2>-->
+                                    </div>/
+                                </div>
                             </div>
                         </div>
-
-
                     </div>
-                    <div class="tab-pane active" id="dodajAuto">
+                    <div class="tab-pane " id="dodajAuto">
                         <h3>Dodaj auto</h3>
 
                         <form>
@@ -133,9 +115,7 @@
                     </div>
                     <div class="tab-pane" id="dodajNaprawe">
 
-
                         <h3>Dodaj Naprawę</h3>
-
                         <form>
                             <div class="form-group">
                                 <label>Data:</label>
@@ -167,30 +147,22 @@
                                        name="kosztNaprawy" value=""
                                        placeholder="Koszt naprawy" ng-model="kosztNaprawy">
                             </div>
-
-
                             <button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">
                                 Dodaj
                                 informacje do bazy
                             </button>
-
                         </form>
-
                     </div>
                     <div class="tab-pane" id="dodajDaty">
-
 
                         <h3>Dodaj Polise</h3>
 
                         <form>
-
                             <div class="form-group">
                                 <label>Data dodania:</label>
                                 <input id="dataDodania" type="date" class="form-control"
                                        name="dataDodania" value=""
                                        placeholder="Data dodania" ng-model="dataDodania">
-
-
                             </div>
                             <div class="form-group">
                                 <label>Numer polisy:</label>
@@ -218,7 +190,6 @@
                                        placeholder="Skłądka  OC" ng-model="skladkaOC">
                             </div>
 
-
                             <button type="submit" type="submit" class="btn btn-default" ng-click="saveUbezpieczenie()">
                                 Dodaj
                                 informacje
@@ -226,9 +197,7 @@
                         </form>
 
                         <h3>Dodaj badanie techniczne</h3>
-
                         <form>
-
                             <div class="form-group">
                                 <label>Data wykonania badania:</label>
                                 <input id="datawykonaniaBadania" type="date" class="form-control"
@@ -242,17 +211,12 @@
                                        name="terminBadania" value=""
                                        placeholder="Termin Badania technicznego" ng-model="terminBadania">
                             </div>
-
-
                             <button type="submit" type="submit" class="btn btn-default" ng-click="saveBadanie()">
                                 Dodaj
                                 informacje
                             </button>
                         </form>
-
                     </div>
-
-
                     <div class="col-sm-12">
 
 
@@ -334,16 +298,9 @@
                         <!--</div>-->
                         <!--</div>-->
                         <!--</div>-->
-
-
                     </div>
-
                 </div>
-
-
             </div>
         </div>
-
-
     </div>
 </div>

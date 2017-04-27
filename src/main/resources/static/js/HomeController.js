@@ -1,6 +1,6 @@
 angular.module('nikoApp').controller('HomeController', function ($scope, $rootScope, $location, LoginService, $localStorage) {
     $scope.message = 'Hello from HomeController';
-    $rootScope.slider=true;
+    $rootScope.slider = true;
     $rootScope.email;
     $rootScope.admin;
     var loadCurrentUser = function () {

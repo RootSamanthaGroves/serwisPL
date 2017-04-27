@@ -1,5 +1,5 @@
 <div class="jumbotron about">
-    <div>
+    <div
         <div>
             <div class="exTab3">
 
@@ -11,15 +11,16 @@
                             <div>
                                 <div  style="text-align: center"  class="input-group col-ms-4">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="imie" type="imie" class="form-control" name="imie" value=""
+                                    <input id="imie" type="text" class="form-control" name="imie" value="imie"
                                            placeholder="Imie" ng-model="firstNameOfUser">
+
                                 </div>
                             </div>
 
                             <div>
                                 <div class="input-group col-ms-4">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input id="email" type="email" class="form-control" name="email" value=""
+                                    <input id="email" type="email" class="form-control" name="email" value="email"
                                            placeholder="Email" ng-model="emailOfUser">
                                 </div>
                             </div>
@@ -27,7 +28,7 @@
                             <div>
                                 <div class="input-group col-ms-4"ng-app=""  ng-init="passwordOfUser=''">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="password" type="password" class="form-control" name="password" value="{{passwordOfUser}}"
+                                    <input id="password" type="password" class="form-control" name="password" value="password"
                                            placeholder="Hasło" ng-model="passwordOfUser">
                                 </div>
                             </div>

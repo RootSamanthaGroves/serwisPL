@@ -1,5 +1,6 @@
 package com.dominika.controller;
 
+import com.dominika.model.Role;
 import com.dominika.model.Uzytkownik;
 import com.dominika.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 /**
@@ -21,16 +21,32 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @Transactional
-    @PostMapping("add")
-    public ResponseEntity<?> addUser(@RequestBody Uzytkownik user) {
-        userRepository.save(user);
-        if ((user.getId() != -1)) {
-            return ResponseEntity.ok(user);
-        }
-        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
-    }
+//    @Transactional
+//  @RequestMapping(value = "/add", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseEntity<?> addUser(@ModelAttribute Uzytkownik user) {
+//        System.out.println(user.getEmail().toString());
+//        System.out.println(user.getFirstName());
+//        System.out.println(user.getPassword());
+//        userRepository.save(user);
+//        if ((user.getId() != -1)) {
+//            return ResponseEntity.ok(user);
+//        }
+//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+//    }
 
+//    @Transactional
+    @PostMapping("/add")
+    public ResponseEntity<Uzytkownik> postUser(@RequestBody Uzytkownik user) {
+    user.setRole(Role.ROLE_USER);
+    System.out.println(user.getEmail());
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        user.setPassword(encoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+
+
+    }
 
     @DeleteMapping("delete/id/{id}")
     public ResponseEntity<Uzytkownik> deleteEmployee(@PathVariable Optional<Long> id) {
@@ -62,6 +78,20 @@ public class UserController {
         return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
     }
 
+
+//    @RequestMapping(value = "/email/{email}")
+//    public ResponseEntity<Uzytkownik> getUsersByEmail(@PathVariable Optional<Long> id) {
+//        if (id.isPresent()) {
+//            Uzytkownik user = userRepository.findOne(id.get());
+//            if (user != null) {
+//                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<Uzytkownik>(HttpStatus.NOT_FOUND);
+//            }
+//        }
+//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+//    }
+//
 
     @PostMapping("/put/{id}")
     public ResponseEntity<Uzytkownik> update(@PathVariable long id, @RequestBody Uzytkownik user) {

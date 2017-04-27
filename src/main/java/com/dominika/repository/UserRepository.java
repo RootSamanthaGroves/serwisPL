@@ -23,11 +23,12 @@ public class UserRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     @Transactional
-    public Uzytkownik save(Uzytkownik u) {
+    public void save(Uzytkownik u) {
         entityManager.persist(u);
-        return u;
     }
+
 
 
 
@@ -36,17 +37,14 @@ public class UserRepository {
                 "select u from Uzytkownik u where u.email = :email and u.password =:password", Uzytkownik.class);
         query.setParameter("email", email);
         query.setParameter("password", password);
-        try{
+        try {
             System.out.println(query.getSingleResult());
             return query.getSingleResult();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-
-
-
 
 
     public List<Uzytkownik> findAll() {
@@ -73,7 +71,7 @@ public class UserRepository {
         return u;
     }
 
-
+    @Transactional
     public Uzytkownik findOneByEmail(String email) {
         TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from users u where u.email = :email", Uzytkownik.class);
         query.setParameter("email", email);
@@ -90,13 +88,20 @@ public class UserRepository {
         if (!u.getEmail().isEmpty()) {
             user.setEmail(u.getEmail());
         }
-        if (!u.getPassword().isEmpty()) {
-            user.setPassword(u.getPassword());
+        if (!u.getPassword("admin").isEmpty()) {
+            user.setPassword(u.getPassword("admin"));
         }
-        if (!u.getFirstName().isEmpty()) {
-            user.setFirstName(u.getFirstName());
+        if (!u.getFirstName("admin").isEmpty()) {
+            user.setFirstName(u.getFirstName("admin"));
         }
         entityManager.merge(user);
         return user;
     }
+
+//@Transactional
+//    public void saveOne(String firstname, String email, String password, String role) {
+//        Uzytkownik u = new Uzytkownik();
+//        u.getEmail(email);
+//        entityManager.persist(u);
+//    }
 }
