@@ -27,6 +27,7 @@ public class UserController {
 //    public ResponseEntity<?> addUser(@ModelAttribute Uzytkownik user) {
 //        System.out.println(user.getEmail().toString());
 //        System.out.println(user.getFirstName());
+
 //        System.out.println(user.getPassword());
 //        userRepository.save(user);
 //        if ((user.getId() != -1)) {

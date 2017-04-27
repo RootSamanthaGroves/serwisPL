@@ -1,5 +1,5 @@
 <div class="jumbotron about">
-    <div
+    <div>
         <div>
             <div class="exTab3">
 
@@ -12,16 +12,18 @@
                                 <div  style="text-align: center"  class="input-group col-ms-4">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input id="imie" type="text" class="form-control" name="imie" value="imie"
-                                           placeholder="Imie" ng-model="firstNameOfUser">
-
-                                </div>
+                                           required="required" placeholder="Imie" ng-model="firstNameOfUser"class="help-block" data-toggle="tooltip" data-placement="right" title=" Nazwa użytkownika musi być dłuższa nic 3 znaki!">
+                                    </div>
+                                <!--<div class="alert alert-warning">-->
+                                    <!--<strong>Warning!</strong> Indicates a warning that might need attention.-->
+                                <!--</div>-->
                             </div>
 
                             <div>
                                 <div class="input-group col-ms-4">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                     <input id="email" type="email" class="form-control" name="email" value="email"
-                                           placeholder="Email" ng-model="emailOfUser">
+                                           placeholder="Email" ng-model="emailOfUser" data-toggle="tooltip" data-placement="right" title=" Email powinien zawiecać @">
                                 </div>
                             </div>
 
@@ -29,7 +31,7 @@
                                 <div class="input-group col-ms-4"ng-app=""  ng-init="passwordOfUser=''">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input id="password" type="password" class="form-control" name="password" value="password"
-                                           placeholder="Hasło" ng-model="passwordOfUser">
+                                           placeholder="Hasło" ng-model="passwordOfUser"data-toggle="tooltip" data-placement="right" title=" Hasło powinno być  dłuższe niż 5 znaków!">
                                 </div>
                             </div>
 
@@ -37,6 +39,9 @@
                                 <button id="submit" type="submit" class="btn btn-primary" ng-click="saveUser()">
                                     Zarejestruj się
                                 </button>
+                                <div class="alert alert-warning">
+                                    <strong>Warning!</strong> Indicates a warning that might need attention.
+                                </div>
                             </div>
                         </div>
                     </form>
