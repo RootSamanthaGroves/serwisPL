@@ -11,8 +11,9 @@ angular.module('nikoApp').controller('NavbarController', function ($rootScope, $
             .then(function (response) {
                 if (response.status == 200) {
                     $rootScope.email = response.data.email;
-                    $localStorage.email = response.data.email;
+                    $localStorage.name = response.data.name;
                     $localStorage.role = response.data.role;
+                    alert($localStorage.role)
 
                     if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
                         $rootScope.admin = true;

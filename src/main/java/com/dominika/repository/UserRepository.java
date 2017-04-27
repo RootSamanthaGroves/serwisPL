@@ -98,10 +98,5 @@ public class UserRepository {
         return user;
     }
 
-//@Transactional
-//    public void saveOne(String firstname, String email, String password, String role) {
-//        Uzytkownik u = new Uzytkownik();
-//        u.getEmail(email);
-//        entityManager.persist(u);
-//    }
+
 }
