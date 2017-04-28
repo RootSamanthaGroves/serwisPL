@@ -10,10 +10,26 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
             .then(function (response) {
                 if (response.status == 200) {
                     $scope.curUser = response.data;
-                    alert($localStorage.currentUser.id);
+                    // alert($localStorage.currentUser.id);
                 }
             })
     };
+
+
+    var loadAllCars = function () {
+        var Car = $resource('auto/all', {}, {
+            query: {method: 'get', isArray: true, cancellable: true}
+        });
+
+        Car.query(function (response) {
+            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
+            $scope.car = response; // widoku będziesz używał teraz people
+        });
+    };
+    loadAllCars();
+
+
+
     getUserById($localStorage.currentUser.id);
     // alert(curUser.firstName)
 

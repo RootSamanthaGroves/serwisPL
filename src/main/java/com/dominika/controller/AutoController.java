@@ -25,7 +25,7 @@ public class AutoController {
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {
-        List<Auto> autosList = autoRepository.findAll();
+        List<Auto> autosList = autoRepository.getAll();
         if (autosList.isEmpty())
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         return ResponseEntity.ok(autosList);

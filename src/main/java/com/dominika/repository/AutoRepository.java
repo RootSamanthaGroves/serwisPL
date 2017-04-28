@@ -32,7 +32,7 @@ public class AutoRepository {
 
     }
 
-    public List<Auto> findAll() {
+    public List<Auto> getAll() {
         TypedQuery<Auto> query = entityManager.createQuery("select a from Auto a", Auto.class);
         return query.getResultList();
     }
