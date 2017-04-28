@@ -93,7 +93,7 @@ public class SecurityController {
     public @ResponseBody
     Uzytkownik getUserAccount() {
         Uzytkownik user = usersRepository.findByEmail(SecurityUtils.getCurrentLogin());
-        if(user!=null)
+        if (user != null)
             user.setPassword(null);
         return user;
     }
@@ -110,11 +110,10 @@ public class SecurityController {
     public @ResponseBody
     Uzytkownik postUser() {
         Uzytkownik user = usersRepository.findByEmail(SecurityUtils.getCurrentLogin());
-        if(user!=null)
+        if (user != null)
             user.setPassword(null);
         return user;
     }
-
 
 
 }

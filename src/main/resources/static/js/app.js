@@ -18,10 +18,10 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/about.html',
             controller: 'AboutController'
         })
-        .when('/account', {
-            templateUrl: 'views/account.html',
-            controller: 'AccountController'
-        })
+        // .when('/account', {
+        //     templateUrl: 'views/account.html',
+        //     controller: 'AccountController'
+        // })
         .when('/logowanie', {
             templateUrl: 'views/logowanie.html',
             controller: 'LoginController'

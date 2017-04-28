@@ -29,13 +29,10 @@ public class LogowanieRepository {
         return u;
     }
 
-
-
     @Transactional
     public Logowanie save(Logowanie l) {
         entityManager.persist(l);
         return(l);
-
     }
 
     public List<Logowanie> findAll() {
@@ -43,10 +40,8 @@ public class LogowanieRepository {
         return query.getResultList();
     }
 
-
     @Transactional
     public ResponseEntity removeOne(long id) {
-
         Logowanie l = entityManager.find(Logowanie.class, id);
         if (l == null) {
             return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
@@ -54,7 +49,6 @@ public class LogowanieRepository {
             entityManager.remove(l);
             return new ResponseEntity(l, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @Transactional

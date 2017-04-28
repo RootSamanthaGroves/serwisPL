@@ -1,9 +1,9 @@
 /**
  * Created by Dominika on 2017-04-20.
  */
-angular.module('nikoApp').service('LoginService', function($http) {
+angular.module('nikoApp').service('LoginService', function ($http) {
 
-    this.createUser = function(user) {
+    this.createUser = function (user) {
         var data = 'username=' + user.username + '&password=' + user.password + user.email;
         return $http({
             method: "POST",
@@ -20,11 +20,7 @@ angular.module('nikoApp').service('LoginService', function($http) {
         });
     };
 
-
-
-
-
-    this.login = function(userLoginAndPassword) {
+    this.login = function (userLoginAndPassword) {
         var data = 'username=' + userLoginAndPassword.username + '&password=' + userLoginAndPassword.password;
         return $http({
             method: "POST",
@@ -40,7 +36,8 @@ angular.module('nikoApp').service('LoginService', function($http) {
             return response.status;
         });
     };
-    this.getCurrentUser = function() {
+
+    this.getCurrentUser = function () {
         var url = 'security/account';
         return $http({
             method: "GET",
@@ -51,7 +48,8 @@ angular.module('nikoApp').service('LoginService', function($http) {
             return response.status;
         });
     };
-    this.logoutUser = function() {
+
+    this.logoutUser = function () {
         var url = '/logout';
         return $http({
             method: "GET",

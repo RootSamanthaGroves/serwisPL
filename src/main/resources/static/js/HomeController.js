@@ -9,6 +9,7 @@ angular.module('nikoApp').controller('HomeController', function ($scope, $rootSc
             .then(function (response) {
                 if (response.status == 200) {
                     $rootScope.email = response.data.email;
+                    console.log(response.data);
                     $localStorage.email = response.data.email;
                     $localStorage.role = response.data.role;
 

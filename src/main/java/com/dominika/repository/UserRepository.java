@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.ws.soap.support.SoapUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +19,7 @@ import java.util.List;
 
 
 @Repository
-public class UserRepository {
+public class UserRepository{
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -29,26 +30,22 @@ public class UserRepository {
         entityManager.persist(u);
     }
 
-
-
-
-    public Uzytkownik findByEmailAndPassword(String email, String password) {
-        TypedQuery<Uzytkownik> query = entityManager.createQuery(
-                "select u from Uzytkownik u where u.email = :email and u.password =:password", Uzytkownik.class);
-        query.setParameter("email", email);
-        query.setParameter("password", password);
-        try {
-            System.out.println(query.getSingleResult());
-            return query.getSingleResult();
-
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
+//    public Uzytkownik findByEmailAndPassword(String email, String password) {
+//        TypedQuery<Uzytkownik> query = entityManager.createQuery(
+//                "select u from Uzytkownik u where u.email = :email and u.password =:password", Uzytkownik.class);
+//        query.setParameter("email", email);
+//        query.setParameter("password", password);
+//        try {
+//            System.out.println(query.getSingleResult());
+//            return query.getSingleResult();
+//
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
     public List<Uzytkownik> findAll() {
-        TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from User u", Uzytkownik.class);
+        TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from Uzytkownik u", Uzytkownik.class);
         return query.getResultList();
     }
 
@@ -71,16 +68,15 @@ public class UserRepository {
         return u;
     }
 
-    @Transactional
-    public Uzytkownik findOneByEmail(String email) {
-        TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from users u where u.email = :email", Uzytkownik.class);
-        query.setParameter("email", email);
-        List<Uzytkownik> userList = query.getResultList();
-        if (userList.isEmpty())
-            return null;
-        return userList.get(0);
-    }
-
+//    @Transactional
+//    public Uzytkownik findOneByEmail(String email) {
+//        TypedQuery<Uzytkownik> query = entityManager.createQuery("select u from Uzytkownik u where u.email = :email", Uzytkownik.class);
+//        query.setParameter("email", email);
+//        List<Uzytkownik> userList = query.getResultList();
+//        if (userList.isEmpty())
+//            return null;
+//        return userList.get(0);
+//    }
 
     @Transactional
     public Uzytkownik update(long id, Uzytkownik u) {
@@ -88,15 +84,13 @@ public class UserRepository {
         if (!u.getEmail().isEmpty()) {
             user.setEmail(u.getEmail());
         }
-        if (!u.getPassword("admin").isEmpty()) {
-            user.setPassword(u.getPassword("admin"));
+        if (!u.getPassword().isEmpty()) {
+            user.setPassword(u.getPassword());
         }
-        if (!u.getFirstName("admin").isEmpty()) {
-            user.setFirstName(u.getFirstName("admin"));
+        if (!u.getFirstName().isEmpty()) {
+            user.setFirstName(u.getFirstName());
         }
         entityManager.merge(user);
         return user;
     }
-
-
 }

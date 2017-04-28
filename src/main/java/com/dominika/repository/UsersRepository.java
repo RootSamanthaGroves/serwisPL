@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsersRepository extends JpaRepository<Uzytkownik, Long> {
     Uzytkownik findByEmail(String email);
-    Uzytkownik  save(Uzytkownik u);
+    Uzytkownik save(Uzytkownik u);
 }

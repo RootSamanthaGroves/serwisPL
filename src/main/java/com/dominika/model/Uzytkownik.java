@@ -35,8 +35,7 @@ public class Uzytkownik {
     @OneToMany
     private List<Auto> auto;
 
-
-    public Uzytkownik(String diies, String email, String admin, String role_admin) {
+    public Uzytkownik( ) {
     }
 
     public Uzytkownik(String firstName, String email, String password, Role role) {
@@ -46,28 +45,11 @@ public class Uzytkownik {
         this.role = role;
     }
 
-//    public Uzytkownik(String firstName, String email, String password) {
-//        this.firstName = firstName;
-//        this.email = email;
-//        this.password = password;
-//    }
-    public Uzytkownik( String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public Uzytkownik( ) {
-      }
-//    public Uzytkownik( String email) {
-//        this.email = email;
-//
-//    }
-
     public Uzytkownik(long id) {
         this.id = id;
     }
 
-    public Role getRole(String role_admin) {
+    public Role getRole() {
         return role;
     }
 
@@ -75,7 +57,7 @@ public class Uzytkownik {
         this.role = role;
     }
 
-    public String getFirstName(String admin) {
+        public String getFirstName() {
         return firstName;
     }
 
@@ -83,24 +65,21 @@ public class Uzytkownik {
         this.firstName = firstName;
     }
 
-
     public long getId() {
         return id;
     }
-
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassword(String admin) {
+    public String getPassword() {
         return password;
     }
 
     public void setId(long id) {
         this.id = id;
     }
-
 
     public void setEmail(String email) {
         this.email = email;

@@ -33,6 +33,7 @@ public class LogowanieController {
 //    public ResponseEntity<Uzytkownik> postUser(@RequestBody Uzytkownik u) {
 //        System.out.println(u.getEmail());
 //        userRepository.save(u);
+//        userRepository.save(u);
 //        if ((u.getId() != -1)) {
 //            return ResponseEntity.ok(u);
 //        }

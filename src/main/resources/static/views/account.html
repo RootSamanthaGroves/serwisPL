@@ -39,12 +39,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-10">
-                                    <div class="well">
-                                    <h2>Login:{{curUser.firstName}}</h2>
-                                    <h2>E-mail: {{curUser.email}}</h2>
+                                <div class="col-sm-10" >
+                                    <div class="well" >
+                                    <h2>Login: {{curUser.firstName}}</h2>
+                                    <h2 >E-mail: {{email}}</h2>
                                     <h2>Rola: {{curUser.role}}</h2>
                                     </div>
+                                    <button id="findOneUserByEmail" type="submit" class="btn btn-default" ng-click="findOneUserByEmail(email)">Dej mnie info
+                                    </button>
                                 </div>
                             </div>
                         </div>

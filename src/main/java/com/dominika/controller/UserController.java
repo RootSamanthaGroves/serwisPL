@@ -36,11 +36,11 @@ public class UserController {
 //        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
 //    }
 
-//    @Transactional
+    //    @Transactional
     @PostMapping("/add")
     public ResponseEntity<Uzytkownik> postUser(@RequestBody Uzytkownik user) {
-    user.setRole(Role.ROLE_USER);
-    System.out.println(user.getEmail());
+        user.setRole(Role.ROLE_USER);
+        System.out.println(user.getEmail());
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //        user.setPassword(encoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -66,10 +66,11 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/id/{id}")
+    @GetMapping(value = "/id/{id}")
     public ResponseEntity<Uzytkownik> getDetailsOfUsers(@PathVariable Optional<Long> id) {
         if (id.isPresent()) {
             Uzytkownik user = userRepository.findOne(id.get());
+            System.out.println(user.getEmail() + " " + user.getFirstName());
             if (user != null) {
                 return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
             } else {
@@ -80,19 +81,17 @@ public class UserController {
     }
 
 
-//    @RequestMapping(value = "/email/{email}")
-//    public ResponseEntity<Uzytkownik> getUsersByEmail(@PathVariable Optional<Long> id) {
-//        if (id.isPresent()) {
-//            Uzytkownik user = userRepository.findOne(id.get());
-//            if (user != null) {
-//                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<Uzytkownik>(HttpStatus.NOT_FOUND);
-//            }
+//    @GetMapping(value = "/email")
+//    public ResponseEntity<Uzytkownik> getUsersByEmail(@RequestBody String email) {
+//        System.out.println(email);
+//        Uzytkownik unewU = (Uzytkownik) userRepository.findOneByEmail(email);
+//        if (unewU != null) {
+//            return new ResponseEntity<Uzytkownik>(unewU, new HttpHeaders(), HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
 //        }
-//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
 //    }
-//
+
 
     @PostMapping("/put/{id}")
     public ResponseEntity<Uzytkownik> update(@PathVariable long id, @RequestBody Uzytkownik user) {
@@ -100,34 +99,34 @@ public class UserController {
         return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/email/{email}")
-    public ResponseEntity<Uzytkownik> getOfUsersByEMail(@PathVariable String email) {
-        if (!email.isEmpty()) {
-            Uzytkownik user = userRepository.findOneByEmail(email);
-            if (user != null) {
-                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
-            }
-        }
-        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
-    }
+//    @RequestMapping(value = "/email/{email}")
+//    public ResponseEntity<Uzytkownik> getOfUsersByEMail(@PathVariable String email) {
+//        if (!email.isEmpty()) {
+//            Uzytkownik user = userRepository.findOneByEmail(email);
+//            if (user != null) {
+//                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
+//            }
+//        }
+//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+//    }
 
-    @RequestMapping("/log/{a}/{b}")
+//    @RequestMapping("/log/{a}/{b}")
 
-    public ResponseEntity<Uzytkownik> getByEmailAndPassword(@PathVariable String a, @PathVariable String b) {
-
-        System.out.println(a);
-        System.out.println(b);
-        Uzytkownik user = (Uzytkownik) userRepository.findByEmailAndPassword(a, b);
-        if (user != null) {
-            return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
-        }
-
-//      return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
-    }
+//    public ResponseEntity<Uzytkownik> getByEmailAndPassword(@PathVariable String a, @PathVariable String b) {
+//
+//        System.out.println(a);
+//        System.out.println(b);
+//        Uzytkownik user = (Uzytkownik) userRepository.findByEmailAndPassword(a, b);
+//        if (user != null) {
+//            return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
+//        }
+//
+////      return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+//    }
 
 
 }

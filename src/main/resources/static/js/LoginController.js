@@ -1,14 +1,12 @@
 /**
  * Created by Dominika on 2017-04-03.
  */
-angular.module('nikoApp').controller('LoginController', function ($rootScope, $scope, LoginService, $location, $localStorage, $resource, $http) {
+angular.module('nikoApp').controller('LoginController', function ($http, $rootScope, $scope, LoginService, $location, $localStorage, $resource ) {
 
-    $scope.test = function () {
-        alert('Thanks');
-    }
-
-
-
+    // $scope.test = function () {
+    //     alert('Thanks');
+    // }
+    //
 
     // $scope.findUser = function () {
     //     var e = $scope.emailLog;

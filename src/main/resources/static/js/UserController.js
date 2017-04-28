@@ -4,10 +4,8 @@
 
 angular.module('nikoApp').controller('UserController', function ($scope, $resource, $http) {
     $scope.message = 'Hello from Accountuser';
-    // alert($scope.message);
 
-
-    $scope.saveUser= function () {
+    $scope.saveUser = function () {
         var email = $scope.emailOfUser;
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
         var password = $scope.passwordOfUser;
@@ -20,10 +18,10 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
 
 
         // var email = Boolean(100);
-       // $scope.firstName = Boolean(firstName.length<2);
-       //  alert('Nazwa użytkownika jest za krótka!');
-       //  var password = Boolean(password.length<5);
-       //  alert(firstName.length<2);
+        // $scope.firstName = Boolean(firstName.length<2);
+        //  alert('Nazwa użytkownika jest za krótka!');
+        //  var password = Boolean(password.length<5);
+        //  alert(firstName.length<2);
 
         // document.getElementById("demo").innerHTML = email.length;
         // document.getElementById("demo").innerHTML = firstName.length;
@@ -41,7 +39,7 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
         };
         // alert(userObject.firstName+userObject.email);
 
-        $http.post('/user/add',userObject).success(function () { //wywloujemy
+        $http.post('/user/add', userObject).success(function () { //wywloujemy
             alert('Konto zostało utoworzone');
             $scope.emailOfUser = "";
             $scope.firstNameOfUser = ""; //pobieramy imie z pola w html
