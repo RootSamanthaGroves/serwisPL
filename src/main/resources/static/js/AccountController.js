@@ -15,7 +15,7 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
             })
     };
 
-
+// wyświetlanie aut
     var loadAllCars = function () {
         var Car = $resource('auto/all', {}, {
             query: {method: 'get', isArray: true, cancellable: true}
@@ -28,6 +28,18 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     };
     loadAllCars();
 
+    var loadAllRepair = function () {
+        var Repair = $resource('naprawa/all', {}, {
+            query: {method: 'get', isArray: true, cancellable: true}
+        });
+
+        Repair.query(function (response) {
+            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
+            $scope.repair = response; // widoku będziesz używał teraz people
+        });
+    };
+    loadAllRepair();
+
 
 
     getUserById($localStorage.currentUser.id);
@@ -37,8 +49,8 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     $scope.saveUser = function () {
         var email = $scope.emailOfUser;
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
-        var password = $scope.passwordOfUser;
-        var acountRole = "";
+        // var password = $scope.passwordOfUser;
+        // var acountRole = "";
 
         alert(firstName + email);
 

@@ -19,7 +19,7 @@ public class BadanieTechniczne {
 
     }
 
-    @Column(columnDefinition = "timestamp with zone")
+//    @Column(columnDefinition = "timestamp with zone")
     public Date getDataBadania() {
         return dataBadania;
     }
@@ -27,7 +27,7 @@ public class BadanieTechniczne {
     public void setDataBadania(Date dataBadania) {
         this.dataBadania = dataBadania;
     }
-    @Column(columnDefinition = "timestamp with zone")
+//    @Column(columnDefinition = "timestamp with zone")
     public Date getDataWaznosci() {
         return DataWaznosci;
     }

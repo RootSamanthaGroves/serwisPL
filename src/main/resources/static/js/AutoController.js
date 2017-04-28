@@ -9,31 +9,18 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
     }
 
 
-    // (function() {
-    //     $('#datepicker').datepicker({
-    //         changeYear: true,
-    //         showButtonPanel: true,
-    //         dateFormat: 'yy',
-    //         onClose: function(dateText, inst) {
-    //             var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-    //             $(this).datepicker('setDate', new Date(year, 1));
-    //         }
-    //     });
-    //     $(".date-picker-year").focus(function () {
-    //         $(".ui-datepicker-month").hide();
-    //     });
-    // });
+
 
     $scope.saveAuto = function () {
-        var marka = $scope.markaAuto;
-        var model = $scope.modelAuto;
-        var numerVIN = $scope.numerVinAuto;
-        var numerRejestracyjny = $scope.numerRejAuto;
-        var mocSilnika = $scope.mocAuto;
-        var rokProdukcji = $scope.rokProAuto;
-        var pojemnoscSilnika = $scope.pojSilnikaAuto;
-        var rodzajNadwozia = $scope.rodzNadwoziaAuto;
-        var rodzajPaliwa = $scope.rodzajPaliwAuto
+        // var marka = $scope.markaAuto;
+        // var model = $scope.modelAuto;
+        // var numerVIN = $scope.numerVinAuto;
+        // var numerRejestracyjny = $scope.numerRejAuto;
+        // var mocSilnika = $scope.mocAuto;
+        // var rokProdukcji = $scope.rokProAuto;
+        // var pojemnoscSilnika = $scope.pojSilnikaAuto;
+        // var rodzajNadwozia = $scope.rodzNadwoziaAuto;
+        // var rodzajPaliwa = $scope.rodzajPaliwAuto
 
 
         var autoObject = {

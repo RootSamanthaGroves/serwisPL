@@ -82,22 +82,24 @@
                                     <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Marka</th>
-                                        <th>Model</th>
-                                        <th>Rejstracja</th>
-                                        <th>Rok produkcji</th>
+                                        <th>data</th>
+                                        <th>Przebieg</th>
+                                        <th>Rorzaj</th>
+                                        <th>Opis</th>
+                                        <th>Koszt</th>
                                     </tr>
                                     </thead>
                                     <!--mamy petle for each-->
                                     <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
                                     <tbody>
-                                    <!--String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa-->
-                                    <tr ng-repeat="c in car |orderBy:'marka'">
-                                        <td>{{ c.id }}</td>
-                                        <td>{{ c.marka }}</td>
-                                        <td>{{ c.model }}</td>
-                                        <td>{{ c.numerRejestracyjny}}</td>
-                                        <td>{{ c.rokProdukcji}}</td>
+                                    <!--Date data, int przebieg, String rodzaj, String opis, int koszt-->
+                                    <tr ng-repeat="r in repair |orderBy:'data'">
+                                        <td>{{ r.id }}</td>
+                                        <td>{{ r.data }}</td>
+                                        <td>{{ r.przebieg }}</td>
+                                        <td>{{ r.rodzaj}}</td>
+                                        <td>{{ r.opis}}</td>
+                                        <td>{{ r.koszt}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -214,6 +216,7 @@
                         <h3>Dodaj Polise</h3>
 
                         <form>
+
                             <div class="form-group">
                                 <label>Data dodania:</label>
                                 <input id="dataDodania" type="date" class="form-control"
