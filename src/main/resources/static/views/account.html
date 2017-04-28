@@ -74,6 +74,14 @@
                                         <td>{{ c.model }}</td>
                                         <td>{{ c.numerRejestracyjny}}</td>
                                         <td>{{ c.rokProdukcji}}</td>
+                                        <td><a href="" class="btn btn-danger"
+                                               ng-click="deleteCar(c.id)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a></td>
+                                        <td><a href="" class="btn btn-info "
+                                               ng-click="editCar(c.id)">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -100,6 +108,14 @@
                                         <td>{{ r.rodzaj}}</td>
                                         <td>{{ r.opis}}</td>
                                         <td>{{ r.koszt}}</td>
+                                        <td><a href="" class="btn btn-danger"
+                                               ng-click="deleteRepair(r.id)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a></td>
+                                        <td><a href="" class="btn btn-info "
+                                               ng-click="editRepair(r.id)">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a></td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -5,6 +5,8 @@
 angular.module('nikoApp').controller('AccountController', function ($scope, $localStorage, $resource, $http, UserService) {
     $scope.message = 'Hello from AccountController';
     $scope.curUser;
+
+
     var getUserById = function (id) {
         UserService.getUserById(id)
             .then(function (response) {
@@ -28,6 +30,7 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     };
     loadAllCars();
 
+    // wyswietlanie naprawy
     var loadAllRepair = function () {
         var Repair = $resource('naprawa/all', {}, {
             query: {method: 'get', isArray: true, cancellable: true}
@@ -39,6 +42,87 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
         });
     };
     loadAllRepair();
+
+
+    $scope.deleteCar = function (Id) {
+        $http({
+            method: 'DELETE',
+            url: '/auto/delete/id/' + Id
+        }).success(function (data) {
+            //Showing Success message
+            // $scope.status = "The Survey Deleted Successfully!!!";
+            // alert('Delete User');
+
+            loadAllCars();
+        })
+            .error(function (error) {
+                //Showing error message
+                $scope.status = 'Unable to delete a person: ' + error.message;
+            });
+    }
+
+
+    $scope.editCar = function (Id,text) {
+
+        var question = prompt("Please enter the question "+Id, text);
+
+        var questionObj = {
+            q: question
+
+        };
+
+        $http.put('/question/id', questionObj).success(function () { //wywloujemy
+            alert('question update' + questionObj);
+            loadAllQuestionFromDb();
+        }).error(function () {
+            alert('We have problem!');
+        })
+
+
+        $http.post('/answer/put/'+ Id ,  answerObj).success(function () { //wywloujemy
+            alert('Thanks');
+
+            loadAllAnswersFromDb();
+
+            // for(var i = 0; questionObject.length(); i++){
+            //     console.log(questionObject.answers[i].answer);
+            // }
+
+        }).error(function () {
+            alert("nie udało się ")
+        })
+        $http({
+
+            method: 'PUT',
+            url: '/answer/put/id/' + Id
+        }).success(function (data) {
+            //Showing Success message
+            $scope.status = "The Survey Deleted Successfully!!!";
+            alert('Update User');
+            loadAllAnswersFromDb();
+        })
+            .error(function (error) {
+                //Showing error message
+                $scope.status = 'Unable to delete a person: ' + error.message;
+            });
+    }
+
+    $scope.deleteRepair = function (Id) {
+        $http({
+            method: 'DELETE',
+            url: '/naprawa/delete/id/' + Id
+        }).success(function (data) {
+            //Showing Success message
+            // $scope.status = "The Survey Deleted Successfully!!!";
+            // alert('Delete User');
+
+            loadAllRepair();
+        })
+            .error(function (error) {
+                //Showing error message
+                $scope.status = 'Unable to delete a person: ' + error.message;
+            });
+    }
 
 
 
@@ -74,6 +158,11 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
                 ' Możliwe ze konto o podanym adresie email już istnieje');
         })
     };
+
+
+
+
+
     // alert($scope.emailZalogowany);
 
     // this.findOneUserByEmail = function () {
