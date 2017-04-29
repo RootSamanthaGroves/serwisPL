@@ -28,7 +28,10 @@ public class AutoRepository {
     @Transactional
     public Auto save(Auto a) {
         entityManager.persist(a);
+//        System.out.println(a.getId());
         return(a);
+
+
 
     }
 

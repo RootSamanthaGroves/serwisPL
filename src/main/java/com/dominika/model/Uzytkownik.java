@@ -18,25 +18,33 @@ public class Uzytkownik {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     @Size(min = 3, max = 50)
     private String firstName;
-
     @Column(nullable = false, unique = true)
     @Email
     private String email;
-
     @Size(min = 5)
     private String password;
-
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany
+    @ManyToMany
     private List<Auto> auto;
+
+
 
     public Uzytkownik( ) {
     }
+
+    public Uzytkownik(List<Auto> auto) {
+        this.auto = auto;
+    }
+    public Uzytkownik(long id, List<Auto> auto) {
+        this.id = id;
+        this.auto=  auto;
+
+    }
+
 
     public Uzytkownik(String firstName, String email, String password, Role role) {
         this.firstName = firstName;
@@ -88,4 +96,12 @@ public class Uzytkownik {
     public void setPassword(String password) {
         this.password = password;
     }
+
+//    public void setAuto(List<Auto> auto) {
+//        this.auto = auto;
+//    }
+
+//    public List<Auto> getAuto() {
+//        return auto;
+//    }
 }

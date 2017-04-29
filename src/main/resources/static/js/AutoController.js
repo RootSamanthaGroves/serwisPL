@@ -3,7 +3,7 @@
  */
 angular.module('nikoApp').controller('AutoController', function ($scope, $resource, $http, $localStorage) {
     $scope.currUser = $localStorage.currentUser;
-
+    var id;
     $scope.test = function () {
         alert('Thanks');
     }
@@ -12,15 +12,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
 
 
     $scope.saveAuto = function () {
-        // var marka = $scope.markaAuto;
-        // var model = $scope.modelAuto;
-        // var numerVIN = $scope.numerVinAuto;
-        // var numerRejestracyjny = $scope.numerRejAuto;
-        // var mocSilnika = $scope.mocAuto;
-        // var rokProdukcji = $scope.rokProAuto;
-        // var pojemnoscSilnika = $scope.pojSilnikaAuto;
-        // var rodzajNadwozia = $scope.rodzNadwoziaAuto;
-        // var rodzajPaliwa = $scope.rodzajPaliwAuto
+
 
 
         var autoObject = {
@@ -35,14 +27,62 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 rokProdukcji: $scope.rokProAuto
             };
 
-        $http.post('/auto/add', autoObject).success(function () {
+        $http.post('/auto/add', autoObject).success(function (response) {
             alert('Twoje auto zostało dodane');
 
-
+           // alert($localStorage.currentUser.id + " " );
+            console.log(response);
+            // alert(response.id);
+            id= response.id;
+            saveRel(response.id);
         }).error(function () {
             alert('Coś poszło nie tak' +
                 ' ');
         })
     };
+
+    var saveRel = function (id) {
+        alert(id+" "+$localStorage.currentUser.id)
+        var Object = {
+            idUser:$localStorage.currentUser.id,
+            idCar: id
+
+
+        };
+
+        $http.post('/user/put/'+ $localStorage.currentUser.id ,  Object).success(function () { //wywloujemy
+            alert('Thanks');
+
+
+
+
+        }).error(function () {
+            alert("nie udało się ")
+        })
+    };
+
+
+
+    $scope.saveRelations = function () {
+        alert(id)
+        alert($localStorage.currentUser.id + " " + id);
+
+
+
+        var questionObject = {
+            user: $scope.$localStorage.currentUser.id,
+            car: $scope.car.id
+        };
+
+        $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
+            alert('Thanks'+$scope.selected);
+
+
+
+        }).error(function () {
+            alert("nie udało się ")
+        })
+    };
+
 
 });

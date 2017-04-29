@@ -95,9 +95,12 @@ public class UserController {
 
     @PostMapping("/put/{id}")
     public ResponseEntity<Uzytkownik> update(@PathVariable long id, @RequestBody Uzytkownik user) {
-        userRepository.update(id, user);
+//        System.out.println("controller"+id+" "+user.toString());
+        userRepository.update(Long.valueOf(id), user);
         return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
     }
+
+
 
 //    @RequestMapping(value = "/email/{email}")
 //    public ResponseEntity<Uzytkownik> getOfUsersByEMail(@PathVariable String email) {

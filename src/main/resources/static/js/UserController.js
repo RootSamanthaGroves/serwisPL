@@ -10,24 +10,7 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
         var password = $scope.passwordOfUser;
 
-        // if ( $scope.emailOfUser.length< 2) {
-        //     greeting = "Good day";
-        // } else {
-        //     greeting = "Good evening";
-        // }
 
-
-        // var email = Boolean(100);
-        // $scope.firstName = Boolean(firstName.length<2);
-        //  alert('Nazwa użytkownika jest za krótka!');
-        //  var password = Boolean(password.length<5);
-        //  alert(firstName.length<2);
-
-        // document.getElementById("demo").innerHTML = email.length;
-        // document.getElementById("demo").innerHTML = firstName.length;
-
-
-        // alert('Podaj poprawne dane!');
 
 
         var userObject = {
