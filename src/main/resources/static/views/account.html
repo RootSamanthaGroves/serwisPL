@@ -119,10 +119,15 @@
                                                ng-click="deleteRepair(r.id)">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a></td>
-                                        <td><a href="" class="btn btn-info "
-                                               ng-click="editRepair(r.id)">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </a></td>
+                                        <td>
+                                            <!--<a href="" class="btn btn-info "-->
+                                               <!--ng-click="editRepair(r.id)">-->
+                                            <!--<span class="glyphicon glyphicon-edit"></span>-->
+                                        <!--</a>-->
+                                            <button type="button"alt="{{r.id}}"  ng-click="showRepair(r.id)" class="btn btn-primary btn btn-inf"  data-toggle="modal" data-target="#exampleModalLong2" >
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -339,42 +344,42 @@
                             </div>
                             <div class="form-group">
                                 <label>Numer VIN:</label>
-                                <input id="numerVINAutoE" type="text" class="form-control" name="NumerVin" value=""
+                                <input id="numerVINAutoE" type="text" class="form-control" name="NumerVin" value="numerVin"
                                        placeholder="Numer VIN" ng-model="numerVinAuto">
                             </div>
                             <div class="form-group">
                                 <label>Numer rejestracyjny:</label>
-                                <input id="numerRejAutoE" type="text" class="form-control" name="numerRej" value=""
+                                <input id="numerRejAutoE" type="text" class="form-control" name="numerRej" value="numerRej"
                                        placeholder="Numer rejestracyjny" ng-model="numerRejAuto">
                             </div>
 
                             <div class="form-group">
                                 <label>Rok produkcji:</label>
-                                <input id="rokProAutoE" type="text" class="form-control" name="rokProAuto" value=""
+                                <input id="rokProAutoE" type="text" class="form-control" name="rokProAuto" value="rokProdukcj"
                                        placeholder="Rok produkcji " ng-model="rokProAuto">
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj nadwozia:</label>
                                 <input id="rodzNadwoziaAutoE" type="text" class="form-control"
                                        name="rodzNadwoziaAuto"
-                                       value=""
+                                       value="rodzajNadwoziaAuto"
                                        placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaAuto">
                             </div>
                             <div class="form-group">
                                 <label>Pojemność silnika:</label>
                                 <input id="pojSilnikaAutoE" type="number" class="form-control" name="pojSilnikaAuto"
-                                       value=""
+                                       value="pojSilnikaAuto"
                                        placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
                             </div>
                             <div class="form-group">
                                 <label>Moc silnika:</label>
-                                <input id="mocAutoE" type="number" class="form-control" name="mocAuto" value=""
+                                <input id="mocAutoE" type="number" class="form-control" name="mocAuto" value="mocAuto"
                                        placeholder=" Moc silnika" ng-model="mocAuto">
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj paliwa:</label>
                                 <input id="rodzPaliwAutoE" type="text" class="form-control" name="rodzajPaliwa"
-                                       value=""
+                                       value="rodzjaPaliwAuto"
                                        placeholder="Rodzaj Paliwa" ng-model="rodzajPaliwAuto">
 
 
@@ -391,5 +396,62 @@
                 </div>
             </div>
         </div>
+
+        <!-- Edycja naprawy -->
+        <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle2" >Edytuj</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <form>
+                            <div class="form-group">
+                                <label>Data:</label>
+                                <input id="dataE" type="date" class="form-control"
+                                       name="dataE" value=""
+                                       placeholder="data naprawy" ng-model="dataE">
+                            </div>
+                            <div class="form-group">
+                                <label>Przebieg:</label>
+                                <input id="przebiegE" type="number" class="form-control"
+                                       name="przebiegE" value=""
+                                       placeholder="Przebieg" ng-model="przebiegE">
+                            </div>
+                            <div class="form-group">
+                                <label>Rodzaj:</label>
+                                <input id="rodzajE" type="text" class="form-control"
+                                       name="rodzajE" value=""
+                                       placeholder="Rodzaj naprawy" ng-model="rodzajE">
+                            </div>
+                            <div class="form-group">
+                                <label>Opis:</label>
+                                <input id="opisE" type="text" class="form-control"
+                                       name="opisE" value=""
+                                       placeholder="Opis naprawy" ng-model="opisE">
+                            </div>
+                            <div class="form-group">
+                                <label>Kosz naprawy:</label>
+                                <input id="kosztE" type="number" class="form-control"
+                                       name="kosztE" value=""
+                                       placeholder="Koszt naprawy" ng-model="kosztE">
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="button" class="btn btn-primary" ng-click="editRepair()">Zapisz zmiany</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

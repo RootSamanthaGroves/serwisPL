@@ -125,6 +125,32 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
 
 }
 
+    $scope.showRepair = function (Id) {
+
+        alert(Id)
+        $http({
+            method: 'GET',
+            url: '/naprawa/id/' + Id
+        }).success(function (data) {
+            //Showing Success message
+            // $scope.status = "The Survey Deleted Successfully!!!";
+            alert(data.id);
+            console.log(data.id)
+            $scope.idE=data.id;
+            $scope.dataE=data.data;
+            $scope.przebiegE=data.przebieg;
+            $scope.rodzajE=data.rodzaj;
+            $scope.opisE=data.opis;
+            $scope.kosztE=data.koszt;
+
+
+        })
+            .error(function (error) {
+                //Showing error message
+                $scope.status = 'Unable to delete a person: ' + error.message;
+            });
+
+    }
 
     $scope.saveUser = function () {
         var email = $scope.emailOfUser;
@@ -185,7 +211,32 @@ alert("indeks auta"+carObj.numerRej)
         })
 
     };
+    $scope.editRepair = function () {
+        var repairObj = {
 
+            id: $scope.idE,
+            data: $scope.dataE,
+            przebieg: $scope.przebiegE,
+            rodzaj: $scope.rodzajE,
+            opis: $scope.opisE,
+            koszt: $scope.kosztE
+        };
+
+        alert("indeks auta"+repairObj.id)
+        // alert(carObj.model)
+        $http.post('/naprawa/put/', repairObj).success(function () { //wywloujemy
+            alert('Thanks');
+
+            loadAllRepair();
+
+        }).error(function (error) {
+            alert("nie udało się ")
+            //Showing error message
+            console.log(error)
+
+        })
+
+    };
 
     // alert($scope.emailZalogowany);
 

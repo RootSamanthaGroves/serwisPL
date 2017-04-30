@@ -1,5 +1,6 @@
 package com.dominika.repository;
 
+import com.dominika.model.Auto;
 import com.dominika.model.Naprawa;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -56,8 +57,14 @@ public class NaprawaRepository {
 
     @Transactional //to moze byc zle
     public Naprawa update(long id, Naprawa naprawa) {
+
+
         Naprawa n = entityManager.find(Naprawa.class, id);
-        return n;
+
+
+
+        entityManager.merge(naprawa);
+        return naprawa;
     }
 
 }

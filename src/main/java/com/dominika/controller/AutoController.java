@@ -79,6 +79,7 @@ public class AutoController {
     public ResponseEntity<Auto> update( @RequestBody Auto auto)
     {
         System.out.println(auto.toString());
+        System.out.println(auto.getNumerRejestracyjny());
         System.out.println(auto.getMarka());
         autoRepository.update(auto.getId(), auto);
         return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
