@@ -309,12 +309,12 @@
         </div>
 
 
-        <!-- Modal -->
+        <!-- Edycja auta -->
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Edytuj</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle" >Edytuj</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -322,6 +322,11 @@
                     <div class="modal-body">
 
                         <form>
+                            <div class="form-group">
+                                <label>Id:</label>
+                                <input id="idE" type="text" class="form-control" name="idAutoE" value="IdAutoE"
+                                       placeholder="id" ng-model="idAutoE">
+                            </div>
                             <div class="form-group">
                                 <label>Marka:</label>
                                 <input id="MarkaE" type="text" class="form-control" name="MarkaE" value="MarkaE"
@@ -375,15 +380,13 @@
 
                             </div>
 
-                            <button id="submitE" type="submit" class="btn btn-default" ng-click="editCar()">Edytuj Auto
-                            </button>
                         </form>
 
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="showCar()">Zapisz zmiany</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="button" class="btn btn-primary" ng-click="editCar()">Zapisz zmiany</button>
                     </div>
                 </div>
             </div>

@@ -7,15 +7,7 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     $scope.curUser;
 
 
-    // var getUserById = function (id) {
-    //     UserService.getUserById(id)
-    //         .then(function (response) {
-    //             if (response.status == 200) {
-    //                 $scope.curUser = response.data;
-    //                 // alert($localStorage.currentUser.id);
-    //             }
-    //         })
-    // };
+
 
 // wyświetlanie aut
     var loadAllCars = function () {
@@ -85,8 +77,6 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     }
 
 
-
-
     $scope.deleteRepair = function (Id) {
         $http({
             method: 'DELETE',
@@ -105,18 +95,18 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     }
 
 
-$scope.showCar = function (Id) {
+    $scope.showCar = function (Id) {
 
-alert(Id)
-
-
+     alert(Id)
     $http({
         method: 'GET',
         url: '/auto/id/' + Id
     }).success(function (data) {
         //Showing Success message
         // $scope.status = "The Survey Deleted Successfully!!!";
-        alert(data.model);
+        alert(data.id);
+        console.log(data.id)
+        $scope.idAutoE=data.id;
         $scope.markaAutoE=data.marka;
         $scope.modelAutoE=data.model;
         $scope.numerVinAuto=data.numerVIN;
@@ -127,23 +117,11 @@ alert(Id)
         $scope.mocAuto=data.mocSilnika;
         $scope.rodzajPaliwAuto=data.rodzajPaliwa;
 
-
-
-
-
     })
         .error(function (error) {
             //Showing error message
             $scope.status = 'Unable to delete a person: ' + error.message;
         });
-    // var Car = $resource('auto/id/'+Id, {}, {
-    //     query: {method: 'get', isArray: true, cancellable: true}
-    // });
-    //
-    // Car.query(function (response) {
-    //     // alert(response.model);
-    //     $scope.car = response;
-    // });
 
 }
 
@@ -154,7 +132,6 @@ alert(Id)
         // var password = $scope.passwordOfUser;
         // var acountRole = "";
 
-        alert(firstName + email);
 
 
         //Potrzebujemy stworzyc nasz obiekt, ktorego zadamy w Javie patrz RequestBody
@@ -178,66 +155,34 @@ alert(Id)
     };
 
 
-    $scope.editCar = function (Id,text) {
-
-        var car = prompt("Please enter the answer"+Id, text);
-
+    $scope.editCar = function () {
         var carObj = {
-            c:car
 
+            id: $scope.idAutoE,
+            marka: $scope.markaAutoE,
+            model: $scope.modelAutoE,
+            numervin: $scope.numerVinAuto,
+            numerRej: $scope.numerRejAuto,
+            rokprodukcji: $scope.rokProAuto,
+            rodzjanadw: $scope.rodzNadwoziaAuto,
+            pojemnoscsilnika: $scope.pojSilnikaAuto,
+            mocSilnika: $scope.mocAuto,
+            rodzjapaliwa: $scope.rodzajPaliwAuto
         };
-        alert(carObj.c);
 
+alert("indeks auta"+carObj.numerRej)
+        // alert(carObj.model)
+        $http.post('/auto/put/', carObj).success(function () { //wywloujemy
+            alert('Thanks');
 
-        // wyświetlanie aut
+            loadAllCars();
 
-            var Car = $resource('auto/id'+Id, {}, {
-                query: {method: 'get', isArray: true, cancellable: true}
-            });
+        }).error(function (error) {
+                    alert("nie udało się ")
+                    //Showing error message
+            console.log(error)
 
-            Car.query(function (response) {
-                alert(response.model);
-                $scope.car = response;
-            });
-
-
-
-        // $http.put('/auto/id', carObj).success(function (response) { //wywloujemy
-        //     alert('auto update' + carObj);
-        //     loadAllCars();
-        // }).error(function () {
-        //     alert('We have problem!');
-        // })
-
-
-        // $http.post('/auto/put/'+ Id ,  carObj).success(function () { //wywloujemy
-        //     alert('Thanks');
-        //
-        //     loadAllCars();
-        //
-        //     // for(var i = 0; questionObject.length(); i++){
-        //     //     console.log(questionObject.answers[i].answer);
-        //     // }
-        //
-        // }).error(function () {
-        //     alert("nie udało się ")
-        // })
-
-
-        // $http({
-        //
-        //     method: 'PUT',
-        //     url: '/auto/put/id/' + Id
-        // }).success(function (data) {
-        //     //Showing Success message
-        //     $scope.status = "The Survey Deleted Successfully!!!";
-        //     alert('Update User');
-        //     loadAllCars();
-        // })
-        //     .error(function (error) {
-        //         //Showing error message
-        //         $scope.status = 'Unable to delete a person: ' + error.message;
-        //     })
+        })
 
     };
 

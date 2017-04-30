@@ -34,55 +34,55 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             console.log(response);
             // alert(response.id);
             id= response.id;
-            saveRel(response.id);
+            // saveRel(response.id);
         }).error(function () {
             alert('Coś poszło nie tak' +
                 ' ');
         })
     };
 
-    var saveRel = function (id) {
-        alert(id+" "+$localStorage.currentUser.id)
-        var Object = {
-            idUser:$localStorage.currentUser.id,
-            idCar: id
-
-
-        };
-
-        $http.post('/user/put/'+ $localStorage.currentUser.id ,  Object).success(function () { //wywloujemy
-            alert('Thanks');
-
-
-
-
-        }).error(function () {
-            alert("nie udało się ")
-        })
-    };
-
-
-
-    $scope.saveRelations = function () {
-        alert(id)
-        alert($localStorage.currentUser.id + " " + id);
+    // var saveRel = function (id) {
+    //     alert(id+" "+$localStorage.currentUser.id)
+    //     var Object = {
+    //         idUser:$localStorage.currentUser.id,
+    //         idCar: id
+    //
+    //
+    //     };
+    //
+    //     $http.post('/user/put/'+ $localStorage.currentUser.id ,  Object).success(function () { //wywloujemy
+    //         alert('Thanks');
+    //
+    //
+    //
+    //
+    //     }).error(function () {
+    //         alert("nie udało się ")
+    //     })
+    // };
 
 
 
-        var questionObject = {
-            user: $scope.$localStorage.currentUser.id,
-            car: $scope.car.id
-        };
-
-        $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
-            alert('Thanks'+$scope.selected);
-
-
-
-        }).error(function () {
-            alert("nie udało się ")
-        })
-    };
+    // $scope.saveRelations = function () {
+    //     alert(id)
+    //     alert($localStorage.currentUser.id + " " + id);
+    //
+    //
+    //
+    //     var questionObject = {
+    //         user: $scope.$localStorage.currentUser.id,
+    //         car: $scope.car.id
+    //     };
+    //
+    //     $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
+    //         alert('Thanks'+$scope.selected);
+    //
+    //
+    //
+    //     }).error(function () {
+    //         alert("nie udało się ")
+    //     })
+    // };
 
 
 });

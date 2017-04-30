@@ -25,8 +25,31 @@ public class Auto {
     private String rodzajPaliwa;
     @OneToMany
     private List<Naprawa> naprawa;
-    @OneToMany
-    private List<Czesci> czesc;
+
+        @OneToMany
+
+        private List<Czesci> czesc;
+        
+    @Override
+    public String toString() {
+        return "Auto{" +
+                "id=" + id +
+                ", marka='" + marka + '\'' +
+                ", model='" + model + '\'' +
+                ", numerVIN='" + numerVIN + '\'' +
+                ", numerRejestracyjny='" + numerRejestracyjny + '\'' +
+                ", rokProdukcji=" + rokProdukcji +
+                ", rodzajNadwozia='" + rodzajNadwozia + '\'' +
+                ", pojemnoscSilnika=" + pojemnoscSilnika +
+                ", mocSilnika=" + mocSilnika +
+                ", rodzajPaliwa='" + rodzajPaliwa + '\'' +
+                ", naprawa=" + naprawa +
+                ", czesc=" + czesc +
+                '}';
+    }
+
+
+
 
     public Auto() {
     }

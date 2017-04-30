@@ -60,10 +60,30 @@ public class AutoRepository {
         return a;
     }
 
-    @Transactional //to moze byc zle
-    public Auto update(long id, Auto auto) {
-        Auto a = entityManager.find(Auto.class, id);
+    @Transactional
+    public Auto update(long id, Auto a) {
+
+
+
+        System.out.println(id+"   "+a.getMarka());
+        Auto auto = entityManager.find(Auto.class, id);
+
+//        if (!auto.getMarka().isEmpty()) {
+//            auto.setMarka(a.getMarka());
+//        }
+//        if (!auto.getModel().isEmpty()) {
+//            auto.setMarka(a.getMarka());
+//        }
+//        if (!auto.getMocSilnika().) {
+//            auto.setMarka(a.getMarka());
+//        }
+
+
+        entityManager.merge(a);
+
+
         return a;
+
     }
 
 

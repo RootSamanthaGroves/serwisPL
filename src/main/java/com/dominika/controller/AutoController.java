@@ -74,9 +74,13 @@ public class AutoController {
         }
     }
 
-    @PostMapping("/put/{id}")
-    public ResponseEntity<Auto> update(@PathVariable long id, @RequestBody Auto auto) {
-        autoRepository.update(Long.valueOf(id), auto);
+    @Transactional
+    @PostMapping("/put/")
+    public ResponseEntity<Auto> update( @RequestBody Auto auto)
+    {
+        System.out.println(auto.toString());
+        System.out.println(auto.getMarka());
+        autoRepository.update(auto.getId(), auto);
         return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
     }
 
