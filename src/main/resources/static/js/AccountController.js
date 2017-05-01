@@ -6,7 +6,7 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     $scope.message = 'Hello from AccountController';
     $scope.curUser;
 
-
+      // var datecon = new Date($scope.data.data);
 
 
 // wyświetlanie aut
@@ -21,6 +21,21 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
         });
     };
     loadAllCars();
+
+
+
+    var loadMeCars = function (id) {
+        var Car = $resource('auto/', {}, {
+            query: {method: 'get', isArray: true, cancellable: true}
+        });
+
+        Car.query(function (response) {
+            $scope.dataM=$scope.car.data;
+            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
+            $scope.car = response; // widoku będziesz używał teraz people
+        });
+    };
+    loadMeCars();
 
     // wyswietlanie naprawy
     var loadAllRepair = function () {
@@ -135,9 +150,11 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
             //Showing Success message
             // $scope.status = "The Survey Deleted Successfully!!!";
             alert(data.id);
-            console.log(data.id)
+            console.log(data.data)
             $scope.idE=data.id;
-            $scope.dataE=data.data;
+
+            var myDate = new Date(data.data);
+            $scope.dataE=myDate;
             $scope.przebiegE=data.przebieg;
             $scope.rodzajE=data.rodzaj;
             $scope.opisE=data.opis;
