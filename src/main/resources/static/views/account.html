@@ -50,8 +50,7 @@
                                     <h2 >E-mail: {{email}}</h2>
                                     <h2>Rola: {{curUser.role}}</h2>
                                     </div>
-                                    <!--<button id="findOneUserByEmail" type="submit" class="btn btn-default" ng-click="findOneUserByEmail(email)">Dej mnie info-->
-                                    <!--</button>-->
+
                                 </div>
 
                                 <table class="table table-hover " style="margin-left: 20px; width: 500px">
@@ -74,7 +73,9 @@
                                         <td>{{ c.marka }}</td>
                                         <td>{{ c.model }}</td>
                                         <td>{{ c.numerRejestracyjny}}</td>
-                                        <td>{{ c.rokProdukcji}}</td>
+                                        <!--<td>{{ c.rokProdukcji}}-->
+
+                                        <td >{{c.rokProdukcji | date: "yyyy-MM-dd"}}</td>
                                         <td><a href="" class="btn btn-danger"
                                                ng-click="deleteCar(c.id)">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -214,10 +215,10 @@
                             <div class="form-group">
 
 
-                                <!--<label>Data:</label>-->
-                                <!--<input id="dataNaprawy" type="date" class="form-control"-->
-                                       <!--name="dataNaprawy" value=""-->
-                                       <!--placeholder="data naprawy" ng-model="dataNaprawy">-->
+                                <label>Data:</label>
+                                <input id="dataNaprawy" type="date" class="form-control"
+                                       name="dataNaprawy" value=""
+                                       placeholder="data naprawy" ng-model="dataNaprawy">
 
                             </div>
                             <div class="form-group">
