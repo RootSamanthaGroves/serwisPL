@@ -20,6 +20,7 @@ public class DatyRepository {
 
     @Transactional
     public BadanieTechniczne save(BadanieTechniczne a) {
+        System.out.println(a.getDataWaznosci());
         entityManager.persist(a);
         return(a);
 
@@ -27,6 +28,7 @@ public class DatyRepository {
 
     @Transactional
     public Polisa save(Polisa a) {
+        System.out.println(a.getData());
         entityManager.persist(a);
         return(a);
 

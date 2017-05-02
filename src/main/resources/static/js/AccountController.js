@@ -6,7 +6,8 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     $scope.message = 'Hello from AccountController';
     $scope.curUser;
 
-      // var datecon = new Date($scope.data.data);
+
+
 
 
 // wyświetlanie aut
@@ -78,12 +79,14 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
             method: 'DELETE',
             url: '/auto/delete/id/' + Id
         }).success(function (data) {
+            alert(data.toString());
             console.log(data);
             //Showing Success message
             // $scope.status = "The Survey Deleted Successfully!!!";
             // alert('Delete User');
 
             loadAllCars();
+
         })
             .error(function (error) {
                 //Showing error message

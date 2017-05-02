@@ -10,7 +10,7 @@ angular.module('nikoApp').controller('HomeController', function ($scope, $rootSc
                 if (response.status == 200) {
                     $rootScope.email = response.data.email;
                     console.log(response.data);
-                    $localStorage.firstName = response.data.firstName;
+                    $localStorage.firstName = response.data.fir;
                     $localStorage.role = response.data.role;
 
                     if (angular.equals(response.data.role, 'ROLE_ADMIN')) {

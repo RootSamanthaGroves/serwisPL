@@ -11,6 +11,7 @@ angular.module('nikoApp').service('UserService', function ($http) {
             }).then(function successCallback(response) {
                 return response;
             }, function errorCallback(response) {
+                alert(response.status);
                 return response.status;
             });
         };

@@ -20,7 +20,8 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             opis: $scope.opisNaprawy,
             koszt: $scope.kosztNaprawy
         };
-
+        console.log(naprawaObject.data)
+        alert( naprawaObject.data)
         $http.post('/naprawa/add', naprawaObject).success(function () {
             alert('Dodawanie powiodło się');
 

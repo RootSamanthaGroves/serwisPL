@@ -17,7 +17,11 @@ angular.module('nikoApp').controller('DatyController', function ($scope, $resour
              dataD: $scope.terminBadania
 
         };
- alert($scope.datawykonaniaBadania+" "+$scope.terminBadania)
+
+        alert(badanieObject.data+" "+ badanieObject.dataD)
+
+        console.log(badanieObject.data)
+
         $http.post('/daty/addBadanie', badanieObject).success(function () {
             alert('Dodawanie powiodło się');
 
@@ -32,8 +36,9 @@ angular.module('nikoApp').controller('DatyController', function ($scope, $resour
 
         var ubezpieczenieObject = {
 
-            dataDod: $scope.dataDodania,
+            // dataDod: $scope.dataDodania,
             numerPolisy: $scope.numerPolisy,
+            dataDod: new Date($scope.dataO),
             dataO: $scope.dataOd,
             dataD: $scope.dataDo,
             skladka: $scope.skladkaOC
@@ -43,6 +48,7 @@ angular.module('nikoApp').controller('DatyController', function ($scope, $resour
             // opis: $scope.opisNaprawy,
             // koszt: $scope.kosztNaprawy
         };
+        console.log(ubezpieczenieObject.dataO)
 
         $http.post('/daty/addPolisa', ubezpieczenieObject).success(function () {
             alert('Dodawanie powiodło się');

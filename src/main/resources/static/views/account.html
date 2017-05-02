@@ -181,9 +181,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Pojemność silnika:</label>
-                                <input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto"
-                                       value=""
-                                       placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
+                                <!--<input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto"-->
+                                       <!--value=""-->
+                                       <!--placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">-->
+
+                                <input type="number" string-to-number ng-model="pojSilnikaAuto" /> {{ pojSilnikaAuto }} : {{ typeOf(pojSilnikaAuto) }}
                             </div>
                             <div class="form-group">
                                 <label>Moc silnika:</label>
@@ -210,10 +212,13 @@
                         <h3>Dodaj Naprawę</h3>
                         <form>
                             <div class="form-group">
-                                <label>Data:</label>
-                                <input id="dataNaprawy" type="date" class="form-control"
-                                       name="dataNaprawy" value=""
-                                       placeholder="data naprawy" ng-model="dataNaprawy">
+
+
+                                <!--<label>Data:</label>-->
+                                <!--<input id="dataNaprawy" type="date" class="form-control"-->
+                                       <!--name="dataNaprawy" value=""-->
+                                       <!--placeholder="data naprawy" ng-model="dataNaprawy">-->
+
                             </div>
                             <div class="form-group">
                                 <label>Przebieg:</label>
@@ -372,7 +377,7 @@
 
                             <div class="form-group">
                                 <label>Rok produkcji:</label>
-                                <input id="rokProAutoE" type="text" class="form-control" name="rokProAuto" value="rokProdukcj"
+                                <input id="rokProAutoE" type="data" class="form-control" name="rokProAuto" value="rokProdukcj"
                                        placeholder="Rok produkcji " ng-model="rokProAuto">
                             </div>
                             <div class="form-group">
@@ -384,13 +389,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Pojemność silnika:</label>
-                                <input id="pojSilnikaAutoE" type="number" class="form-control" name="pojSilnikaAuto"
-                                       value="pojSilnikaAuto"
-                                       placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
+                                <!--<input id="pojSilnikaAutoE" type="text" class="form-control" name="pojSilnikaAuto"-->
+                                       <!--value="pojSilnikaAuto"-->
+                                       <!--placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">-->
+
+                                <input type="number" string-to-number ng-model="pojSilnikaAutoE" /> {{ pojSilnikaAutoE }} : {{ typeOf(pojSilnikaAutoE) }}
+
                             </div>
                             <div class="form-group">
                                 <label>Moc silnika:</label>
-                                <input id="mocAutoE" type="number" class="form-control" name="mocAuto" value="mocAuto"
+                                <input id="mocAutoE" type="text" class="form-control" name="mocAuto" value="mocAuto"
                                        placeholder=" Moc silnika" ng-model="mocAuto">
                             </div>
                             <div class="form-group">
@@ -472,6 +480,7 @@
 
     </div>
 </div>
+
 <!--<script>-->
     <!--angular.module('dateInputExample', [])-->
         <!--.controller('DateController', ['$scope', function($scope) {-->
@@ -496,4 +505,4 @@
     <!--<tt>myForm.input.$error = {{myForm.input.$error}}</tt><br/>-->
     <!--<tt>myForm.$valid = {{myForm.$valid}}</tt><br/>-->
     <!--<tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>-->
-<!--</form>-->
+        <!--</form>-->

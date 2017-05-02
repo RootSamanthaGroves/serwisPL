@@ -20,8 +20,8 @@ public class Auto {
     private String numerRejestracyjny;
     private Date rokProdukcji;
     private String rodzajNadwozia;
-    private int pojemnoscSilnika;
-    private int mocSilnika;
+    private String pojemnoscSilnika;
+    private String mocSilnika;
     private String rodzajPaliwa;
     @OneToMany
     private List<Naprawa> naprawa;
@@ -54,23 +54,7 @@ public class Auto {
     public Auto() {
     }
 
-    public Auto(String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa) {
-        this.marka = marka;
-        this.model = model;
-        this.numerVIN = numerVIN;
-        this.numerRejestracyjny = numerRejestracyjny;
-        this.rokProdukcji = rokProdukcji;
-        this.rodzajNadwozia = rodzajNadwozia;
-        this.pojemnoscSilnika = pojemnoscSilnika;
-        this.mocSilnika = mocSilnika;
-        this.rodzajPaliwa = rodzajPaliwa;
 
-    }
-
-    public Auto(String marka) {
-        this.marka = marka;
-
-    }
 
     public long getId() {
         return id;
@@ -129,19 +113,37 @@ public class Auto {
         this.rodzajNadwozia = rodzajNadwozia;
     }
 
-    public int getPojemnoscSilnika() {
+
+
+    public List<Naprawa> getNaprawa() {
+        return naprawa;
+    }
+
+    public void setNaprawa(List<Naprawa> naprawa) {
+        this.naprawa = naprawa;
+    }
+
+    public List<Czesci> getCzesc() {
+        return czesc;
+    }
+
+    public void setCzesc(List<Czesci> czesc) {
+        this.czesc = czesc;
+    }
+
+    public String getPojemnoscSilnika() {
         return pojemnoscSilnika;
     }
 
-    public void setPojemnoscSilnika(int pojemnoscSilnika) {
+    public void setPojemnoscSilnika(String pojemnoscSilnika) {
         this.pojemnoscSilnika = pojemnoscSilnika;
     }
 
-    public int getMocSilnika() {
+    public String getMocSilnika() {
         return mocSilnika;
     }
 
-    public void setMocSilnika(int mocSilnika) {
+    public void setMocSilnika(String mocSilnika) {
         this.mocSilnika = mocSilnika;
     }
 

@@ -84,4 +84,16 @@ public class Polisa {
     public void setSkladka(int skladka) {
         Skladka = skladka;
     }
+
+    @Override
+    public String toString() {
+        return "Polisa{" +
+                "id=" + id +
+                ", data=" + data +
+                ", numerPolisy='" + numerPolisy + '\'' +
+                ", dataOd=" + dataOd +
+                ", dataDo=" + dataDo +
+                ", Skladka=" + Skladka +
+                '}';
+    }
 }

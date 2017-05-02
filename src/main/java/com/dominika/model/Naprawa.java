@@ -1,5 +1,7 @@
 package com.dominika.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,8 @@ public class Naprawa {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private Date data;
+    @DateTimeFormat
+    protected Date data;
     private int przebieg;
     private String rodzaj;
     private String opis;

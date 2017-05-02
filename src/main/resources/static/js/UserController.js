@@ -10,9 +10,6 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
         var password = $scope.passwordOfUser;
 
-
-
-
         var userObject = {
             email: email,
             firstName: firstName,

@@ -36,6 +36,7 @@ public class DatyController
     @Transactional
     @PostMapping("addPolisa")
     public ResponseEntity<Polisa> postPolisa(@RequestBody Polisa polisa) {
+        System.out.println(polisa.toString());
         datyRepository.save(polisa);
         if ((polisa.getId() != -1)) {
             return ResponseEntity.ok(polisa);
@@ -48,7 +49,7 @@ public class DatyController
     @Transactional
     @PostMapping("addBadanie")
     public ResponseEntity<BadanieTechniczne> postBadnanieTechnicze(@RequestBody BadanieTechniczne bt) {
-        System.out.println(bt.getDataWaznosci());
+        System.out.println("data z badania technicznego "+bt.getDataBadania().toString());
         datyRepository.save(bt);
         if (bt.getId() != -1) {
             return ResponseEntity.ok(bt);
