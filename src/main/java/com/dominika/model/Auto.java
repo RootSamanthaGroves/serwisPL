@@ -6,9 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Dominika on 2017-04-03.
- */
-@Entity
+ * Created by Dominika on 2017-05-03.
+ */@Entity
 public class Auto {
     @Id
     @NotNull
@@ -26,35 +25,8 @@ public class Auto {
     @OneToMany
     private List<Naprawa> naprawa;
 
-        @OneToMany
-
-        private List<Czesci> czesc;
-        
-    @Override
-    public String toString() {
-        return "Auto{" +
-                "id=" + id +
-                ", marka='" + marka + '\'' +
-                ", model='" + model + '\'' +
-                ", numerVIN='" + numerVIN + '\'' +
-                ", numerRejestracyjny='" + numerRejestracyjny + '\'' +
-                ", rokProdukcji=" + rokProdukcji +
-                ", rodzajNadwozia='" + rodzajNadwozia + '\'' +
-                ", pojemnoscSilnika=" + pojemnoscSilnika +
-                ", mocSilnika=" + mocSilnika +
-                ", rodzajPaliwa='" + rodzajPaliwa + '\'' +
-                ", naprawa=" + naprawa +
-                ", czesc=" + czesc +
-                '}';
-    }
-
-
-
-
     public Auto() {
     }
-
-
 
     public long getId() {
         return id;
@@ -108,27 +80,8 @@ public class Auto {
         return rodzajNadwozia;
     }
 
-
     public void setRodzajNadwozia(String rodzajNadwozia) {
         this.rodzajNadwozia = rodzajNadwozia;
-    }
-
-
-
-    public List<Naprawa> getNaprawa() {
-        return naprawa;
-    }
-
-    public void setNaprawa(List<Naprawa> naprawa) {
-        this.naprawa = naprawa;
-    }
-
-    public List<Czesci> getCzesc() {
-        return czesc;
-    }
-
-    public void setCzesc(List<Czesci> czesc) {
-        this.czesc = czesc;
     }
 
     public String getPojemnoscSilnika() {
@@ -155,5 +108,11 @@ public class Auto {
         this.rodzajPaliwa = rodzajPaliwa;
     }
 
+    public List<Naprawa> getNaprawa() {
+        return naprawa;
+    }
 
+    public void setNaprawa(List<Naprawa> naprawa) {
+        this.naprawa = naprawa;
+    }
 }

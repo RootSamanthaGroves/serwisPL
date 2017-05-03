@@ -18,10 +18,7 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/about.html',
             controller: 'AboutController'
         })
-        // .when('/account', {
-        //     templateUrl: 'views/account.html',
-        //     controller: 'AccountController'
-        // })
+
         .when('/logowanie', {
             templateUrl: 'views/logowanie.html',
             controller: 'LoginController'
@@ -30,6 +27,12 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/rejestracja.html',
             controller: 'UserController'
         })
+        .when('/me', {
+            templateUrl: 'views/me.html',
+            controller: 'LoginController'
+        })
+
+
         .when('/dodajAuto', {
             templateUrl: 'views/account.html',
             controller: 'AutoController'
@@ -42,8 +45,22 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/account.html',
             controller: 'DatyController'
         })
-        .when('/kokpit', {
-            templateUrl: 'views/account.html',
+
+
+        .when('/auta', {
+            templateUrl: 'views/car.html',
+            controller: 'AutoController'
+        })
+        .when('/naprawy', {
+            templateUrl: 'views/repair.html',
+            controller: 'NaprawaController'
+        })
+        .when('/polisa', {
+            templateUrl: 'views/polisa.html',
+            controller: 'AccountController'
+        })
+        .when('/badanietechniczne', {
+            templateUrl: 'views/badanie.html',
             controller: 'AccountController'
         })
         .otherwise({redirectTo: '/'});

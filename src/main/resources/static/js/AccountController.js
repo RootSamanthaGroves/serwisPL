@@ -9,34 +9,18 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
 
 
 
-
-// wyświetlanie aut
-    var loadAllCars = function () {
-        var Car = $resource('auto/all', {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
-
-        Car.query(function (response) {
-            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
-            $scope.car = response; // widoku będziesz używał teraz people
-        });
-    };
-    loadAllCars();
-
-
-
-    var loadMeCars = function (id) {
-        var Car = $resource('auto/', {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
-
-        Car.query(function (response) {
-            $scope.dataM=$scope.car.data;
-            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
-            $scope.car = response; // widoku będziesz używał teraz people
-        });
-    };
-    loadMeCars();
+    // var loadMeCars = function (id) {
+    //     var Car = $resource('auto/', {}, {
+    //         query: {method: 'get', isArray: true, cancellable: true}
+    //     });
+    //
+    //     Car.query(function (response) {
+    //         $scope.dataM=$scope.car.data;
+    //         //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
+    //         $scope.car = response; // widoku będziesz używał teraz people
+    //     });
+    // };
+    // loadMeCars();
 
     // wyswietlanie naprawy
     var loadAllRepair = function () {
@@ -50,6 +34,21 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
         });
     };
     loadAllRepair();
+
+
+// // wyświetlanie aut
+//     var loadAllCars = function () {
+//         var Car = $resource('auto/all', {}, {
+//             query: {method: 'get', isArray: true, cancellable: true}
+//         });
+//
+//         Car.query(function (response) {
+//             //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
+//             $scope.car = response; // widoku będziesz używał teraz people
+//         });
+//     };
+//     loadAllCars();
+
 
 
     // $scope.saveRelations = function () {
@@ -74,25 +73,25 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     //     })
     // };
 
-    $scope.deleteCar = function (Id) {
-        $http({
-            method: 'DELETE',
-            url: '/auto/delete/id/' + Id
-        }).success(function (data) {
-            alert(data.toString());
-            console.log(data);
-            //Showing Success message
-            // $scope.status = "The Survey Deleted Successfully!!!";
-            // alert('Delete User');
-
-            loadAllCars();
-
-        })
-            .error(function (error) {
-                //Showing error message
-                $scope.status = 'Unable to delete a person: ' + error.message;
-            });
-    }
+    // $scope.deleteCar = function (Id) {
+    //     $http({
+    //         method: 'DELETE',
+    //         url: '/auto/delete/id/' + Id
+    //     }).success(function (data) {
+    //         alert(data.toString());
+    //         console.log(data);
+    //         //Showing Success message
+    //         // $scope.status = "The Survey Deleted Successfully!!!";
+    //         // alert('Delete User');
+    //
+    //         loadAllCars();
+    //
+    //     })
+    //         .error(function (error) {
+    //             //Showing error message
+    //             $scope.status = 'Unable to delete a person: ' + error.message;
+    //         });
+    // }
 
 
     $scope.deleteRepair = function (Id) {
@@ -100,9 +99,7 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
             method: 'DELETE',
             url: '/naprawa/delete/id/' + Id
         }).success(function (data) {
-            //Showing Success message
-            // $scope.status = "The Survey Deleted Successfully!!!";
-             alert(data.toString());
+             // alert(data.toString());
 
             loadAllRepair();
         })
@@ -201,36 +198,36 @@ angular.module('nikoApp').controller('AccountController', function ($scope, $loc
     };
 
 
-    $scope.editCar = function () {
-        var carObj = {
-
-            id: $scope.idAutoE,
-            marka: $scope.markaAutoE,
-            model: $scope.modelAutoE,
-            numervin: $scope.numerVinAuto,
-            numerRej: $scope.numerRejAuto,
-            rokprodukcji: $scope.rokProAuto,
-            rodzjanadw: $scope.rodzNadwoziaAuto,
-            pojemnoscsilnika: $scope.pojSilnikaAuto,
-            mocSilnika: $scope.mocAuto,
-            rodzjapaliwa: $scope.rodzajPaliwAuto
-        };
-
-alert("indeks auta"+carObj.numerRej)
-        // alert(carObj.model)
-        $http.post('/auto/put/', carObj).success(function () { //wywloujemy
-            alert('Thanks');
-
-            loadAllCars();
-
-        }).error(function (error) {
-                    alert("nie udało się ")
-                    //Showing error message
-            console.log(error)
-
-        })
-
-    };
+//     $scope.editCar = function () {
+//         var carObj = {
+//
+//             id: $scope.idAutoE,
+//             marka: $scope.markaAutoE,
+//             model: $scope.modelAutoE,
+//             numervin: $scope.numerVinAuto,
+//             numerRej: $scope.numerRejAuto,
+//             rokprodukcji: $scope.rokProAuto,
+//             rodzjanadw: $scope.rodzNadwoziaAuto,
+//             pojemnoscsilnika: $scope.pojSilnikaAuto,
+//             mocSilnika: $scope.mocAuto,
+//             rodzjapaliwa: $scope.rodzajPaliwAuto
+//         };
+//
+// alert("indeks auta"+carObj.numerRej)
+//         // alert(carObj.model)
+//         $http.post('/auto/put/', carObj).success(function () { //wywloujemy
+//             alert('Thanks');
+//
+//             loadAllCars();
+//
+//         }).error(function (error) {
+//                     alert("nie udało się ")
+//                     //Showing error message
+//             console.log(error)
+//
+//         })
+//
+//     };
     $scope.editRepair = function () {
         var repairObj = {
 

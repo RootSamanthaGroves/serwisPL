@@ -1,14 +1,11 @@
 package com.dominika.repository;
 
 import com.dominika.model.Auto;
-import com.sun.media.sound.AiffFileReader;
+import com.dominika.model.Naprawa;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +14,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Dominika on 2017-04-07.
+ * Created by Dominika on 2017-05-03.
  */
 @Repository
 public class AutoRepository {
@@ -31,14 +28,13 @@ public class AutoRepository {
 //        System.out.println(a.getId());
         return(a);
 
-
-
     }
 
-    public List<Auto> getAll() {
-        TypedQuery<Auto> query = entityManager.createQuery("select a from Auto a", Auto.class);
+    public List<Auto> findAll() {
+        TypedQuery<Auto> query = entityManager.createQuery("select n from Auto n", Auto.class);
         return query.getResultList();
     }
+
 
 
     @Transactional

@@ -408,20 +408,31 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#/"><i class="fa fa-car" style="font-size:24px"></i> GarażPL</a>
-                <!--<div class="navbar-header">-->
-                <!--<a class="navbar-brand" href="/">Eserwisik</a>-->
-                <!--</div>-->
+
             </div>
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="email" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" >Kokpit
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/me"><i class="glyphicon glyphicon-user"></i>{{email}} </a></li>
+                            <li><a href="#/auta">Autka</a></li>
+                            <li><a href="#/naprawy">Moje naprawy</a></li>
+                            <li><a href="#/polisa">Polisa</a></li>
+                            <li><a href="#/badanietechniczne">Badanie techniczne</a></li>
+                        </ul>
+                    </li>
                     <li ng-if="!email"><a href="#/logowanie"><i class="glyphicon glyphicon-lock"></i> Logowanie</a></li>
 
-                               <li ng-if="email"><a href="#/kokpit"><i class="glyphicon glyphicon-user"></i>{{email}} </a>
+                               <li ng-if="email"><a href="#/me"><i class="glyphicon glyphicon-user"></i>{{email}} </a>
                                </li>
                                <li ng-if="email"><a href="" ng-click="removeUserFromStorage()">Wyloguj</a></li>
 
                     <li ng-if="!email"><a href="#/rejestracja"><i class="glyphicon glyphicon-edit"></i> Rejstracja</a>
                     </li>
+
 
 
 

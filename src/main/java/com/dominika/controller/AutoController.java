@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Dominika on 2017-04-07.
+ * Created by Dominika on 2017-05-03.
  */
 @RestController
 @RequestMapping("auto")
@@ -25,7 +25,7 @@ public class AutoController {
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {
-        List<Auto> autosList = autoRepository.getAll();
+        List<Auto> autosList = autoRepository.findAll();
         if (autosList.isEmpty())
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         return ResponseEntity.ok(autosList);
