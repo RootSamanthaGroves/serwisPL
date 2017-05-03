@@ -95,7 +95,7 @@
 
                                 <div class="form-group">
                                     <label>Rok produkcji:</label>
-                                    <input id="rokProAuto" type="text" class="form-control" name="rokProAuto" value=""
+                                    <input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value=""
                                            placeholder="Rok produkcji " ng-model="rokProAuto">
                                 </div>
                                 <div class="form-group">
@@ -107,11 +107,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pojemność silnika:</label>
-                                    <!--<input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto"-->
-                                    <!--value=""-->
-                                    <!--placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">-->
+                                    <input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto"
+                                    value=""
+                                    placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
 
-                                    <input type="text" string-to-number ng-model="pojSilnika" /> {{ pojSilnika }} : {{ typeOf(pojSilnika) }}
+                                    <!--<input type="text" string-to-number ng-model="pojSilnika" /> {{ pojSilnika }} : {{ typeOf(pojSilnika) }}-->
                                 </div>
                                 <div class="form-group">
                                     <label>Moc silnika:</label>
@@ -133,52 +133,6 @@
                             </form>
                         </div>
                     </div>
-                    <!--<div class="tab-pane " id="dodajAuto">-->
-
-
-                    <!--<table class="table table-hover " style="margin-left: 20px; width: 500px" ng-controller="AutoController">-->
-                    <!--<thead>-->
-                    <!--<tr>-->
-                    <!--<th>Id</th>-->
-                    <!--<th>Marka</th>-->
-                    <!--<th>Model</th>-->
-                    <!--<th>Rejstracja</th>-->
-                    <!--<th>Rok produkcji</th>-->
-                    <!--</tr>-->
-                    <!--</thead>-->
-                    <!--&lt;!&ndash;mamy petle for each&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska&ndash;&gt;-->
-                    <!--<tbody>-->
-                    <!--&lt;!&ndash;String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa&ndash;&gt;-->
-                    <!--<tr ng-repeat="c in car |orderBy:'marka'">-->
-
-                    <!--<td>{{ c.id }}</td>-->
-                    <!--<td>{{ c.marka }}</td>-->
-                    <!--<td>{{ c.model }}</td>-->
-                    <!--<td>{{ c.numerRejestracyjny}}</td>-->
-                    <!--<td >{{c.rokProdukcji | date: "yyyy-MM-dd"}}</td>-->
-                    <!--<td><a href="" class="btn btn-danger"-->
-                    <!--ng-click="deleteCar(c.id)">-->
-                    <!--<span class="glyphicon glyphicon-trash"></span>-->
-                    <!--</a></td>-->
-                    <!--<td>-->
-                    <!--&lt;!&ndash;<a href="" class="btn btn-info "&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;ng-click="editCar(c.id)">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="glyphicon glyphicon-edit"></span>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-
-                    <!--<button type="button"alt="{{c.id}}"  ng-click="showCar(c.id)" class="btn btn-primary btn btn-inf"  data-toggle="modal" data-target="#exampleModalLong" >-->
-                    <!--<span class="glyphicon glyphicon-edit"></span>-->
-                    <!--</button>-->
-
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                    <!--</table>-->
-
-
-                    <!--</div>-->
-
 
                     <div class="col-sm-12">
 
@@ -212,12 +166,12 @@
                             <div class="form-group">
                                 <label>Marka:</label>
                                 <input id="MarkaE" type="text" class="form-control" name="MarkaE" value="MarkaE"
-                                       placeholder="Marka" ng-model="markaAutoE">
+                                       placeholder="Marka" ng-model="markaE">
                             </div>
                             <div class="form-group">
                                 <label>Model:</label>
                                 <input id="ModelE" type="text" class="form-control" name="MarkaE" value="ModelE"
-                                       placeholder="Model" ng-model="modelAutoE">
+                                       placeholder="Model" ng-model="modelE">
                             </div>
                             <div class="form-group">
                                 <label>Numer VIN:</label>
@@ -235,35 +189,29 @@
                             <div class="form-group">
                                 <label>Rok produkcji:</label>
                                 <input id="rokProE" type="data" class="form-control" name="rokProE"
-                                       value="rokProdukcjE"
-                                       placeholder="Rok produkcji " ng-model="rokProE">
+                                       value="rokProE"
+                                       placeholder="Rok produkcji " ng-model="rokProE | date: yyyy-MM-dd">
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj nadwozia:</label>
                                 <input id="rodzNadwoziaE" type="text" class="form-control"
                                        name="rodzNadwoziaE"
-                                       value="rodzNadwoziaAutoE"
+                                       value="rodzNadwoziaE"
                                        placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaE">
                             </div>
                             <div class="form-group">
                                 <label>Pojemność silnika:</label>
-                                <!--<input id="pojSilnikaAutoE" type="text" class="form-control" name="pojSilnikaAuto"-->
-                                <!--value="pojSilnikaAuto"-->
-                                <!--placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">-->
-
-                                <input id="pojSilnikaE" type="text" class="form-control" name="pojSilnikaE" value="pojSilnikaE" string-to-number ng-model="pojSilnikaE"/> {{ pojSilnikaE }}
-                                : {{ typeOf(pojSilnikaAutoE) }}
-
+                                 <input id="pojSilnikaE" type="number" class="form-control" name="pojSilnikaE" value="pojSilnikaE" string-to-number ng-model="pojSilnikaE"/>
                             </div>
                             <div class="form-group">
                                 <label>Moc silnika:</label>
-                                <input id="mocAutoE" type="text" class="form-control" name="mocAutoE" value="mocAutoE"
+                                <input id="mocAutoE" type="number" class="form-control" name="mocAutoE" value="mocAutoE"
                                        placeholder=" Moc silnika" ng-model="mocAutoE">
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj paliwa:</label>
-                                <input id="rodzPaliE" type="text" class="form-control" name="rodzajPaliE"
-                                       value="rodzjaPaliE"
+                                <input id="rodzajPaliE" type="text" class="form-control" name="rodzajPaliE"
+                                       value="rodzajPaliE"
                                        placeholder="Rodzaj Paliwa" ng-model="rodzajPaliE">
 
 

@@ -19,8 +19,8 @@ public class Auto {
     private String numerRejestracyjny;
     private Date rokProdukcji;
     private String rodzajNadwozia;
-    private String pojemnoscSilnika;
-    private String mocSilnika;
+    private int pojemnoscSilnika;
+    private int mocSilnika;
     private String rodzajPaliwa;
     @OneToMany
     private List<Naprawa> naprawa;
@@ -84,19 +84,19 @@ public class Auto {
         this.rodzajNadwozia = rodzajNadwozia;
     }
 
-    public String getPojemnoscSilnika() {
+    public int getPojemnoscSilnika() {
         return pojemnoscSilnika;
     }
 
-    public void setPojemnoscSilnika(String pojemnoscSilnika) {
+    public void setPojemnoscSilnika(int pojemnoscSilnika) {
         this.pojemnoscSilnika = pojemnoscSilnika;
     }
 
-    public String getMocSilnika() {
+    public int getMocSilnika() {
         return mocSilnika;
     }
 
-    public void setMocSilnika(String mocSilnika) {
+    public void setMocSilnika(int mocSilnika) {
         this.mocSilnika = mocSilnika;
     }
 

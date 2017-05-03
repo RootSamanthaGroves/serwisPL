@@ -85,15 +85,15 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             alert(data.id);
             console.log(data.id)
             $scope.idAutoE=data.id;
-            $scope.markaAutoE=data.marka;
-            $scope.modelAutoE=data.model;
-            $scope.numerVinAuto=data.numerVIN;
-            $scope.numerRejAuto=data.numerRejestracyjny;
-            $scope.rokProAuto=data.rokProdukcji;
-            $scope.rodzNadwoziaAuto=data.rodzajNadwozia;
-            $scope.pojSilnikaAuto=data.pojemnoscSilnika;
-            $scope.mocAuto=data.mocSilnika;
-            $scope.rodzajPaliwAuto=data.rodzajPaliwa;
+            $scope.markaE=data.marka;
+            $scope.modelE=data.model;
+            $scope.numerVinE=data.numerVIN;
+            $scope.numerRejE=data.numerRejestracyjny;
+            $scope.rokProE=data.rokProdukcji;
+            $scope.rodzNadwoziaE=data.rodzajNadwozia;
+            $scope.pojSilnikaE=data.pojemnoscSilnika;
+            $scope.mocAutoE=data.mocSilnika;
+            $scope.rodzajPaliE=data.rodzajPaliwa;
 
         })
             .error(function (error) {
