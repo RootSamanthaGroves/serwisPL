@@ -61,22 +61,18 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
         alert(Id)
         $http({
             method: 'GET',
-            url: '/auto/id/' + Id
-        }).success(function (data) {
+            url: '/daty/polisa/id/' + Id
+        }).success(function (date) {
             //Showing Success message
             // $scope.status = "The Survey Deleted Successfully!!!";
-            alert(data.id);
-            console.log(data.id)
-            $scope.idAutoE=data.id;
-            $scope.markaAutoE=data.marka;
-            $scope.modelAutoE=data.model;
-            $scope.numerVinAuto=data.numerVIN;
-            $scope.numerRejAuto=data.numerRejestracyjny;
-            $scope.rokProAuto=data.rokProdukcji;
-            $scope.rodzNadwoziaAuto=data.rodzajNadwozia;
-            $scope.pojSilnikaAuto=data.pojemnoscSilnika;
-            $scope.mocAuto=data.mocSilnika;
-            $scope.rodzajPaliwAuto=data.rodzajPaliwa;
+            alert(Id);
+            console.log(date.id)
+            $scope.IdE=date.id;
+            $scope.DataDodaniaE= new Date(date.data);
+            $scope.NumerPolisyE= date.numerPolisy;
+            $scope.DataOdE= new Date(date.dataOd);
+            $scope.DataDoE=new Date(date.dataDo);
+            $scope.SkladkaE=date.skladka;
 
         })
             .error(function (error) {

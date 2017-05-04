@@ -118,7 +118,7 @@
         </div>
 
 
-        <!-- Edycja auta -->
+        <!-- Edycja Polisa -->
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -131,72 +131,46 @@
                     </div>
                     <div class="modal-body">
 
+                        <h3>Edytuj Polise</h3>
+
                         <form>
+
                             <div class="form-group">
                                 <label>Id:</label>
-                                <input id="idAutoE" type="text" class="form-control" name="idAutoE" value="IdAutoE"
-                                       placeholder="id" ng-model="idAutoE" >
+                                <input id="IdE" type="text" class="form-control" name="IdE" value=""
+                                       placeholder="IdE" ng-model="IdE">
                             </div>
                             <div class="form-group">
-                                <label>Marka:</label>
-                                <input id="MarkaE" type="text" class="form-control" name="MarkaE" value="MarkaE"
-                                       placeholder="Marka" ng-model="markaE">
-                            </div>
-                            <div class="form-group">
-                                <label>Model:</label>
-                                <input id="ModelE" type="text" class="form-control" name="MarkaE" value="ModelE"
-                                       placeholder="Model" ng-model="modelE">
-                            </div>
-                            <div class="form-group">
-                                <label>Numer VIN:</label>
-                                <input id="numerVinE" type="text" class="form-control" name="NumerVinE"
-                                       value="numerVinE"
-                                       placeholder="Numer VIN" ng-model="numerVinE">
-                            </div>
-                            <div class="form-group">
-                                <label>Numer rejestracyjny:</label>
-                                <input id="numerRejE" type="text" class="form-control" name="numerRejE"
-                                       value="numerRejE"
-                                       placeholder="Numer rejestracyjny" ng-model="numerRejE">
+                                <label>Data:</label>
+                                <input id="DataDodaniaE" type="date" class="form-control" name="DataDodaniaE" value=""
+                                       placeholder="DataDodaniaE" ng-model="DataDodaniaE">
                             </div>
 
                             <div class="form-group">
-                                <label>Rok produkcji:</label>
-                                <input id="rokProE" type="date" class="form-control" name="rokProE"
-                                       value="YYYY-MM-DD"
-                                       placeholder="Rok produkcji " ng-model="rokProE ">
-
-                                <!--<input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value=""-->
-                                <!--placeholder="Rok produkcji " ng-model="rokProAuto">-->
+                                <label>Numer Polisy:</label>
+                                <input id="NumerPolisyE" type="text" class="form-control" name="NumerPolisyE" value=""
+                                       placeholder="NumerPolisyE" ng-model="NumerPolisyE">
                             </div>
                             <div class="form-group">
-                                <label>Rodzaj nadwozia:</label>
-                                <input id="rodzNadwoziaE" type="text" class="form-control"
-                                       name="rodzNadwoziaE"
-                                       value="rodzNadwoziaE"
-                                       placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaE">
+                                <label>data od:</label>
+                                <input id="DataOdE" type="date" class="form-control" name="DataOdE" value=""
+                                       placeholder="DataOdE" ng-model="DataOdE">
                             </div>
                             <div class="form-group">
-                                <label>Pojemność silnika:</label>
-
-                                <input id="pojSilnikE" type="number" class="form-control" name="pojSilnikaE" value="pojSilnikaE"
-                                       placeholder=" Pojemność silnika" ng-model="pojSilnikaE">
-
+                                <label>data do:</label>
+                                <input id="DataDoE" type="date" class="form-control" name="DataDoE" value=""
+                                       placeholder="DataDoE" ng-model="DataDoE">
                             </div>
+
                             <div class="form-group">
-                                <label>Moc silnika:</label>
-                                <input id="mocAutoE" type="number" class="form-control" name="mocAutoE" value="mocAutoE"
-                                       placeholder=" Moc silnika" ng-model="mocAutoE">
-                            </div>
-                            <div class="form-group">
-                                <label>Rodzaj paliwa:</label>
-                                <input id="rodzajPaliE" type="text" class="form-control" name="rodzajPaliE"
-                                       value="rodzajPaliE"
-                                       placeholder="Rodzaj Paliwa" ng-model="rodzajPaliE">
-
-
+                                <label>Składka:</label>
+                                <input id="SkladkaE" type="number" class="form-control" name="SkladkaE" value=""
+                                       placeholder="SkladkaE" ng-model="SkladkaE">
                             </div>
 
+                            <button id="submitEdit" type="submit" class="btn btn-default" ng-click="editPolicy()">Dodaj
+                                Polise
+                            </button>
                         </form>
 
 

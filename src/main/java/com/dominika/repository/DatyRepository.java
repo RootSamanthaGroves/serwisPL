@@ -69,13 +69,15 @@ public class DatyRepository {
     @Transactional
     public Polisa findOnePolicy(long id) {
         Polisa p = entityManager.find(Polisa.class, id);
+        System.out.println("polisa"+ p.toString());
         return p;
     }
 
-//    @Transactional //to moze byc zle
-//    public Auto update(long id, Auto auto) {
-//        Auto a = entityManager.find(Auto.class, id);
-//        return a;
-//    }
+    @Transactional
+    public Polisa update(long id, Polisa polisa) {
+        Polisa p = entityManager.find(Polisa.class, id);
+        entityManager.merge(polisa);
+        return polisa;
+    }
 
 }

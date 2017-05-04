@@ -44,33 +44,19 @@ public class DatyController
 
 
 
-//    @Transactional
-//    @PostMapping("add/polisa")
-//    public ResponseEntity<Polisa> postPolisa(@RequestBody Polisa polisa) {
-//        datyRepository.save(auto);
-//        if ((auto.getId() != -1)) {
-//            return ResponseEntity.ok(auto);
-//        }
-//        return new ResponseEntity<Auto>(HttpStatus.BAD_REQUEST);
-//
-//
-//    }
-//
-//
-//
-//    @GetMapping("/id/{id}")
-//    public ResponseEntity<Auto> getOneAuto(@PathVariable Optional<Long> id) {
-//        if (id.isPresent()) {
-//            Auto auto = autoRepository.findOne(id.get());
-//            if (auto != null) {
-//                return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<Auto>(HttpStatus.NOT_FOUND);
-//            }
-//        }
-//        return new ResponseEntity<Auto>(HttpStatus.BAD_REQUEST);
-//    }
-//
+    @GetMapping("polisa/id/{id}")
+    public ResponseEntity<Polisa> getOneAuto(@PathVariable Optional<Long> id) {
+        if (id.isPresent()) {
+            Polisa polisa = datyRepository.findOnePolicy(id.get());
+            if (polisa != null) {
+                return new ResponseEntity<Polisa>(polisa, new HttpHeaders(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<Polisa>(HttpStatus.NOT_FOUND);
+            }
+        }
+        return new ResponseEntity<Polisa>(HttpStatus.BAD_REQUEST);
+    }
+
 
     @DeleteMapping("delete/polisa/id/{id}")
     public ResponseEntity<Polisa> deletePolisa(@PathVariable Optional<Long> id) {
@@ -103,6 +89,16 @@ public class DatyController
 //    }
 
 //
+//    @Transactional
+//    @PostMapping("/put/")
+//    public ResponseEntity<Auto> update( @RequestBody Auto auto)
+//    {
+//        System.out.println(auto.toString());
+//
+//        autoRepository.update(auto.getId(), auto);
+//        return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
+//    }
+    //
 //    @Transactional
 //    @PostMapping("/put/")
 //    public ResponseEntity<Auto> update( @RequestBody Auto auto)
