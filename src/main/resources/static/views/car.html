@@ -1,4 +1,4 @@
-<div class="account backgroundT">
+<div class="account backgroundT" xmlns:date="http://www.w3.org/1999/xhtml">
     <div class="container-fluid">
         <div class="row content">
 
@@ -95,7 +95,7 @@
 
                                 <div class="form-group">
                                     <label>Rok produkcji:</label>
-                                    <input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value=""
+                                    <input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value="r."
                                            placeholder="Rok produkcji " ng-model="rokProAuto">
                                 </div>
                                 <div class="form-group">
@@ -160,8 +160,8 @@
                         <form>
                             <div class="form-group">
                                 <label>Id:</label>
-                                <input id="idE" type="text" class="form-control" name="idAutoE" value="IdAutoE"
-                                       placeholder="id" ng-model="idAutoE">
+                                <input id="idAutoE" type="text" class="form-control" name="idAutoE" value="IdAutoE"
+                                       placeholder="id" ng-model="idAutoE" >
                             </div>
                             <div class="form-group">
                                 <label>Marka:</label>
@@ -188,9 +188,12 @@
 
                             <div class="form-group">
                                 <label>Rok produkcji:</label>
-                                <input id="rokProE" type="data" class="form-control" name="rokProE"
-                                       value="rokProE"
-                                       placeholder="Rok produkcji " ng-model="rokProE | date: yyyy-MM-dd">
+                                <input id="rokProE" type="date" class="form-control" name="rokProE"
+                                       value="YYYY-MM-DD"
+                                       placeholder="Rok produkcji " ng-model="rokProE ">
+
+                                <!--<input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value=""-->
+                                       <!--placeholder="Rok produkcji " ng-model="rokProAuto">-->
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj nadwozia:</label>
@@ -201,7 +204,10 @@
                             </div>
                             <div class="form-group">
                                 <label>Pojemność silnika:</label>
-                                 <input id="pojSilnikaE" type="number" class="form-control" name="pojSilnikaE" value="pojSilnikaE" string-to-number ng-model="pojSilnikaE"/>
+
+                                <input id="pojSilnikE" type="number" class="form-control" name="pojSilnikaE" value="pojSilnikaE"
+                                       placeholder=" Pojemność silnika" ng-model="pojSilnikaE">
+
                             </div>
                             <div class="form-group">
                                 <label>Moc silnika:</label>

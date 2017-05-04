@@ -28,6 +28,23 @@ public class Auto {
     public Auto() {
     }
 
+    @Override
+    public String toString() {
+        return "Auto{" +
+                "id=" + id +
+                ", marka='" + marka + '\'' +
+                ", model='" + model + '\'' +
+                ", numerVIN='" + numerVIN + '\'' +
+                ", numerRejestracyjny='" + numerRejestracyjny + '\'' +
+                ", rokProdukcji=" + rokProdukcji +
+                ", rodzajNadwozia='" + rodzajNadwozia + '\'' +
+                ", pojemnoscSilnika=" + pojemnoscSilnika +
+                ", mocSilnika=" + mocSilnika +
+                ", rodzajPaliwa='" + rodzajPaliwa + '\'' +
+                ", naprawa=" + naprawa +
+                '}';
+    }
+
     public long getId() {
         return id;
     }

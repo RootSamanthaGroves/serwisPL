@@ -60,8 +60,6 @@ public class AutoRepository {
     public Auto update(long id, Auto a) {
 
 
-
-        System.out.println(id+"   "+a.getMarka());
         Auto auto = entityManager.find(Auto.class, id);
 
 //        if (!auto.getMarka().isEmpty()) {

@@ -48,7 +48,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         });
 
         Car.query(function (response) {
-            console.log(response);
+
             // alert(response);
             $scope.car = response; // widoku będziesz używał teraz people
             // console.log(response);
@@ -62,7 +62,6 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             method: 'DELETE',
             url: '/auto/delete/id/' + Id
         }).success(function (data) {
-            alert(data.toString());
 
             loadAllCars();
         })
@@ -75,25 +74,27 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
 
     $scope.showCar = function (Id) {
 
-        alert(Id)
+
         $http({
             method: 'GET',
             url: '/auto/id/' + Id
         }).success(function (data) {
             //Showing Success message
             // $scope.status = "The Survey Deleted Successfully!!!";
-            alert(data.id);
-            console.log(data.id)
+
             $scope.idAutoE=data.id;
             $scope.markaE=data.marka;
             $scope.modelE=data.model;
             $scope.numerVinE=data.numerVIN;
             $scope.numerRejE=data.numerRejestracyjny;
-            $scope.rokProE=data.rokProdukcji;
+            $scope.rokProE=new Date(data.rokProdukcji);
             $scope.rodzNadwoziaE=data.rodzajNadwozia;
             $scope.pojSilnikaE=data.pojemnoscSilnika;
             $scope.mocAutoE=data.mocSilnika;
             $scope.rodzajPaliE=data.rodzajPaliwa;
+
+            alert( new Date(data.rokProdukcji));
+
 
         })
             .error(function (error) {
@@ -107,19 +108,21 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         var carObj = {
 
             id: $scope.idAutoE,
-            marka: $scope.markaAutoE,
-            model: $scope.modelAutoE,
-            numervin: $scope.numerVinE,
-            numerRej: $scope.numerRejE,
-            rokprodukcji: $scope.rokProE,
-            rodzjanadw: $scope.rodzNadwoziaE,
-            pojemnoscsilnika: $scope.pojSilnikaE,
+            marka: $scope.markaE,
+            model: $scope.modelE,
+            numerVIN: $scope.numerVinE,
+            numerRejestracyjny: $scope.numerRejE,
+            rokProdukcji: $scope.rokProE,
+            rodzajNadwozia: $scope.rodzNadwoziaE,
+            pojemnoscSilnika: $scope.pojSilnikaE,
             mocSilnika: $scope.mocAutoE,
-            rodzjapaliwa: $scope.rodzajPaliE
+            rodzajPaliwa: $scope.rodzajPaliE
         };
 
-        alert("indeks auta"+carObj.numerRej)
-        // alert(carObj.model)
+
+
+
+
         $http.post('/auto/put/', carObj).success(function () { //wywloujemy
             alert('Thanks');
 
