@@ -25,30 +25,32 @@
                                             <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Marka</th>
-                                                <th>Model</th>
-                                                <th>Rejstracja</th>
-                                                <th>Rok produkcji</th>
+                                                <th>Numer polisy</th>
+                                                <th>data od</th>
+                                                <th>data do</th>
+                                                <th>składka</th>
+                                                <th>data</th>
                                             </tr>
                                             </thead>
                                             <!--mamy petle for each-->
                                             <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
                                             <tbody>
                                             <!--String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa-->
-                                            <tr ng-repeat="c in car |orderBy:'marka'">
+                                            <tr ng-repeat="c in policy |orderBy:'id'">
 
                                                 <td>{{ c.id }}</td>
-                                                <td>{{ c.marka }}</td>
-                                                <td>{{ c.model }}</td>
-                                                <td>{{ c.numerRejestracyjny}}</td>
-                                                <td >{{c.rokProdukcji | date: "yyyy-MM-dd"}}</td>
+                                                <td>{{ c.numerPolisy }}</td>
+                                                <td>{{ c.dataOd | date: "yyyy-MM-dd"}}</td>
+                                                <td>{{ c.dataDo | date: "yyyy-MM-dd"}}</td>
+                                                <td>{{ c.skladka}}</td>
+                                                <td >{{c.data | date: "yyyy-MM-dd"}}</td>
                                                 <td>
-                                                    <button type="button"alt="{{c.id}}"  ng-click="deleteCar(c.id)" class="btn btn-primary btn btn-danger"  data-toggle="modal"  >
+                                                    <button type="button"alt="{{c.id}}"  ng-click="deletePolicy(c.id)" class="btn btn-primary btn btn-danger"  data-toggle="modal"  >
                                                         <span class="glyphicon glyphicon-trash"></span>
                                                     </button>
-                                                 </td>
+                                                </td>
                                                 <td>
-                                                  <button type="button"alt="{{c.id}}"  ng-click="showCar(c.id)" class="btn btn-primary btn btn-inf"  data-toggle="modal" data-target="#exampleModalLong" >
+                                                    <button type="button"alt="{{c.id}}"  ng-click="showPolicy(c.id)" class="btn btn-primary btn btn-inf"  data-toggle="modal" data-target="#exampleModalLong" >
                                                         <span class="glyphicon glyphicon-edit"></span>
                                                     </button>
                                                 </td>
@@ -69,66 +71,38 @@
 
 
 
-                            <h3>Dodaj auto</h3>
+                            <h3>Dodaj Polise</h3>
 
                             <form>
                                 <div class="form-group">
-                                    <label>Marka:</label>
-                                    <input id="Marka" type="text" class="form-control" name="Marka" value="Marka"
-                                           placeholder="Marka" ng-model="markaAuto">
+                                    <label>Data:</label>
+                                    <input id="DataDodania" type="date" class="form-control" name="DataDodania" value=""
+                                           placeholder="DataDodania" ng-model="DataDodania">
                                 </div>
                                 <div class="form-group">
-                                    <label>Model:</label>
-                                    <input id="Model" type="text" class="form-control" name="Marka" value="Model"
-                                           placeholder="Model" ng-model="modelAuto">
+                                    <label>Numer Polisy:</label>
+                                    <input id="NumerPolisy" type="text" class="form-control" name="NumerPolisy" value=""
+                                           placeholder="NumerPolisy" ng-model="NumerPolisy">
                                 </div>
                                 <div class="form-group">
-                                    <label>Numer VIN:</label>
-                                    <input id="numerVINAuto" type="text" class="form-control" name="NumerVin" value=""
-                                           placeholder="Numer VIN" ng-model="numerVinAuto">
+                                    <label>data od:</label>
+                                    <input id="DataOd" type="date" class="form-control" name="DataOd" value=""
+                                           placeholder="DataOd" ng-model="DataOd">
                                 </div>
                                 <div class="form-group">
-                                    <label>Numer rejestracyjny:</label>
-                                    <input id="numerRejAuto" type="text" class="form-control" name="numerRej" value=""
-                                           placeholder="Numer rejestracyjny" ng-model="numerRejAuto">
+                                    <label>data do:</label>
+                                    <input id="DataDo" type="date" class="form-control" name="DataDo" value=""
+                                           placeholder="DataDo" ng-model="DataDo">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Rok produkcji:</label>
-                                    <input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value="r."
-                                           placeholder="Rok produkcji " ng-model="rokProAuto">
-                                </div>
-                                <div class="form-group">
-                                    <label>Rodzaj nadwozia:</label>
-                                    <input id="rodzNadwoziaAuto" type="text" class="form-control"
-                                           name="rodzNadwoziaAuto"
-                                           value=""
-                                           placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaAuto">
-                                </div>
-                                <div class="form-group">
-                                    <label>Pojemność silnika:</label>
-                                    <input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto"
-                                    value=""
-                                    placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
-
-                                    <!--<input type="text" string-to-number ng-model="pojSilnika" /> {{ pojSilnika }} : {{ typeOf(pojSilnika) }}-->
-                                </div>
-                                <div class="form-group">
-                                    <label>Moc silnika:</label>
-                                    <input id="mocAuto" type="number" class="form-control" name="mocAuto" value=""
-                                           placeholder=" Moc silnika" ng-model="mocAuto">
-                                </div>
-                                <div class="form-group">
-                                    <label>Rodzaj paliwa:</label>
-                                    <input id="rodzPaliwAuto" type="text" class="form-control" name="rodzajPaliwa"
-                                           value=""
-                                           placeholder="Rodzaj Paliwa" ng-model="rodzajPaliwAuto">
-
-
+                                    <label>Składka:</label>
+                                    <input id="Skladka" type="number" class="form-control" name="Skladka" value=""
+                                           placeholder="Skladka" ng-model="Skladka">
                                 </div>
 
-                                <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj
-                                    Auto
+                                <button id="submitsave" type="submit" class="btn btn-default" ng-click="savePolicy()">Dodaj
+                                    Polise
                                 </button>
                             </form>
                         </div>
@@ -193,7 +167,7 @@
                                        placeholder="Rok produkcji " ng-model="rokProE ">
 
                                 <!--<input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value=""-->
-                                       <!--placeholder="Rok produkcji " ng-model="rokProAuto">-->
+                                <!--placeholder="Rok produkcji " ng-model="rokProAuto">-->
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj nadwozia:</label>

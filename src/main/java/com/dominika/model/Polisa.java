@@ -23,19 +23,13 @@ public class Polisa {
     private Date dataOd;
 
     private Date dataDo;
-    private  int Skladka;
+    private  int skladka;
 
 
     public Polisa() {
     }
 
-    public Polisa(Date data, String numerPolisy, Date dataOd, Date dataDo, int skladka) {
-        this.data = data;
-        this.numerPolisy = numerPolisy;
-        this.dataOd = dataOd;
-        this.dataDo = dataDo;
-        Skladka = skladka;
-    }
+
 
     public long getId() {
         return id;
@@ -78,11 +72,11 @@ public class Polisa {
     }
 
     public int getSkladka() {
-        return Skladka;
+        return skladka;
     }
 
     public void setSkladka(int skladka) {
-        Skladka = skladka;
+        this.skladka = skladka;
     }
 
     @Override
@@ -93,7 +87,7 @@ public class Polisa {
                 ", numerPolisy='" + numerPolisy + '\'' +
                 ", dataOd=" + dataOd +
                 ", dataDo=" + dataDo +
-                ", Skladka=" + Skladka +
+                ", skladka=" + skladka +
                 '}';
     }
 }

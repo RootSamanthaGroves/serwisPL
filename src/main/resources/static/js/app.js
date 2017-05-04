@@ -9,11 +9,6 @@ nikoApp.config(function ($routeProvider) {
             controller: 'HomeController'
         })
 
-        .when('/people', {
-            templateUrl: 'views/people.html',
-            controller: 'PeopleController'
-        })
-
         .when('/about', {
             templateUrl: 'views/about.html',
             controller: 'AboutController'
@@ -32,19 +27,19 @@ nikoApp.config(function ($routeProvider) {
             controller: 'LoginController'
         })
 
-
-        .when('/dodajAuto', {
-            templateUrl: 'views/account.html',
-            controller: 'AutoController'
-        })
-        .when('/dodajNaprawe', {
-            templateUrl: 'views/account.html',
-            controller: 'NaprawaController'
-        })
-        .when('/dodajDaty', {
-            templateUrl: 'views/account.html',
-            controller: 'DatyController'
-        })
+        //
+        // .when('/dodajAuto', {
+        //     templateUrl: 'views/account.html',
+        //     controller: 'AutoController'
+        // })
+        // .when('/dodajNaprawe', {
+        //     templateUrl: 'views/account.html',
+        //     controller: 'NaprawaController'
+        // })
+        // .when('/dodajDaty', {
+        //     templateUrl: 'views/account.html',
+        //     controller: 'DatyController'
+        // })
 
 
         .when('/auta', {
@@ -55,13 +50,13 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/repair.html',
             controller: 'NaprawaController'
         })
-        .when('/polisa', {
-            templateUrl: 'views/polisa.html',
-            controller: 'AccountController'
+        .when('/policy', {
+            templateUrl: 'views/policy.html',
+            controller: 'PolicyController'
         })
-        .when('/badanietechniczne', {
-            templateUrl: 'views/badanie.html',
-            controller: 'AccountController'
+        .when('/technical', {
+            templateUrl: 'views/technical.html',
+            controller: 'technicalExaminationController'
         })
         .otherwise({redirectTo: '/'});
 });

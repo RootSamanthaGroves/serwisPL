@@ -1,0 +1,264 @@
+<div class="account backgroundT">
+    <div class="container-fluid">
+        <div class="row content">
+
+            <div class="col-sm-10">
+
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="kokpit">
+                        <h3>Kokpit</h3>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"></div>
+                            <div class="chat-box-single-line">
+                                <abbr class="timestamp">Badania techniczne</abbr>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+
+                                    <div class="container" style="margin-left: 20px">
+                                        <img src="ikony/user.jpg" alt="Avatar" class="image">
+                                        <div class="overlay">
+                                            <div class="text">Login</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1">
+
+
+                                </div>
+
+
+                                <table class="table table-hover " style="margin-left: 20px; width: 500px">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>data</th>
+                                        <th>Przebieg</th>
+                                        <th>Rorzaj</th>
+                                        <th>Opis</th>
+                                        <th>Koszt</th>
+                                    </tr>
+                                    </thead>
+                                    <!--mamy petle for each-->
+                                    <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
+                                    <tbody>
+                                    <!--Date data, int przebieg, String rodzaj, String opis, int koszt-->
+                                    <tr ng-repeat="r in repair |orderBy:'data'">
+                                        <td>{{ r.id }}</td>
+                                        <td> {{r.date}}
+                                            {{r.data | date: "yyyy-MM-dd"}}
+                                        </td>
+                                        <td>{{ r.przebieg }}</td>
+                                        <td>{{ r.rodzaj}}</td>
+                                        <td>{{ r.opis}}</td>
+                                        <td>{{ r.koszt}}</td>
+                                        <td><a href="" class="btn btn-danger"
+                                               ng-click="deleteRepair(r.id)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a></td>
+                                        <td>
+                                            <!--<a href="" class="btn btn-info "-->
+                                            <!--ng-click="editRepair(r.id)">-->
+                                            <!--<span class="glyphicon glyphicon-edit"></span>-->
+                                            <!--</a>-->
+                                            <button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"
+                                                    class="btn btn-primary btn btn-inf" data-toggle="modal"
+                                                    data-target="#exampleModalLong2">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="dodajAuto">
+
+
+                        <table class="table table-hover " style="margin-left: 20px; width: 500px">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Składka</th>
+                                <th>data</th>
+                                <th>data od</th>
+                                <th>data do</th>
+                                <th>numer polisy</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="p in car |orderBy:'data_do'">
+
+                                <td>{{ p.id }}</td>
+                                <td>{{ p.skladka }}</td>
+                                <td>{{ p.data }}</td>
+                                <td>{{ p.dataod}}</td>
+                                <td>{{p.datado | date: "yyyy-MM-dd"}}</td>
+                                <td>{{ p.numerpolisy }}</td>
+                                <td><a href="" class="btn btn-danger"
+                                       ng-click="deletePolicy(p.id)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a></td>
+                                <td>
+                                    <button type="button" alt="{{p.id}}" ng-click="showPolicy(p.id)"
+                                            class="btn btn-primary btn btn-inf" data-toggle="modal"
+                                            data-target="#exampleModalLong">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+                            <h3>Dodaj Polise</h3>
+
+                            <form>
+
+                                <div class="form-group">
+                                    <label>Data dodania:</label>
+                                    <input id="dataDodania" type="date" class="form-control"
+                                           name="dataDodania" value=""
+                                           placeholder="Data dodania" ng-model="dataDodania">
+
+                                    <input type="date"
+                                           ng-model="string"
+                                           [name="string" ]
+                                           [min="string" ]
+                                           [max="string" ]
+                                           [ng-min="" ]
+                                           [ng-max="" ]
+                                           [required="string" ]
+                                           [ng-required="string" ]
+                                           [ng-change="string" ]>
+                                </div>
+                                <div class="form-group">
+                                    <label>Numer polisy:</label>
+                                    <input id="numerPolisy" type="text" class="form-control"
+                                           name="numerPolisy" value=""
+                                           placeholder="Numer polisy" ng-model="numerPolisy">
+                                </div>
+                                <div class="form-group">
+                                    <label>Okres ochrony OC:</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Data od: </label>
+                                    <input id="dataOd" type="date" class="form-control"
+                                           name="dataOd" value=""
+                                           placeholder="Data od" ng-model="dataOd">
+                                    <label> do: </label>
+                                    <input id="dataDo" type="date" class="form-control"
+                                           name="dataDo" value=""
+                                           placeholder="Data do" ng-model="dataDo">
+                                </div>
+                                <div class="form-group">
+                                    <label>Składka OC:</label>
+                                    <input id="skladkaOC" type="number" class="form-control"
+                                           name="skladkaOC" value=""
+                                           placeholder="Skłądka  OC" ng-model="skladkaOC">
+                                </div>
+
+                                <button type="submit" type="submit" class="btn btn-default" ng-click="saveUbezpieczenie()">
+                                    Dodaj
+                                    informacje
+                                </button>
+                            </form>
+
+                            <h3>Dodaj badanie techniczne</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label>Data wykonania badania:</label>
+                                    <input id="datawykonaniaBadania" type="date" class="form-control"
+                                           name="datawykonaniaBadania" value=""
+                                           placeholder="Data wykonania Badania technicznego"
+                                           ng-model="datawykonaniaBadania">
+                                </div>
+                                <div class="form-group">
+                                    <label>Termin ważności badania:</label>
+                                    <input id="terminBadania" type="date" class="form-control"
+                                           name="terminBadania" value=""
+                                           placeholder="Termin Badania technicznego" ng-model="terminBadania">
+                                </div>
+                                <button type="submit" type="submit" class="btn btn-default" ng-click="saveBadanie()">
+                                    Dodaj
+                                    informacje
+                                </button>
+                            </form>
+                        </div>
+
+
+
+
+                    <div class="col-sm-12">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Edycja naprawy -->
+        <!--<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog"-->
+             <!--aria-labelledby="exampleModalLongTitle" aria-hidden="true">-->
+            <!--<div class="modal-dialog" role="document">-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="modal-header">-->
+                        <!--<h5 class="modal-title" id="exampleModalLongTitle2">Edytuj</h5>-->
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                            <!--<span aria-hidden="true">&times;</span>-->
+                        <!--</button>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body">-->
+
+
+                        <!--<form>-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Data:</label>-->
+                                <!--<input id="dataE" type="date" class="form-control"-->
+                                       <!--name="dataE" value=""-->
+                                       <!--placeholder="data naprawy" ng-model="dataE">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Przebieg:</label>-->
+                                <!--<input id="przebiegE" type="number" class="form-control"-->
+                                       <!--name="przebiegE" value=""-->
+                                       <!--placeholder="Przebieg" ng-model="przebiegE">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Rodzaj:</label>-->
+                                <!--<input id="rodzajE" type="text" class="form-control"-->
+                                       <!--name="rodzajE" value=""-->
+                                       <!--placeholder="Rodzaj naprawy" ng-model="rodzajE">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Opis:</label>-->
+                                <!--<input id="opisE" type="text" class="form-control"-->
+                                       <!--name="opisE" value=""-->
+                                       <!--placeholder="Opis naprawy" ng-model="opisE">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Kosz naprawy:</label>-->
+                                <!--<input id="kosztE" type="number" class="form-control"-->
+                                       <!--name="kosztE" value=""-->
+                                       <!--placeholder="Koszt naprawy" ng-model="kosztE">-->
+                            <!--</div>-->
+
+                        <!--</form>-->
+
+                    <!--</div>-->
+                    <!--<div class="modal-footer">-->
+                        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>-->
+                        <!--<button type="button" class="btn btn-primary" ng-click="editRepair()">Zapisz zmiany</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+</div>
