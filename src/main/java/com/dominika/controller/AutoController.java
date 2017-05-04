@@ -78,8 +78,6 @@ public class AutoController {
     @PostMapping("/put/")
     public ResponseEntity<Auto> update( @RequestBody Auto auto)
     {
-        System.out.println(auto.toString());
-
         autoRepository.update(auto.getId(), auto);
         return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
     }

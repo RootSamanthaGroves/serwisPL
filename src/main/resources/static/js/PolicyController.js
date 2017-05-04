@@ -118,22 +118,22 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
 
 
     $scope.editPolicy = function () {
-        var repairObj = {
+        var policyObj = {
 
-            id: $scope.idE,
-            data: $scope.dataE,
-            przebieg: $scope.przebiegE,
-            rodzaj: $scope.rodzajE,
-            opis: $scope.opisE,
-            koszt: $scope.kosztE
+            id: $scope.IdE,
+            data: $scope.DataDodaniaE,
+            numerPolisy: $scope.NumerPolisyE,
+            dataDo: $scope.DataDoE,
+            dataOd: $scope.DataOdE,
+            numerPolisy: $scope.NumerPolisyE,
+            skladka: $scope.SkladkaE
         };
 
-        alert("indeks auta"+repairObj.id)
-        // alert(carObj.model)
-        $http.post('/naprawa/put/', repairObj).success(function () { //wywloujemy
+        alert("indeks "+policyObj.id)
+          $http.post('daty/polisa/put/', policyObj).success(function () { //wywloujemy
             alert('Thanks');
 
-            loadAllRepair();
+            loadAllPolicy();
 
         }).error(function (error) {
             alert("nie udało się ")

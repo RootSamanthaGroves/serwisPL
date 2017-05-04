@@ -33,7 +33,6 @@ public class DatyRepository {
 
     @Transactional
     public Polisa savePolisa(Polisa a) {
-        System.out.println(a.getData());
         entityManager.persist(a);
         return(a);
 
@@ -69,12 +68,12 @@ public class DatyRepository {
     @Transactional
     public Polisa findOnePolicy(long id) {
         Polisa p = entityManager.find(Polisa.class, id);
-        System.out.println("polisa"+ p.toString());
         return p;
     }
 
     @Transactional
     public Polisa update(long id, Polisa polisa) {
+        System.out.println(polisa.toString());
         Polisa p = entityManager.find(Polisa.class, id);
         entityManager.merge(polisa);
         return polisa;

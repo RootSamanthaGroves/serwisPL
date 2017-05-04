@@ -88,17 +88,17 @@ public class DatyController
 //        }
 //    }
 
-//
-//    @Transactional
-//    @PostMapping("/put/")
-//    public ResponseEntity<Auto> update( @RequestBody Auto auto)
-//    {
-//        System.out.println(auto.toString());
-//
-//        autoRepository.update(auto.getId(), auto);
-//        return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
-//    }
-    //
+
+    @Transactional
+    @PostMapping("polisa/put/")
+    public ResponseEntity<Polisa> update( @RequestBody Polisa polisa)
+    {
+        System.out.println(polisa.toString());
+
+        datyRepository.update(polisa.getId(), polisa);
+        return new ResponseEntity<Polisa>(polisa, new HttpHeaders(), HttpStatus.OK);
+    }
+
 //    @Transactional
 //    @PostMapping("/put/")
 //    public ResponseEntity<Auto> update( @RequestBody Auto auto)
