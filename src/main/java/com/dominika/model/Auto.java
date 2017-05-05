@@ -22,6 +22,8 @@ public class Auto {
     private int pojemnoscSilnika;
     private int mocSilnika;
     private String rodzajPaliwa;
+    @Lob
+    private  byte[] image;
     @OneToMany
     private List<Naprawa> naprawa;
 
@@ -43,6 +45,14 @@ public class Auto {
                 ", rodzajPaliwa='" + rodzajPaliwa + '\'' +
                 ", naprawa=" + naprawa +
                 '}';
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public long getId() {

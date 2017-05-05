@@ -1,7 +1,7 @@
 /**
  * Created by Dominika on 2017-04-03.
  */
-angular.module('nikoApp').controller('LoginController', function ($http, $rootScope, $scope, LoginService, $location, $localStorage, $resource ) {
+angular.module('nikoApp').controller('LoginController', function ($http, $rootScope, $scope, LoginService, $location, $localStorage, $resource) {
 
     // $scope.test = function () {
     //     alert('Thanks');
@@ -104,7 +104,9 @@ angular.module('nikoApp').controller('LoginController', function ($http, $rootSc
         var userLoginAndPassword = {
             "username": $scope.username,
             "password": $scope.password
-        }
+        };
+
+        console.log(userLoginAndPassword.password)
         if (userLoginAndPassword.password == "" || userLoginAndPassword.username == "") {
         } else {
             LoginService

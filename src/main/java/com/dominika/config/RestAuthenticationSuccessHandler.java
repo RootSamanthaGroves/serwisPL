@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 
@@ -21,6 +22,7 @@ public class RestAuthenticationSuccessHandler
     @Autowired
     private UsersRepository userRepository;
 
+    @Transactional
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response, Authentication authentication)
