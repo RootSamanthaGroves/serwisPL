@@ -10,6 +10,13 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
     $scope.saveAuto = function () {
 
 
+        $scope.cars = [
+            {model : "Ford Mustang", color : "red"},
+            {model : "Fiat 500", color : "white"},
+            {model : "Volvo XC90", color : "black"}
+        ];
+
+
         var autoObject = {
             image: $scope.gallery[0].replace('data:image/jpeg;base64,', ''),
             marka: $scope.markaAuto,

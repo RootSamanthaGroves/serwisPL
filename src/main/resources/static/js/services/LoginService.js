@@ -43,6 +43,7 @@ angular.module('nikoApp').service('LoginService', function ($http) {
             method: "GET",
             url: url
         }).then(function successCallback(response) {
+
             return response;
         }, function errorCallback(response) {
             return response.status;

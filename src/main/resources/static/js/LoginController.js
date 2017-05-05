@@ -106,7 +106,7 @@ angular.module('nikoApp').controller('LoginController', function ($http, $rootSc
             "password": $scope.password
         };
 
-        console.log(userLoginAndPassword.password)
+        // console.log(userLoginAndPassword.password)
         if (userLoginAndPassword.password == "" || userLoginAndPassword.username == "") {
         } else {
             LoginService
@@ -115,12 +115,15 @@ angular.module('nikoApp').controller('LoginController', function ($http, $rootSc
                         if (response.status == 200) {
                             LoginService
                                 .getCurrentUser().then(function (response) {
+
+                                $rootScope.currentUser=response.data;
                                 $localStorage.currentUser = response.data;
                                 $localStorage.showNavbar = true;
                                 $localStorage.showTopMenu = true;
                                 $rootScope.showNavbar = true;
                                 $rootScope.showTopMenu = true;
                                 $location.path('/');
+                                console.log("login controller"+$rootScope.currentUser.username);
                             })
                         } else {
                             alert("Nie można poprawnie dokonać autoryzacji \nPrawdopodobną przyczyną jest zły email lub/i hasło");

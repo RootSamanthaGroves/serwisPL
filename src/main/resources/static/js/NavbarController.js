@@ -10,10 +10,11 @@ angular.module('nikoApp').controller('NavbarController', function ($rootScope, $
             .getCurrentUser()
             .then(function (response) {
                 if (response.status == 200) {
-                    $rootScope.email = response.data.email;
-                    $localStorage.name = response.data.name;
-                    $localStorage.role = response.data.role;
-
+                    $rootScope.email = response.data.email; //rootScope umozliwia wyswietlanei w dowolnym miejscu
+                    $rootScope.name = response.data.firstName;
+                    $rootScope.role = response.data.role;
+                    $rootScope.id = response.data.id;
+console.log("navbar kurwa name "+  $localStorage.firstName +" "+$localStorage.role +" "+$rootScope.id);
 
                     if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
                         $rootScope.admin = true;

@@ -23,6 +23,9 @@ public class NaprawaController {
     @Autowired
     NaprawaRepository naprawaRepository;
 
+//    @Autowired
+//    UsersRepository usersRepository;
+
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {
@@ -80,5 +83,12 @@ public class NaprawaController {
         naprawaRepository.update(naprawa.getId(), naprawa);
         return new ResponseEntity<Naprawa>(naprawa, new HttpHeaders(), HttpStatus.OK);
     }
+
+
+//    @PostMapping("/put/{id}")
+//    public ResponseEntity<Uzytkownik> updateRelation(@PathVariable long id, @RequestBody Uzytkownik uzytkownik) {
+//        usersRepository.updateRelation(Long.valueOf(id), uzytkownik);
+//        return new ResponseEntity<Uzytkownik>(uzytkownik, new HttpHeaders(), HttpStatus.OK);
+//    }
 
 }

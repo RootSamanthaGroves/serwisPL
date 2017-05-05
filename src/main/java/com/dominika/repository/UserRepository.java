@@ -90,7 +90,45 @@ public class UserRepository{
         if (!u.getFirstName().isEmpty()) {
             user.setFirstName(u.getFirstName());
         }
+
+        if (!u.getRole().equals("")) {
+            user.setRole(u.getRole());
+        }
+
+        if (!u.getAuto().isEmpty()) {
+            user.setAuto(u.getAuto());
+        }
+
         entityManager.merge(user);
         return user;
     }
+
 }
+
+
+//    @Transactional
+//    public Uzytkownik updateRelation(long id, Uzytkownik u) {
+//        Uzytkownik uzytkownik = entityManager.find(Uzytkownik.class, id);
+//
+//            if (!u.getEmail().isEmpty()) {
+//                uzytkownik.setEmail(u.getEmail());
+//            }
+//
+//        if (!u.getPassword().isEmpty()) {
+//            uzytkownik.setPassword(u.getPassword());
+//        }
+//        if (!u.getFirstName().isEmpty()) {
+//            uzytkownik.setFirstName(u.getFirstName());
+//        }
+//        if (!u.getRole().equals("")) {
+//            uzytkownik.setRole(u.getRole());
+//        }
+//
+//        if (!u.getAuto().isEmpty()) {
+//            uzytkownik.setAuto(u.getAuto());
+//        }
+//        entityManager.merge(uzytkownik);
+//        return uzytkownik;
+//
+//    }
+//}

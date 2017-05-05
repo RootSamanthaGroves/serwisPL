@@ -37,7 +37,7 @@
                                             <!--Date data, int przebieg, String rodzaj, String opis, int koszt-->
                                             <tr ng-repeat="r in repair |orderBy:'data'">
                                                 <td>{{ r.id }}</td>
-                                                <td> {{r.date}}
+                                                <td>{{r.date}}
                                                     {{r.data | date: "yyyy-MM-dd"}}
                                                 </td>
                                                 <td>{{ r.przebieg }}</td>
@@ -71,17 +71,28 @@
                     <h3>Dodaj Naprawę</h3>
                     <form>
                         <div class="form-group">
-                            <label>Wybierz auto:</label>
-                            <label for="sel1">Select list (select one):</label>
-                            <select class="form-control" id="sel1">
-                                <option>1</option>
-                                <option>2</option>
+                            <div  ng-controller="AutoController">
 
-                            </select>
-                            <br>
+                                <p>Select a car:</p>
+
+                                <select ng-model="selectedCar"  ng-options="y.brand for (x, y) in cars">
+                                </select>
+
+                                <h1>You selected: {{selectedCar.brand}}</h1>
+                                <h2>Model: {{selectedCar.model}}</h2>
+                                <h3>Color: {{selectedCar.color}}</h3>
+
+                                <p>The visible text inside the dropdown list can also be a property of the value object.</p>
+
+                            </div>
+
+                            <div align="center">
+                                <button type="button" class="btn btn-warning" id="saveRelations"
+                                        ng-click="saveRelations(1)">Add relations
+                                </button>
+                            </div>
 
                         </div>
-
 
 
                         <div class="form-group">

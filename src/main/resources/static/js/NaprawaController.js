@@ -5,9 +5,36 @@
 angular.module('nikoApp').controller('NaprawaController', function ($scope, $resource, $http) {
 
 
-    $scope.test = function () {
-        alert('Thanks');
-    }
+    $scope.items = [];
+    $scope.selected = [];
+
+
+
+
+
+
+
+
+    $scope.toggle = function (item, list) {
+        var idx = list.indexOf(item);
+        if (idx > -1) {
+            list.splice(idx, 1);
+        }
+        else {
+            list.push(item);
+        }
+    };
+
+    $scope.exists = function (item, list) {
+        return list.indexOf(item) > -1;
+    };
+
+    $scope.selectQ = function (id) {
+        $scope.IdCar = 0;
+        $scope.IdCar = id;
+        $routeParams.id = id;
+        console.log(id);
+    };
 
     $scope.saveNaprawa = function () {
         // alert(dataNaprawy+przebiegAuto);
@@ -20,15 +47,40 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             koszt: $scope.kosztNaprawy
         };
         console.log(naprawaObject.data)
-        alert( naprawaObject.data)
+        alert(naprawaObject.data)
         $http.post('/naprawa/add', naprawaObject).success(function () {
             alert('Dodawanie powiodło się');
 
-loadAllRepair();
+            loadAllRepair();
         }).error(function () {
             alert('Coś poszło nie tak');
         })
     };
+
+
+    $scope.saveRelations = function (Id) {
+        // alert($scope.selected + " " + $scope.question);
+         console.log(Id);
+
+
+
+        var questionObject = {
+            question: $scope.question,
+            answers: $scope.selected
+        };
+
+        // $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
+        //     alert('Thanks'+$scope.selected);
+        //
+        //
+        //
+        // }).error(function () {
+        //     alert("nie udało się ")
+        // })
+    }
+
+
+
 
     // var loadMeCars = function (id) {
     //     var Car = $resource('auto/', {}, {
@@ -84,14 +136,14 @@ loadAllRepair();
             // $scope.status = "The Survey Deleted Successfully!!!";
             alert(data.id);
             console.log(data.data)
-            $scope.idE=data.id;
+            $scope.idE = data.id;
 
             var myDate = new Date(data.data);
-            $scope.dataE=myDate;
-            $scope.przebiegE=data.przebieg;
-            $scope.rodzajE=data.rodzaj;
-            $scope.opisE=data.opis;
-            $scope.kosztE=data.koszt;
+            $scope.dataE = myDate;
+            $scope.przebiegE = data.przebieg;
+            $scope.rodzajE = data.rodzaj;
+            $scope.opisE = data.opis;
+            $scope.kosztE = data.koszt;
 
 
         })
@@ -114,7 +166,7 @@ loadAllRepair();
             koszt: $scope.kosztE
         };
 
-        alert("indeks auta"+repairObj.id)
+        alert("indeks auta" + repairObj.id)
         // alert(carObj.model)
         $http.post('/naprawa/put/', repairObj).success(function () { //wywloujemy
             alert('Thanks');

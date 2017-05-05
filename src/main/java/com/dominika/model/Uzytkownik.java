@@ -34,14 +34,14 @@ public class Uzytkownik {
     public Uzytkownik() {
     }
 
-//    public Uzytkownik(List<Auto> auto) {
-//        this.auto = auto;
-//    }
+    public Uzytkownik(List<Auto> auto) {
+        this.auto = auto;
+    }
 
-//    public Uzytkownik(long id, List<Auto> auto) {
-//        this.id = id;
-//        this.auto = auto;
-//    }
+    public Uzytkownik(long id, List<Auto> auto) {
+        this.id = id;
+        this.auto = auto;
+    }
 
     public Uzytkownik(String firstName, String email, String password, Role role) {
         this.firstName = firstName;
