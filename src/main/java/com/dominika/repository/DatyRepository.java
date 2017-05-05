@@ -25,7 +25,7 @@ public class DatyRepository {
 
     @Transactional
     public BadanieTechniczne saveBadanie(BadanieTechniczne b) {
-        System.out.println(b.getDataWaznosci());
+        System.out.println(b.toString());
         entityManager.persist(b);
         return(b);
 
@@ -43,8 +43,6 @@ public class DatyRepository {
         TypedQuery<Polisa> query = entityManager.createQuery("select p from Polisa p", Polisa.class);
         return query.getResultList();
     }
-
-
 
     public List<BadanieTechniczne> findAllBadanieTechniczne() {
         TypedQuery<BadanieTechniczne> query = entityManager.createQuery("select b from BadanieTechniczne b", BadanieTechniczne.class);
@@ -66,17 +64,42 @@ public class DatyRepository {
     }
 
     @Transactional
+    public ResponseEntity removeOneTechnical(long id) {
+
+       BadanieTechniczne bd  = entityManager.find(BadanieTechniczne.class, id);
+        if (bd == null) {
+            return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        } else {
+            entityManager.remove(bd);
+            return new ResponseEntity(bd, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
+    @Transactional
     public Polisa findOnePolicy(long id) {
         Polisa p = entityManager.find(Polisa.class, id);
         return p;
     }
+    @Transactional
+    public BadanieTechniczne findOneBadanie(long id) {
+        BadanieTechniczne b = entityManager.find(BadanieTechniczne.class, id);
+        return b;
+    }
 
     @Transactional
     public Polisa update(long id, Polisa polisa) {
-        System.out.println(polisa.toString());
         Polisa p = entityManager.find(Polisa.class, id);
         entityManager.merge(polisa);
         return polisa;
+    }
+
+    @Transactional
+    public BadanieTechniczne updateT(long id, BadanieTechniczne bd) {
+          BadanieTechniczne b = entityManager.find(BadanieTechniczne.class, id);
+        entityManager.merge(bd);
+        return bd;
     }
 
 }

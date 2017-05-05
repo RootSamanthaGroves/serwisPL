@@ -56,7 +56,7 @@ nikoApp.config(function ($routeProvider) {
         })
         .when('/technical', {
             templateUrl: 'views/technical.html',
-            controller: 'technicalExaminationController'
+            controller: 'TechnicalController'
         })
         .otherwise({redirectTo: '/'});
 });

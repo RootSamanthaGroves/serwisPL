@@ -58,6 +58,22 @@ public class DatyController
     }
 
 
+
+    @GetMapping("badanie/id/{id}")
+    public ResponseEntity<BadanieTechniczne> getOnebadanie(@PathVariable Optional<Long> id) {
+        if (id.isPresent()) {
+            BadanieTechniczne badanieTechniczne = datyRepository.findOneBadanie(id.get());
+            if (badanieTechniczne != null) {
+                return new ResponseEntity<BadanieTechniczne>(badanieTechniczne, new HttpHeaders(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<BadanieTechniczne>(HttpStatus.NOT_FOUND);
+            }
+        }
+        return new ResponseEntity<BadanieTechniczne>(HttpStatus.BAD_REQUEST);
+    }
+
+
+
     @DeleteMapping("delete/polisa/id/{id}")
     public ResponseEntity<Polisa> deletePolisa(@PathVariable Optional<Long> id) {
         if (!id.equals(null)) {
@@ -73,47 +89,43 @@ public class DatyController
         }
     }
 
-//    @DeleteMapping("delete/badanie/id/{id}")
-//    public ResponseEntity<Polisa> deleteBadanie(@PathVariable Optional<Long> id) {
-//        if (!id.equals(null)) {
-//            BadanieTechniczne b = datyRepository.findOneBadanie(id.get());
-//            datyRepository.removeOneBadanie(id.get());
-//            if (b != null) {
-//                return new ResponseEntity(b, new HttpHeaders() HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity(new HttpHeaders(), HttpStatus.NOT_FOUND);
-//            }
-//        } else {
-//            return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @DeleteMapping("delete/badanie/id/{id}")
+    public ResponseEntity<Polisa> deleteBadanie(@PathVariable Optional<Long> id) {
+        if (!id.equals(null)) {
+            BadanieTechniczne b = datyRepository.findOneBadanie(id.get());
+            datyRepository.removeOneTechnical(id.get());
+            if (b != null) {
+                return new ResponseEntity(b, new HttpHeaders(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity(new HttpHeaders(), HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
     @Transactional
     @PostMapping("polisa/put/")
     public ResponseEntity<Polisa> update( @RequestBody Polisa polisa)
     {
-        System.out.println(polisa.toString());
-
         datyRepository.update(polisa.getId(), polisa);
         return new ResponseEntity<Polisa>(polisa, new HttpHeaders(), HttpStatus.OK);
     }
 
-//    @Transactional
-//    @PostMapping("/put/")
-//    public ResponseEntity<Auto> update( @RequestBody Auto auto)
-//    {
-//        System.out.println(auto.toString());
-//
-//        autoRepository.update(auto.getId(), auto);
-//        return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
-//    }
+    @Transactional
+    @PostMapping("badanie/put/")
+    public ResponseEntity<BadanieTechniczne> updateTech( @RequestBody BadanieTechniczne badanieTechniczne)
+    {
+        datyRepository.updateT(badanieTechniczne.getId(),badanieTechniczne);
+        return new ResponseEntity<BadanieTechniczne>(badanieTechniczne, new HttpHeaders(), HttpStatus.OK);
+    }
 
 
     @Transactional
     @PostMapping("addPolisa")
     public ResponseEntity<Polisa> savaPolisa(@RequestBody Polisa polisa) {
-        System.out.println(polisa.toString());
+     System.out.println(polisa.toString());
         datyRepository.savePolisa(polisa);
         if ((polisa.getId() != -1)) {
             return ResponseEntity.ok(polisa);
@@ -126,7 +138,6 @@ public class DatyController
     @Transactional
     @PostMapping("addBadanie")
     public ResponseEntity<BadanieTechniczne> saveBadnanieTechnicze(@RequestBody BadanieTechniczne bt) {
-        System.out.println("data z badania technicznego "+bt.getDataBadania().toString());
         datyRepository.saveBadanie(bt);
         if (bt.getId() != -1) {
             return ResponseEntity.ok(bt);

@@ -18,7 +18,7 @@ public class BadanieTechniczne {
     private long id;
 
     private Date dataBadania;
-    private Date DataWaznosci;
+    private Date dataWaznosci;
 
 
     public BadanieTechniczne() {
@@ -41,11 +41,21 @@ public class BadanieTechniczne {
         this.dataBadania = dataBadania;
     }
 
+
     public Date getDataWaznosci() {
-        return DataWaznosci;
+        return dataWaznosci;
     }
 
     public void setDataWaznosci(Date dataWaznosci) {
-        DataWaznosci = dataWaznosci;
+        this.dataWaznosci = dataWaznosci;
+    }
+
+    @Override
+    public String toString() {
+        return "BadanieTechniczne{" +
+                "id=" + id +
+                ", dataBadania=" + dataBadania +
+                ", dataWaznosci=" + dataWaznosci +
+                '}';
     }
 }
