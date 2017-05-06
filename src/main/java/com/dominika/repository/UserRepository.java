@@ -106,8 +106,8 @@ public class UserRepository{
             user.setAuto(u.getAuto());
         }
 
-        entityManager.merge(u);
-        return u;
+        entityManager.merge(user);
+        return user;
     }
 
 

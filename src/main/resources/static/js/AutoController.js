@@ -194,8 +194,8 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
 
         var userObject = {
             id:$rootScope.id,
-            email:$rootScope.email,
-            role:$rootScope.role,
+            // email:$rootScope.email,
+            // role:$rootScope.role,
             auto: $scope.selected
         };
 
