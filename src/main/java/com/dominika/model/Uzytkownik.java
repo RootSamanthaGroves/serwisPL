@@ -28,7 +28,7 @@ public class Uzytkownik {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany
+    @ManyToMany
     private List<Auto> auto ;
 
     public Uzytkownik() {
@@ -53,6 +53,15 @@ public class Uzytkownik {
 //    public Uzytkownik(long id) {
 //        this.id = id;
 //    }
+
+
+    public Uzytkownik(String firstName, String email, String password, Role role, List<Auto> auto) {
+        this.firstName = firstName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.auto = auto;
+    }
 
     public Role getRole() {
         return role;
@@ -100,5 +109,17 @@ public class Uzytkownik {
 
     public List<Auto> getAuto() {
         return auto;
+    }
+
+    @Override
+    public String toString() {
+        return "Uzytkownik{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", auto=" + auto +
+                '}';
     }
 }

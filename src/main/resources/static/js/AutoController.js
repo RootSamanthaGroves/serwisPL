@@ -1,21 +1,58 @@
 /**
  * Created by Dominika on 2017-04-07.
  */
-angular.module('nikoApp').controller('AutoController', function ($scope, $resource, $http) {
+angular.module('nikoApp').controller('AutoController', function ($scope, $resource, $http, $rootScope, LoginService, $location, $localStorage) {
 
     $scope.gallery = [];
+    $scope.items = [];
+    $scope.selected = [];
+    var idAddcar= 1;
+    var item;
+
     $scope.test = function () {
         alert('Thanks');
     }
-    $scope.saveAuto = function () {
 
 
-        $scope.cars = [
-            {model : "Ford Mustang", color : "red"},
-            {model : "Fiat 500", color : "white"},
-            {model : "Volvo XC90", color : "black"}
-        ];
+    //user
+    // $scope.selectQ = function () {
+    //     $scope.user = 0;
+    //     $scope.user = IdU;
+    //     $routeParams.id = IdU;
+    //     alert(IdU);
+    // };
 
+
+    //car a, selected
+    //item, list
+    // $scope. toggle = function () {
+    //     console.log("toggle");
+    //     var idx = $scope.selected.indexOf(item);
+    //     console.log(item);
+    //     if (idx > -1) {
+    //         $scope.selected.splice(idx, 1);
+    //     }
+    //     else {
+    //         $scope.selected.push(item);
+    //     }
+    // };
+
+    $scope.toggle = function (item, list) {
+        var idx = list.indexOf(item);
+        if (idx > -1) {
+            list.splice(idx, 1);
+        }
+        else {
+            list.push(item);
+        }
+    };
+
+    // var exists = function (item, list) {
+    //     return list.indexOf(item) > -1;
+    //     alert("exist");
+    // };
+
+    $rootScope.saveAuto = function () {
 
         var autoObject = {
             image: $scope.gallery[0].replace('data:image/jpeg;base64,', ''),
@@ -30,21 +67,28 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             rokProdukcji: $scope.rokProAuto
         };
 
-        $http.post('/auto/add', autoObject).success(function (response) {
+        $http.post('/auto/add', autoObject).success(function (data) {
             alert('Twoje auto zostało dodane');
 
 
             loadAllCars();
-            // alert($localStorage.currentUser.id + " " );
-            console.log(response);
-            // alert(response.id);
-            id = response.id;
+            console.log(data.id);
+
+             item =autoObject;
+
+
+
+            $scope.toggle(data, $scope.selected);
+
+
+            alert("id dodanego auta " + data)
             // saveRel(response.id);
         }).error(function () {
             alert('Coś poszło nie tak' +
                 ' ');
         })
     };
+
 
     // wyświetlanie aut
     var loadAllCars = function () {
@@ -64,7 +108,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
     loadAllCars();
 
     $scope.deleteCar = function (Id) {
-        alert(Id)
+        // alert(Id)
         $http({
             method: 'DELETE',
             url: '/auto/delete/id/' + Id
@@ -75,7 +119,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             .error(function (error) {
                 loadAllCars();
                 //Showing error message
-                $scope.status = 'Unable to delete a person: ' + error.message;
+                $scope.status = 'Unable to delete a person: ' + error;
             });
     }
 
@@ -86,8 +130,6 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             method: 'GET',
             url: '/auto/id/' + Id
         }).success(function (data) {
-            //Showing Success message
-            // $scope.status = "The Survey Deleted Successfully!!!";
 
             $scope.idAutoE = data.id;
             $scope.markaE = data.marka;
@@ -141,48 +183,40 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
 
     };
 
-
-    // var saveRel = function (id) {
-    //     alert(id+" "+$localStorage.currentUser.id)
-    //     var Object = {
-    //         idUser:$localStorage.currentUser.id,
-    //         idCar: id
-    //
-    //
-    //     };
-    //
-    //     $http.post('/user/put/'+ $localStorage.currentUser.id ,  Object).success(function () { //wywloujemy
-    //         alert('Thanks');
-    //
-    //
-    //
-    //
-    //     }).error(function () {
-    //         alert("nie udało się ")
-    //     })
-    // };
+    $scope.AddRelation = function (id) {
 
 
-    // $scope.saveRelations = function () {
-    //     alert(id)
-    //     alert($localStorage.currentUser.id + " " + id);
-    //
-    //
-    //
-    //     var questionObject = {
-    //         user: $scope.$localStorage.currentUser.id,
-    //         car: $scope.car.id
-    //     };
-    //
-    //     $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
-    //         alert('Thanks'+$scope.selected);
-    //
-    //
-    //
-    //     }).error(function () {
-    //         alert("nie udało się ")
-    //     })
-    // };
+
+         alert( $rootScope.id);
+        // console.log($scope.selected + " " + $scope.question);
+
+
+
+        var userObject = {
+            id:$rootScope.id,
+            email:$rootScope.email,
+            role:$rootScope.role,
+            auto: $scope.selected
+        };
+
+        alert(userObject.id+" uzytkownik     auto "+ userObject.auto)
+
+        $http.post('/user/putRelation/'+ $rootScope.id,  userObject).success(function (data) { //wywloujemy
+            alert('Thanks'+$scope.selected);
+            loadAllCars();
+
+
+
+        }).error(function (error) {
+            alert("nie udało się ")
+            //Showing error message
+            console.log(error)
+
+        })
+
+    };
+
+
 
 
     //IMAGE PICKER
