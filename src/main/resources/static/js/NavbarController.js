@@ -20,7 +20,7 @@ angular.module('nikoApp').controller('NavbarController', function ($rootScope, $
                     $rootScope.name = response.data.firstName;
                     $rootScope.role = response.data.role;
                     $rootScope.id = response.data.id;
-                    console.log("navbar kurwa name " + $localStorage.firstName + " " + $localStorage.role + " " + $rootScope.id);
+                    console.log("navbar  name " + $localStorage.firstName + " " + $localStorage.role + " " + $rootScope.id);
 
                     if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
                         $rootScope.admin = true;

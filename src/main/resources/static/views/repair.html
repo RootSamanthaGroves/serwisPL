@@ -73,17 +73,14 @@
                         <div class="form-group">
                             <div  ng-controller="AutoController">
 
-                                <p>Select a car:</p>
 
-                                <select ng-model="selectedCar"  ng-options="y.brand for (x, y) in cars">
+
+
+                                <select ng-model="selectedCar">
+                                    <option ng-repeat="x in car" value="{{x.model}} {{x.marka}}">{{x.marka}} {{x.model}}</option>
                                 </select>
 
-                                <h1>You selected: {{selectedCar.brand}}</h1>
-                                <h2>Model: {{selectedCar.model}}</h2>
-                                <h3>Color: {{selectedCar.color}}</h3>
-
-                                <p>The visible text inside the dropdown list can also be a property of the value object.</p>
-
+                               
                             </div>
 
                             <div align="center">

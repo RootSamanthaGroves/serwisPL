@@ -101,7 +101,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         Car.query(function (response) {
 
             // alert(response);
-            $scope.car = response; // widoku będziesz używał teraz people
+            $rootScope.car = response; // widoku będziesz używał teraz people
             // console.log(response);
         });
     };
