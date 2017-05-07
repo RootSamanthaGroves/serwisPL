@@ -4,12 +4,13 @@
 
 package com.dominika.repository;
 
+import com.dominika.model.Auto;
 import com.dominika.model.Uzytkownik;
+import org.hibernate.hql.spi.id.local.LocalTemporaryTableBulkIdStrategy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.ws.soap.support.SoapUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +20,7 @@ import java.util.List;
 
 
 @Repository
-public class UserRepository{
+public class UserRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -29,7 +30,6 @@ public class UserRepository{
     public void save(Uzytkownik u) {
         entityManager.persist(u);
     }
-
 
 
     public List<Uzytkownik> findAll() {
@@ -55,7 +55,6 @@ public class UserRepository{
         Uzytkownik u = entityManager.find(Uzytkownik.class, id);
         return u;
     }
-
 
 
 //    @Transactional
@@ -85,31 +84,31 @@ public class UserRepository{
 
 
     @Transactional
-    public Uzytkownik updateRel(long id, Uzytkownik u) {
+    public Uzytkownik updateRel(long id, Auto car) {
         Uzytkownik user = entityManager.find(Uzytkownik.class, id);
-
-//        if (!u.getEmail().isEmpty()) {
-//            user.setEmail(u.getEmail());
-//        }
-//        if (!u.getPassword().isEmpty()) {
-//            user.setPassword(u.getPassword());
-//        }
-//        if (!u.getFirstName().isEmpty()) {
-//            user.setFirstName(u.getFirstName());
-//        }
-//
-//        if (!u.getRole().equals("")) {
-//            user.setRole(u.getRole());
-//        }
-
-        if (!u.getAuto().isEmpty()) {
-            user.setAuto(u.getAuto());
-        }
-
+        user.getAuto().add(car);
         entityManager.merge(user);
         return user;
     }
 
+    @Transactional
+    public Uzytkownik deleteRel(long id, long idCar) {
+        Uzytkownik user = entityManager.find(Uzytkownik.class, id);
+        System.out.println(user.getAuto().size());
+       for (int i=0 ; i<user.getAuto().size(); i++){
+           user.getAuto().indexOf(i);
+           if(user.getAuto().get(i).getId()==idCar){
+               user.getAuto().remove(i);
+           }
+
+       }
+//        if(user.getAuto(idCar)){
+//            user.getAuto();
+//        }
+//     user.getAuto().remove();
+        entityManager.merge(user);
+        return user;
+    }
 
 }
 

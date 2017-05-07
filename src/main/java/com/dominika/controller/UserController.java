@@ -1,5 +1,6 @@
 package com.dominika.controller;
 
+import com.dominika.model.Auto;
 import com.dominika.model.Role;
 import com.dominika.model.Uzytkownik;
 import com.dominika.repository.UserRepository;
@@ -22,20 +23,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-//    @Transactional
-//  @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResponseEntity<?> addUser(@ModelAttribute Uzytkownik user) {
-//        System.out.println(user.getEmail().toString());
-//        System.out.println(user.getFirstName());
 
-//        System.out.println(user.getPassword());
-//        userRepository.save(user);
-//        if ((user.getId() != -1)) {
-//            return ResponseEntity.ok(user);
-//        }
-//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
-//    }
 
     //    @Transactional
     @PostMapping("/add")
@@ -95,10 +83,17 @@ public class UserController {
 
 
     @PostMapping("/putRelation/{id}")
-    public ResponseEntity<Uzytkownik> updateRel(@PathVariable long id, @RequestBody Uzytkownik user) {
-        System.out.println("controller"+id+" "+user.toString());
-        userRepository.updateRel(Long.valueOf(id), user);
-        return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<?> updateRel(@PathVariable long id, @RequestBody Auto car) {
+        userRepository.updateRel(id, car);
+        return new ResponseEntity<>(car, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/deleteCar/id/{id}/{idCar}")
+    public ResponseEntity<?> deleteCar(@PathVariable long id, @PathVariable long idCar) {
+        System.out.println("dotarłem");
+        userRepository.deleteRel(id, idCar);
+        return new ResponseEntity<>(idCar, new HttpHeaders(), HttpStatus.OK);
     }
 
 //    @PostMapping("/put/{id}")

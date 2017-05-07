@@ -1,15 +1,13 @@
 /**
  * Created by Dominika on 2017-04-22.
  */
-angular.module('nikoApp').controller('NavbarController', function ($rootScope, $scope, $resource, $localStorage, $window, LoginService, $location, $route) {
+angular.module('nikoApp').controller('NavbarController', function ($http, $rootScope, $scope, $resource, $localStorage, $window, LoginService, $location, $route) {
     $rootScope.email;
     $rootScope.admin;
 
-
     $scope.Refresh = function () {
         $window.location.reload();
-    }
-
+    };
 
     var loadCurrentUser = function () {
         LoginService
@@ -21,6 +19,7 @@ angular.module('nikoApp').controller('NavbarController', function ($rootScope, $
                     $rootScope.role = response.data.role;
                     $rootScope.id = response.data.id;
                     console.log("navbar  name " + $localStorage.firstName + " " + $localStorage.role + " " + $rootScope.id);
+                    // showMe($rootScope.id);
 
                     if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
                         $rootScope.admin = true;

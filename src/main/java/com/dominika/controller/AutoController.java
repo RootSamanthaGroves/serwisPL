@@ -39,11 +39,7 @@ public class AutoController {
             return ResponseEntity.ok(auto);
         }
         return new ResponseEntity<Auto>(HttpStatus.BAD_REQUEST);
-
-
     }
-
-
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Auto> getOneAuto(@PathVariable Optional<Long> id) {
@@ -76,12 +72,10 @@ public class AutoController {
 
     @Transactional
     @PostMapping("/put/")
-    public ResponseEntity<Auto> update( @RequestBody Auto auto)
-    {
+    public ResponseEntity<Auto> update(@RequestBody Auto auto) {
         autoRepository.update(auto.getId(), auto);
         return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
     }
-
 
 
 }
