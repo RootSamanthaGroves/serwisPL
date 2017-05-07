@@ -68,11 +68,33 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         loadAllCars();
 
         $scope.deleteCar = function (IdC) {
-            // alert(IdC + " " + $rootScope.id);
             $http({
                 method: 'DELETE',
                 url: '/user/deleteCar/id/' + $rootScope.id + "/" + IdC
+
+
             }).success(function (data) {
+
+                $scope.deleteCarWithTable(IdC);
+
+                // showMe($scope.currentUserID);
+            })
+                .error(function (error) {
+                    showMe($scope.currentUserID);
+                    //Showing error message
+                    $scope.status = 'Unable to delete a person: ' + error;
+                });
+        }
+
+        $scope.deleteCarWithTable = function (IdC) {
+            $http({
+                method: 'DELETE',
+                url: '/auto/delete/id/' +  IdC
+
+
+            }).success(function (data) {
+
+
 
                 showMe($scope.currentUserID);
             })
@@ -82,6 +104,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                     $scope.status = 'Unable to delete a person: ' + error;
                 });
         }
+
 
         $scope.showCar = function (Id) {
 
@@ -105,7 +128,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             })
                 .error(function (error) {
                     //Showing error message
-                    $scope.status = 'Unable to delete a person: ' + error.message;
+                    $scope.status = 'Unable to delete a person: ' ;
                 });
 
         }
