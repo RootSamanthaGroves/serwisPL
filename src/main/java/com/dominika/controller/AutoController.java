@@ -84,15 +84,15 @@ public class AutoController {
     }
 
     @PostMapping("/putRelation/{id}")
-    public ResponseEntity<?> updateRel(@PathVariable long id, @RequestBody Naprawa naprawa) {
-        autoRepository.updateRel(id, naprawa);
+    public ResponseEntity<?> updateRelNap(@PathVariable long id, @RequestBody Naprawa naprawa) {
+        autoRepository.updateRelInAuto(id, naprawa);
         return new ResponseEntity<>(naprawa, new HttpHeaders(), HttpStatus.OK);
     }
 
 
-    @DeleteMapping("/deleteCar/id/{id}/{idCar}")
-    public ResponseEntity<?> deleteCar(@PathVariable long id, @PathVariable long idNap) {
-        autoRepository.deleteRel(id, idNap);
+    @DeleteMapping("/deleteNap/id/{id}/{idCar}")
+    public ResponseEntity<?> deleteNap(@PathVariable long id, @PathVariable long idNap) {
+        autoRepository.deleteRelInAuto(id, idNap);
         return new ResponseEntity<>(idNap, new HttpHeaders(), HttpStatus.OK);
     }
 

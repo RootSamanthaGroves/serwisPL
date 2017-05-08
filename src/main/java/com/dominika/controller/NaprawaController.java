@@ -85,10 +85,7 @@ public class NaprawaController {
     }
 
 
-//    @PostMapping("/put/{id}")
-//    public ResponseEntity<Uzytkownik> updateRelation(@PathVariable long id, @RequestBody Uzytkownik uzytkownik) {
-//        usersRepository.updateRelation(Long.valueOf(id), uzytkownik);
-//        return new ResponseEntity<Uzytkownik>(uzytkownik, new HttpHeaders(), HttpStatus.OK);
-//    }
+
+
 
 }

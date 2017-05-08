@@ -1,14 +1,14 @@
 /**
  * Created by Dominika on 2017-05-08.
  */
-angular.module('nikoApp').service('AutoService', function ($http) {
 
-    this.saveCar = function (car) {
-        var url = '/auto/add/';
+angular.module('nikoApp').service('RepairService', function ($http) {
+
+    this.showMeCar = function (id) {
+        var url = '/auto/id ' + id;
         return $http({
-            method: "POST",
+            method: "GET",
             url: url,
-            data: car
         }).then(function successCallback(response) {
             return response;
         }, function errorCallback(response) {
@@ -17,10 +17,10 @@ angular.module('nikoApp').service('AutoService', function ($http) {
     };
 
 
-    this.deleteCar = function (id) {
+    this.deleteRepair = function (id) {
         return $http({
             method: 'DELETE',
-            url: '/auto/delete/id/' + id
+            url: '/auto/deleteNap/id/' + id
         }).then(function successCallback(response) {
             alert(response.status);
             return response;
@@ -29,23 +29,10 @@ angular.module('nikoApp').service('AutoService', function ($http) {
         });
     };
 
-    this.deleteOneRepair = function (id, idNap) {
-        return $http({
-            method: 'DELETE',
-            url: '/deleteNap/id/' + id + '/' + idNap
-        }).then(function successCallback(response) {
-            alert(response.status);
-            return response;
-        }, function errorCallback(response) {
-            return response.status;
-        });
-    };
-
-
-    this.updateCar = function (car) {
+    this.updateRepair = function (car) {
         return $http({
             method: "POST",
-            url: '/auto/update/',
+            url: '/auto/putRelation/'+ id,
             data: car
         }).then(function successCallback(response) {
             return response;
@@ -53,5 +40,8 @@ angular.module('nikoApp').service('AutoService', function ($http) {
             return response.status;
         });
     };
+
+
+
 
 });

@@ -79,24 +79,18 @@ public class AutoRepository {
     }
 
     @Transactional
-    public Auto updateRel(long id, Naprawa nap) {
+    public Auto updateRelInAuto(long id, Naprawa nap) {
         Auto auto = entityManager.find(Auto.class, id);
         auto.getNaprawa().add(nap);
         entityManager.merge(auto);
         return auto;
     }
 
-//    @Transactional
-//    public Uzytkownik updateRel(long id, Auto car) {
-//        Uzytkownik user = entityManager.find(Uzytkownik.class, id);
-//        user.getAuto().add(car);
-//        entityManager.merge(user);
-//        return user;
-//    }
+
 
 
     @Transactional
-    public Auto deleteRel(long id, long idNap) {
+    public Auto deleteRelInAuto(long id, long idNap) {
         Auto auto = entityManager.find(Auto.class, id);
         System.out.println(auto.getNaprawa().size());
         for (int i = 0; i < auto.getNaprawa().size(); i++) {

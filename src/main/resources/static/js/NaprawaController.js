@@ -2,10 +2,25 @@
  * Created by Dominika on 2017-04-11.
  */
 
-angular.module('nikoApp').controller('NaprawaController', function ($scope, $resource, $http, $localStorage) {
+angular.module('nikoApp').controller('NaprawaController', function ($scope, $resource, $http, $localStorage, LoginService, AutoService, UserService) {
 
     $scope.items = [];
     $scope.selected = [];
+
+      $scope.loadData= function () {
+          alert($scope.selectCarOne);
+        //
+        //   console.log($scope.selectCarOne);
+        // if ( isNaN($scope.selectCarOne)){
+        //    console.log($scope.selectCarOne);
+        // }
+        // else
+        // {
+        //     console.log($scope.selectCarOne);
+          loadAllRepairOfMyCar();
+        // }
+
+    };
 
 
         $scope.toggle = function (item, list) {
@@ -39,13 +54,12 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             koszt: $scope.kosztNaprawy
         };
         alert($scope.selectCar);
-        console.log(naprawaObject.data);
-        alert(naprawaObject.data);
-        $http.post('/naprawa/add', naprawaObject).success(function () {
+
+        $http.post('/naprawa/add', naprawaObject).success(function (data) {
             alert('Dodawanie powiodło się');
 
 
-            $http.post('/auto/putRelation/' + $scope.selectedCar, data).success(function (data2) { //wywloujemy
+            $http.post('/auto/putRelation/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
 
                 alert("Auto dodane");
             });
@@ -55,15 +69,6 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             alert('Coś poszło nie tak');
         })
 
-        // $http.post('/auto/add', autoObject).success(function (data) {
-        //     $http.post('/user/putRelation/' + $rootScope.id, data).success(function (data2) { //wywloujemy
-        //
-        //         showMe($scope.currentUserID);
-        //         alert("Auto dodane");
-        //     });
-        // }).error(function () {
-        //     alert('Nie udało się dodać auta');
-        // })
 
 
     };
@@ -88,6 +93,33 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
         //     alert("nie udało się ")
         // })
     }
+
+
+
+    var idUser = function () {
+        LoginService.getCurrentUser().then(function (response) {
+            if (response.status == 200) {
+                $scope.currentUserID = response.data.id;
+                showMyCars(response.data.id);
+            }
+        })
+    };
+    idUser();
+
+
+    var showMyCars= function (Id) {
+        $http({
+            method: 'GET',
+            url: '/user/id/' + Id
+        }).success(function (data) {
+            $scope.myCar = data; // widoku będziesz używał teraz people
+            // console.log(myCar);
+        }).error(function (error) {
+            //Showing error message
+            $scope.status = 'Unable to delete a person:';
+        });
+    };
+
 
 
     // var loadMeCars = function (id) {
@@ -117,7 +149,27 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
     loadAllRepair();
 
 
+    var loadAllRepairOfMyCar = function () {
+
+    console.log($scope.selectCarOne);
+        $http({
+            method: 'GET',
+            url: '/auto/id/' + $scope.selectCarOne
+        }).success(function (data) {
+            $scope.repairOneCar = data; // widoku będziesz używał teraz people
+            // console.log(data);
+        }).error(function (error) {
+            //Showing error message
+            $scope.status = 'Unable to delete a person:';
+        });
+
+    };
+
+
+
     $scope.deleteRepair = function (Id) {
+
+
         $http({
             method: 'DELETE',
             url: '/naprawa/delete/id/' + Id
@@ -131,6 +183,15 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
                 $scope.status = 'Unable to delete a person: ' + error.message;
             });
     }
+
+    $scope.deleteOneRepair = function (id) {
+        AutoService.deleteOneRepair(id, $scope.idA ).then(function (response2) {
+            if (response2.status == 200) {
+                var autko = AutoService.deleteCar(id)
+                            }
+            showMe($scope.currentUserID);
+        });
+    };
 
 
     $scope.showRepair = function (Id) {
