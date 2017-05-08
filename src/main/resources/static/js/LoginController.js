@@ -116,14 +116,14 @@ angular.module('nikoApp').controller('LoginController', function ($http, $rootSc
                             LoginService
                                 .getCurrentUser().then(function (response) {
 
-                                $rootScope.currentUser=response.data;
+                                $rootScope.currentUser = response.data;
                                 $localStorage.currentUser = response.data;
                                 $localStorage.showNavbar = true;
                                 $localStorage.showTopMenu = true;
                                 $rootScope.showNavbar = true;
                                 $rootScope.showTopMenu = true;
                                 $location.path('/');
-                                console.log("login controller"+$rootScope.currentUser.username);
+                                console.log("login controller" + $rootScope.currentUser.username);
                             })
                         } else {
                             alert("Nie można poprawnie dokonać autoryzacji \nPrawdopodobną przyczyną jest zły email lub/i hasło");

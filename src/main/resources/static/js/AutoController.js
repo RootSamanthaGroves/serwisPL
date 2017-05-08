@@ -1,13 +1,11 @@
 /**
  * Created by Dominika on 2017-04-07.
  */
-angular.module('nikoApp').controller('AutoController', function ($scope, $resource, $http, $rootScope, LoginService, $location, $localStorage) {
-
+angular.module('nikoApp').controller('AutoController', function ($scope, $resource, $http, $rootScope, LoginService, AutoService, UserService) {
+        $scope.message = " ";
         $scope.gallery = [];
         $scope.items = [];
         $scope.selected = [];
-        var idAddcar = 1;
-        var item;
         var idUser = function () {
             LoginService.getCurrentUser().then(function (response) {
                 if (response.status == 200) {
@@ -39,14 +37,18 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 rokProdukcji: $scope.rokProAuto
             };
 
-            $http.post('/auto/add', autoObject).success(function (data) {
-                $http.post('/user/putRelation/' + $rootScope.id, data).success(function (data2) { //wywloujemy
-
-                    showMe($scope.currentUserID);
-                    alert("Auto dodane");
-                });
-            }).error(function () {
-                alert('Nie udało się dodać auta');
+            AutoService.saveCar(autoObject).then(function (response) {
+                if (response.status == 200) {
+                    $scope.savedCar = response.data;
+                    UserService.addUserCar($scope.savedCar).then(function (response2) {
+                        if (response2.status == 200) {
+                            alert("Auto zostało dodane");
+                            showMe($scope.currentUserID);
+                        }
+                    })
+                } else {
+                    alert("Dodawanie auta nie powiodło się");
+                }
             })
         };
 
@@ -67,44 +69,22 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         };
         loadAllCars();
 
-        $scope.deleteCar = function (IdC) {
-            $http({
-                method: 'DELETE',
-                url: '/user/deleteCar/id/' + $rootScope.id + "/" + IdC
+        $scope.deleteCar = function (id) {
+            UserService.deleteUserCar(id).then(function (response2) {
+                if (response2.status == 200) {
+                   var autko = AutoService.deleteCar(id)
 
-
-            }).success(function (data) {
-
-                $scope.deleteCarWithTable(IdC);
-
-                // showMe($scope.currentUserID);
-            })
-                .error(function (error) {
-                    showMe($scope.currentUserID);
-                    //Showing error message
-                    $scope.status = 'Unable to delete a person: ' + error;
-                });
-        }
-
-        $scope.deleteCarWithTable = function (IdC) {
-            $http({
-                method: 'DELETE',
-                url: '/auto/delete/id/' +  IdC
-
-
-            }).success(function (data) {
-
-
-
+                        // .then(function (response) {
+                        // if (response.status == 200) {
+                        //     alert("Auto zostało usunięte");
+                        // } else {
+                        //     alert("Usuwanie auta nie powiodło się");
+                        // }
+                    // })
+                }
                 showMe($scope.currentUserID);
-            })
-                .error(function (error) {
-                    showMe($scope.currentUserID);
-                    //Showing error message
-                    $scope.status = 'Unable to delete a person: ' + error;
-                });
-        }
-
+            });
+        };
 
         $scope.showCar = function (Id) {
 
@@ -128,14 +108,13 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             })
                 .error(function (error) {
                     //Showing error message
-                    $scope.status = 'Unable to delete a person: ' ;
+                    $scope.status = 'Unable to delete a person: ';
                 });
 
         }
 
         $scope.editCar = function () {
             var carObj = {
-
                 id: $scope.idAutoE,
                 marka: $scope.markaE,
                 model: $scope.modelE,
@@ -147,15 +126,13 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 mocSilnika: $scope.mocAutoE,
                 rodzajPaliwa: $scope.rodzajPaliE
             };
-
-            $http.post('/auto/put/', carObj).success(function () { //wywloujemy
-                alert('Thanks');
-                showMe($scope.currentUserID);
-            }).error(function (error) {
-                alert("nie udało się ")
-                //Showing error message
-                console.log(error)
-            })
+            AutoService.updateCar(carObj).then(function (response) {
+                if (response.status == 200) {
+                    showMe($scope.currentUserID);
+                } else {
+                    alert("Nie udało się edytować auta");
+                }
+            });
         };
 
         var showMe = function (Id) {
@@ -163,12 +140,10 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 method: 'GET',
                 url: '/user/id/' + Id
             }).success(function (data) {
-                $rootScope.me = data; // widoku będziesz używał teraz people
-                // alert(data.auto[0]);
-                console.log(data);
+                $scope.me = data; // widoku będziesz używał teraz people
             }).error(function (error) {
                 //Showing error message
-                $scope.status = 'Unable to delete a person: ' + error.message;
+                $scope.status = 'Unable to delete a person:';
             });
         };
 
@@ -265,5 +240,4 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
 
 
     }
-)
-;
+);

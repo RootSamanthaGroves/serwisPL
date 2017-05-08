@@ -24,7 +24,7 @@ public class Auto {
     private String rodzajPaliwa;
     @Lob
     private  byte[] image;
-    @OneToMany
+    @ManyToMany
     private List<Naprawa> naprawa;
 
     public Auto() {

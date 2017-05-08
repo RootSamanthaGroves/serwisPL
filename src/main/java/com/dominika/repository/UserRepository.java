@@ -95,20 +95,14 @@ public class UserRepository {
     public Uzytkownik deleteRel(long id, long idCar) {
         Uzytkownik user = entityManager.find(Uzytkownik.class, id);
         System.out.println(user.getAuto().size());
-       for (int i=0 ; i<user.getAuto().size(); i++){
-           user.getAuto().indexOf(i);
-           if(user.getAuto().get(i).getId()==idCar){
-               user.getAuto().remove(i);
-           }
-
-       }
-//        if(user.getAuto(idCar)){
-//            user.getAuto();
-//        }
-//     user.getAuto().remove();
+        for (int i = 0; i < user.getAuto().size(); i++) {
+            user.getAuto().indexOf(i);
+            if (user.getAuto().get(i).getId() == idCar) {
+                user.getAuto().remove(i);
+            }
+        }
         entityManager.merge(user);
         return user;
     }
-
 }
 

@@ -2,6 +2,7 @@ package com.dominika.repository;
 
 import com.dominika.model.Auto;
 import com.dominika.model.Naprawa;
+import com.dominika.model.Uzytkownik;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class AutoRepository {
     public Auto save(Auto a) {
         entityManager.persist(a);
 //        System.out.println(a.getId());
-        return(a);
+        return (a);
 
     }
 
@@ -36,18 +37,15 @@ public class AutoRepository {
     }
 
 
-
     @Transactional
     public ResponseEntity removeOne(long id) {
-
         Auto a = entityManager.find(Auto.class, id);
         if (a == null) {
             return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
         } else {
             entityManager.remove(a);
-            return new ResponseEntity(a, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(a, new HttpHeaders(), HttpStatus.OK);
         }
-
     }
 
     @Transactional
@@ -80,5 +78,36 @@ public class AutoRepository {
 
     }
 
+    @Transactional
+    public Auto updateRel(long id, Naprawa nap) {
+        Auto auto = entityManager.find(Auto.class, id);
+        auto.getNaprawa().add(nap);
+        entityManager.merge(auto);
+        return auto;
+    }
 
+//    @Transactional
+//    public Uzytkownik updateRel(long id, Auto car) {
+//        Uzytkownik user = entityManager.find(Uzytkownik.class, id);
+//        user.getAuto().add(car);
+//        entityManager.merge(user);
+//        return user;
+//    }
+
+
+    @Transactional
+    public Auto deleteRel(long id, long idNap) {
+        Auto auto = entityManager.find(Auto.class, id);
+        System.out.println(auto.getNaprawa().size());
+        for (int i = 0; i < auto.getNaprawa().size(); i++) {
+            auto.getNaprawa().indexOf(i);
+            if (auto.getNaprawa().get(i).getId() == idNap) {
+                auto.getNaprawa().remove(i);
+            }
+
+        }
+        entityManager.merge(auto);
+        return auto;
+
+    }
 }

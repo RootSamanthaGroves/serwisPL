@@ -2,20 +2,13 @@
  * Created by Dominika on 2017-04-11.
  */
 
-angular.module('nikoApp').controller('NaprawaController', function ($scope, $resource, $http) {
-
+angular.module('nikoApp').controller('NaprawaController', function ($scope, $resource, $http, $localStorage) {
 
     $scope.items = [];
     $scope.selected = [];
 
 
-
-
-
-
-
-
-    $scope.toggle = function (item, list) {
+        $scope.toggle = function (item, list) {
         var idx = list.indexOf(item);
         if (idx > -1) {
             list.splice(idx, 1);
@@ -37,7 +30,6 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
     };
 
     $scope.saveNaprawa = function () {
-        // alert(dataNaprawy+przebiegAuto);
 
         var naprawaObject = {
             data: $scope.dataNaprawy,
@@ -46,22 +38,40 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             opis: $scope.opisNaprawy,
             koszt: $scope.kosztNaprawy
         };
-        console.log(naprawaObject.data)
-        alert(naprawaObject.data)
+        alert($scope.selectCar);
+        console.log(naprawaObject.data);
+        alert(naprawaObject.data);
         $http.post('/naprawa/add', naprawaObject).success(function () {
             alert('Dodawanie powiodło się');
+
+
+            $http.post('/auto/putRelation/' + $scope.selectedCar, data).success(function (data2) { //wywloujemy
+
+                alert("Auto dodane");
+            });
 
             loadAllRepair();
         }).error(function () {
             alert('Coś poszło nie tak');
         })
+
+        // $http.post('/auto/add', autoObject).success(function (data) {
+        //     $http.post('/user/putRelation/' + $rootScope.id, data).success(function (data2) { //wywloujemy
+        //
+        //         showMe($scope.currentUserID);
+        //         alert("Auto dodane");
+        //     });
+        // }).error(function () {
+        //     alert('Nie udało się dodać auta');
+        // })
+
+
     };
 
 
     $scope.saveRelations = function (Id) {
         // alert($scope.selected + " " + $scope.question);
-         console.log(Id);
-
+        console.log(Id);
 
 
         var questionObject = {
@@ -78,8 +88,6 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
         //     alert("nie udało się ")
         // })
     }
-
-
 
 
     // var loadMeCars = function (id) {

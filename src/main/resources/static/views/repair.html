@@ -12,14 +12,11 @@
                             <div class="chat-box-single-line">
                                 <abbr class="timestamp">Twoje naprawy</abbr>
                             </div>
-
                             <div class="row">
-
                                 <div class="col-lg-1 col-md-1 col-sm-1">
                                 </div>
-
-                                <div class=" col-lg-9 col-md-8 col-sm-8">
-                                    <div class="well">
+                                <div>
+                                    <div class=" col-lg-9 col-md-8 col-sm-8">
                                         <table class="table table-hover " style="margin-left: 20px; width: 500px">
                                             <thead>
                                             <tr>
@@ -59,45 +56,32 @@
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-
-
                     <h3>Dodaj Naprawę</h3>
                     <form>
                         <div class="form-group">
-                            <div  ng-controller="AutoController">
+                            <div>
+                                <!--<select ng-model="selectedCar">-->
+                                <!--<option    ng-repeat="x in car" value="{{x.model}} {{x.marka}}">{{x.marka}} {{x.model}}</option>-->
+                                <!--</select>-->
 
-
-
-
-                                <select ng-model="selectedCar">
-                                    <option ng-repeat="x in car" value="{{x.model}} {{x.marka}}">{{x.marka}} {{x.model}}</option>
-                                </select>
-
-                                <select class="btn-success">
-                                    <option ng-repeat="x in me.auto" value="{{x.marka}}">{{x.marka}}
+                                <select ng-model="selectCar" class="form-select-button btn-success"
+                                        ng-init="selectCar = carList[0]">
+                                    <option ng-repeat="x in carList" value="{{x.id}} ">{{x.marka}}
                                         {{x.model}}
                                     </option>
                                 </select>
-
-
+                                <h1>You selected: {{selectedCar}} </h1>
                             </div>
-
                             <div align="center">
                                 <button type="button" class="btn btn-warning" id="saveRelations"
-                                        ng-click="saveRelations(1)">Add relations
+                                        ng-click="saveRelations()">Add relations
                                 </button>
                             </div>
-
                         </div>
-
-
                         <div class="form-group">
                             <label>Data:</label>
                             <input id="dataNaprawy" type="date" class="form-control"
