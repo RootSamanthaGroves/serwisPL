@@ -20,7 +20,7 @@ angular.module('nikoApp').service('RepairService', function ($http) {
     this.deleteRepair = function (id) {
         return $http({
             method: 'DELETE',
-            url: '/auto/deleteNap/id/' + id
+            url: '/naprawa/delete/id/' + id
         }).then(function successCallback(response) {
             alert(response.status);
             return response;

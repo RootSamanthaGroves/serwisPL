@@ -91,7 +91,6 @@ public class UserController {
 
     @DeleteMapping("/deleteCar/id/{id}/{idCar}")
     public ResponseEntity<?> deleteCar(@PathVariable long id, @PathVariable long idCar) {
-        System.out.println("dotarłem");
         userRepository.deleteRel(id, idCar);
         return new ResponseEntity<>(idCar, new HttpHeaders(), HttpStatus.OK);
     }

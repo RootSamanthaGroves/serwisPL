@@ -72,15 +72,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         $scope.deleteCar = function (id) {
             UserService.deleteUserCar(id).then(function (response2) {
                 if (response2.status == 200) {
-                   var autko = AutoService.deleteCar(id)
-
-                        // .then(function (response) {
-                        // if (response.status == 200) {
-                        //     alert("Auto zostało usunięte");
-                        // } else {
-                        //     alert("Usuwanie auta nie powiodło się");
-                        // }
-                    // })
+                    var autko = AutoService.deleteCar(id)
                 }
                 showMe($scope.currentUserID);
             });

@@ -26,7 +26,7 @@
                                         </select>   <button type="button" ng-click="loadData()"
                                                             class="btn btn-primary btn btn-inf" data-toggle="modal">
 
-                                        <span class="glyphicon glyphicon-arrow-down"></span>
+                                        <span class="glyphicon glyphicon-arrow-down"></span> Załaduj auto
                                     </button>
                                         </div>
                                         <h1>You selected: {{selectCarOne}} </h1>
@@ -44,10 +44,7 @@
                                                 <th>Koszt</th>
                                             </tr>
                                             </thead>
-                                            <!--mamy petle for each-->
-                                            <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
                                             <tbody>
-                                            <!--Date data, int przebieg, String rodzaj, String opis, int koszt-->
                                             <tr   ng-init="selectCarOne = carList[0]" ng-repeat="r in repairOneCar.naprawa |orderBy:'data'">
                                                 <td>{{ r.id }}</td>
                                                 <td>{{r.date}}
@@ -72,43 +69,6 @@
                                             </tbody>
 
 
-                                            <!--<table class="table table-hover " style="margin-left: 20px; width: 500px">-->
-                                            <!--<thead>-->
-                                            <!--<tr>-->
-                                            <!--<th>Id</th>-->
-                                            <!--<th>data</th>-->
-                                            <!--<th>Przebieg</th>-->
-                                            <!--<th>Rorzaj</th>-->
-                                            <!--<th>Opis</th>-->
-                                            <!--<th>Koszt</th>-->
-                                            <!--</tr>-->
-                                            <!--</thead>-->
-                                            <!--&lt;!&ndash;mamy petle for each&ndash;&gt;-->
-                                            <!--&lt;!&ndash;&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska&ndash;&gt;-->
-                                            <!--<tbody>-->
-                                            <!--&lt;!&ndash;Date data, int przebieg, String rodzaj, String opis, int koszt&ndash;&gt;-->
-                                            <!--<tr ng-repeat="r in repair |orderBy:'data'">-->
-                                            <!--<td>{{ r.id }}</td>-->
-                                            <!--<td>{{r.date}}-->
-                                            <!--{{r.data | date: "yyyy-MM-dd"}}-->
-                                            <!--</td>-->
-                                            <!--<td>{{ r.przebieg }}</td>-->
-                                            <!--<td>{{ r.rodzaj}}</td>-->
-                                            <!--<td>{{ r.opis}}</td>-->
-                                            <!--<td>{{ r.koszt}}</td>-->
-                                            <!--<td><a href="" class="btn btn-danger"-->
-                                            <!--ng-click="deleteOneRepair(r.id)">-->
-                                            <!--<span class="glyphicon glyphicon-trash"></span>-->
-                                            <!--</a></td>-->
-                                            <!--<td>-->
-                                            <!--<button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"-->
-                                            <!--class="btn btn-primary btn btn-inf" data-toggle="modal"-->
-                                            <!--data-target="#exampleModalLong2">-->
-                                            <!--<span class="glyphicon glyphicon-edit"></span>-->
-                                            <!--</button>-->
-                                            <!--</td>-->
-                                            <!--</tr>-->
-                                            <!--</tbody>-->
                                         </table>
                                     </div>
                                 </div>
@@ -129,11 +89,7 @@
                                 </select>
                                 <h1>You selected: {{selectCar}} </h1>
                             </div>
-                            <div align="center">
-                                <button type="button" class="btn btn-warning" id="saveRelations"
-                                        ng-click="saveRelations()">Add relations
-                                </button>
-                            </div>
+
                         </div>
                         <div class="form-group">
                             <label>Data:</label>

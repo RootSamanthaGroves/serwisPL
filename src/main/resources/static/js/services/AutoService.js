@@ -32,9 +32,8 @@ angular.module('nikoApp').service('AutoService', function ($http) {
     this.deleteOneRepair = function (id, idNap) {
         return $http({
             method: 'DELETE',
-            url: '/deleteNap/id/' + id + '/' + idNap
+            url: 'auto/deleteNap/id/' + id + '/' + idNap
         }).then(function successCallback(response) {
-            alert(response.status);
             return response;
         }, function errorCallback(response) {
             return response.status;

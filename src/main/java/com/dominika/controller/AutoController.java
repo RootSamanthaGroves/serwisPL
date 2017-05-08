@@ -90,8 +90,9 @@ public class AutoController {
     }
 
 
-    @DeleteMapping("/deleteNap/id/{id}/{idCar}")
+    @DeleteMapping("/deleteNap/id/{id}/{idNap}")
     public ResponseEntity<?> deleteNap(@PathVariable long id, @PathVariable long idNap) {
+        System.out.println("dotarłem");
         autoRepository.deleteRelInAuto(id, idNap);
         return new ResponseEntity<>(idNap, new HttpHeaders(), HttpStatus.OK);
     }
