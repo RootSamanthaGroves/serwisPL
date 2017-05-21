@@ -8,17 +8,7 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
     $scope.selected = [];
 
     $scope.loadData = function () {
-        alert($scope.selectCarOne);
-        //
-        //   console.log($scope.selectCarOne);
-        // if ( isNaN($scope.selectCarOne)){
-        //    console.log($scope.selectCarOne);
-        // }
-        // else
-        // {
-        //     console.log($scope.selectCarOne);
         loadAllRepairOfMyCar();
-        // }
 
     };
 
@@ -53,15 +43,11 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             opis: $scope.opisNaprawy,
             koszt: $scope.kosztNaprawy
         };
-        alert($scope.selectCar);
+
 
         $http.post('/naprawa/add', naprawaObject).success(function (data) {
-            alert('Dodawanie powiodło się');
-
-
-            $http.post('/auto/putRelation/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
-
-                alert("Auto dodane");
+        $http.post('/auto/putRelation/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
+         alert("Auto dodane");
             });
 
             loadAllRepair();
@@ -74,7 +60,7 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
 
 
     $scope.saveRelations = function (Id) {
-        // alert($scope.selected + " " + $scope.question);
+
         console.log(Id);
 
 
@@ -174,7 +160,6 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
     $scope.deleteOneRepair = function (id) {
         AutoService.deleteOneRepair($scope.selectCarOne, id).then(function (response2) {
             if (response2.status == 200) {
-                // var repair = RepairService.deleteRepair(id)
                 $scope.deleteRepair(id);
             }
 
@@ -185,14 +170,11 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
 
     $scope.showRepair = function (Id) {
 
-        alert(Id)
+
         $http({
             method: 'GET',
             url: '/naprawa/id/' + Id
         }).success(function (data) {
-            //Showing Success message
-            // $scope.status = "The Survey Deleted Successfully!!!";
-            alert(data.id);
             console.log(data.data)
             $scope.idE = data.id;
 
@@ -223,14 +205,8 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             opis: $scope.opisE,
             koszt: $scope.kosztE
         };
-
-        alert("indeks auta" + repairObj.id)
-        // alert(carObj.model)
-        $http.post('/naprawa/put/', repairObj).success(function () { //wywloujemy
-            alert('Thanks');
-
+        $http.post('/naprawa/put/', repairObj).success(function () {
             loadAllRepair();
-
         }).error(function (error) {
             alert("nie udało się ")
             //Showing error message

@@ -5,6 +5,10 @@
 angular.module('nikoApp').controller('TechnicalController', function ($scope, $resource, $http) {
     $scope.message = 'Hello from TechnicalController';
 
+    $scope.setEdit = function(h){
+        $scope.edit = h;
+
+    };
 
     // wyswietlanie naprawy
     var loadAllStudy = function () {
@@ -54,7 +58,7 @@ angular.module('nikoApp').controller('TechnicalController', function ($scope, $r
     }
 
     $scope.saveStudy = function () {
-
+        console.log($scope.edycja);
         var badanieObject = {
             dataBadania: $scope.datawykonaniaBadania,
             dataWaznosci: $scope.terminBadania
@@ -69,10 +73,11 @@ angular.module('nikoApp').controller('TechnicalController', function ($scope, $r
         }).error(function () {
             alert('Coś poszło nie tak');
         })
+
     };
 
     $scope.editStudy = function () {
-
+        console.log($scope.edycja);
         var badanieObj = {
             id: $scope.idTech,
             dataBadania: $scope.datawykonaniaBadania,

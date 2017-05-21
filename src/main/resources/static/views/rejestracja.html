@@ -2,55 +2,74 @@
     <div>
         <div>
             <div class="exTab3">
-
-
-                <div class="tab-content clearfix">
-                    <form>
-
-                        <div  class="col-sm-offset-4 col-sm-4 tab-pane active ex2" id="rejestracja">
+                <form name="myForm" novalidate>
+                    <div class="col-sm-offset-4 col-sm-4 tab-pane active ex2" id="rejestracja">
+                        <div class="tab-content clearfix">
                             <div>
-                                <div  style="text-align: center"  class="input-group col-ms-4">
+                                <div style="text-align: center" class="input-group col-ms-4">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input id="imie" type="text" class="form-control" name="imie" value="imie"
-                                           required="required" placeholder="Imie" ng-model="firstNameOfUser"class="help-block" data-toggle="tooltip" data-placement="right" title=" Nazwa użytkownika musi być dłuższa nic 3 znaki!">
-                                    </div>
-                                <!--<div class="alert alert-warning">-->
-                                    <!--<strong>Warning!</strong> Indicates a warning that might need attention.-->
-                                <!--</div>-->
+                                           required="required" placeholder="Imie" ng-model="firstNameOfUser"
+                                           class="help-block" data-toggle="tooltip" data-placement="right"
+                                           title=" Nazwa użytkownika musi być dłuższa nic 3 znaki!"
+                                    >
+                                </div>
                             </div>
 
                             <div>
                                 <div class="input-group col-ms-4">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input id="email" type="email" class="form-control" name="email" value="email"  minlength=3
-                                           placeholder="Email" ng-model="emailOfUser" data-toggle="tooltip" data-placement="right" title=" Email powinien zawiecać @">
+                                    <input id="email" type="email" name="email" ng-model="email" required
+                                           value="email" class="form-control"
+                                           placeholder="Email" data-toggle="tooltip"
+                                           data-placement="right" title=" Email powinien zawiecać @">
+
                                 </div>
+                                <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                                    <span ng-show="myForm.email.$error.required">Email is required.</span>
+                                    <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+                                    </span>
                             </div>
 
-                            <div>
-                                <div class="input-group col-ms-4"ng-app=""  ng-init="passwordOfUser=''">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="password" type="password" class="form-control" name="password" value="password"
-                                           placeholder="Hasło" ng-model="passwordOfUser"data-toggle="tooltip" data-placement="right" title=" Hasło powinno być  dłuższe niż 5 znaków!">
-                                </div>
-                            </div>
-
-                            <div class="input-group col-ms-4">
-                                <button id="submit" type="submit" class="btn btn-primary" ng-click="saveUser()">
-                                    Zarejestruj się
-                                </button>
-                                <div ng-if="error" class="alert alert-warning">
-                                    <strong>Warning!</strong> <p id="demo"></p>
-                                </div>
+                            <div class="input-group col-ms-4" ng-init="passwordOfUser=''">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input id="password" type="password" class="form-control" name="password"
+                                       value="password"
+                                       placeholder="Hasło" ng-model="passwordOfUser" data-toggle="tooltip"
+                                       data-placement="right" title=" Hasło powinno być  dłuższe niż 5 znaków!">
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="input-group col-md-4">
+                            <button id="submit" type="submit"
+                                                                            class="btn btn-primary sendButton"
+                                                                            ng-click="saveUser()">
+                                                                            Zarejestruj się
+                            </button>
+                            <!--<input type="submit" id="submit"-->
+                                   <!--ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||-->
+<!--myForm.email.$dirty && myForm.email.$invalid myForm.$dirty "-->
+                                   <!--ng-click="saveUser()" value="Zarejestruj się" class="btn btn-primary  ">-->
+
+
+                            <div ng-if="error" class="alert alert-warning">
+                                <strong>Warning!</strong>
+                                <p id="demo"></p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+
+
             </div>
-
-
         </div>
     </div>
+
+
+</div>
+</div>
 </div>
 
 </br></br></br></br></br></br>

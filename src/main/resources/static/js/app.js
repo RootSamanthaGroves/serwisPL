@@ -26,22 +26,6 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/me.html',
             controller: 'LoginController'
         })
-
-        //
-        // .when('/dodajAuto', {
-        //     templateUrl: 'views/account.html',
-        //     controller: 'AutoController'
-        // })
-        // .when('/dodajNaprawe', {
-        //     templateUrl: 'views/account.html',
-        //     controller: 'NaprawaController'
-        // })
-        // .when('/dodajDaty', {
-        //     templateUrl: 'views/account.html',
-        //     controller: 'DatyController'
-        // })
-
-
         .when('/auta', {
             templateUrl: 'views/car.html',
             controller: 'AutoController'

@@ -87,6 +87,8 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             }).success(function (data) {
 
                 $scope.idAutoE = data.id;
+
+                $scope.imageE = data.image;
                 $scope.markaE = data.marka;
                 $scope.modelE = data.model;
                 $scope.numerVinE = data.numerVIN;
@@ -96,7 +98,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 $scope.pojSilnikaE = data.pojemnoscSilnika;
                 $scope.mocAutoE = data.mocSilnika;
                 $scope.rodzajPaliE = data.rodzajPaliwa;
-
+    console.log(data.image);
             })
                 .error(function (error) {
                     //Showing error message
@@ -106,8 +108,13 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         }
 
         $scope.editCar = function () {
+
+
+
             var carObj = {
+
                 id: $scope.idAutoE,
+
                 marka: $scope.markaE,
                 model: $scope.modelE,
                 numerVIN: $scope.numerVinE,

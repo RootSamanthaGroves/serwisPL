@@ -6,19 +6,13 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
     $scope.message = 'Hello from AccountController';
 
 
-
-
-
-
     // wyswietlanie polis
     var loadAllPolicy = function () {
         var Policy = $resource('daty/all/polisa', {}, {
             query: {method: 'get', isArray: true, cancellable: true}
         });
-
         Policy.query(function (response) {
-            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
-            $scope.policy = response; // widoku będziesz używał teraz people
+            $scope.policy = response;
 
         });
     };
@@ -30,11 +24,8 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
         var BadanieT = $resource('daty/all/badanietechniczne', {}, {
             query: {method: 'get', isArray: true, cancellable: true}
         });
-
         BadanieT.query(function (response) {
-            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
             $scope.badaniet = response; // widoku będziesz używał teraz people
-
         });
     };
     loadAllBadanieTechniczne();
@@ -45,8 +36,6 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
             method: 'DELETE',
             url: 'daty/delete/polisa/id/' + Id
         }).success(function (data) {
-            // alert(data.toString());
-
             loadAllPolicy();
         })
             .error(function (error) {
@@ -63,16 +52,13 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
             method: 'GET',
             url: '/daty/polisa/id/' + Id
         }).success(function (date) {
-            //Showing Success message
-            // $scope.status = "The Survey Deleted Successfully!!!";
-            alert(Id);
             console.log(date.id)
-            $scope.IdE=date.id;
-            $scope.DataDodaniaE= new Date(date.data);
-            $scope.NumerPolisyE= date.numerPolisy;
-            $scope.DataOdE= new Date(date.dataOd);
-            $scope.DataDoE=new Date(date.dataDo);
-            $scope.SkladkaE=date.skladka;
+            $scope.IdE = date.id;
+            $scope.DataDodaniaE = new Date(date.data);
+            $scope.NumerPolisyE = date.numerPolisy;
+            $scope.DataOdE = new Date(date.dataOd);
+            $scope.DataDoE = new Date(date.dataDo);
+            $scope.SkladkaE = date.skladka;
 
         })
             .error(function (error) {
@@ -96,25 +82,13 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
         };
 
 
-        // alert(policyObject.data);
-        // alert(policyObject.dataDo)
-        // alert(policyObject.dataOd);
-        // alert(policyObject.numerPolisy);
-        // alert(policyObject.skladka);
-
         $http.post('/daty/addPolisa', policyObject).success(function (data) { //wywloujemy
-            alert('Dodano poprawie');
-            // $scope.emailOfUser = "";
-            // $scope.firstNameOfUser = ""; //pobieramy imie z pola w html
-            // $scope.passwordOfUser = "";
-            // console.log(data.object.indexOf());
             loadAllPolicy();
         }).error(function () {
             alert('Coś poszło nie tak' +
                 ' Możliwe ze konto o podanym adresie email już istnieje');
         })
     };
-
 
 
     $scope.editPolicy = function () {
@@ -129,10 +103,8 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
             skladka: $scope.SkladkaE
         };
 
-        alert("indeks "+policyObj.id)
-          $http.post('daty/polisa/put/', policyObj).success(function () { //wywloujemy
-            alert('Thanks');
-
+        alert("indeks " + policyObj.id)
+        $http.post('daty/polisa/put/', policyObj).success(function () { //wywloujemy
             loadAllPolicy();
 
         }).error(function (error) {
@@ -143,8 +115,6 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
         })
 
     };
-
-
 
 
 });
