@@ -18,43 +18,49 @@ public class Uzytkownik {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     @Size(min = 3, max = 50)
     private String firstName;
-
     @Column(nullable = false, unique = true)
     @Email
     private String email;
-
     @Size(min = 5)
     private String password;
-
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany
-    private List<Auto> auto;
-
+    @ManyToMany
+    private List<Auto> auto ;
 
     public Uzytkownik() {
     }
 
-    public Uzytkownik(String firstName, String email, String password, Role roleAcount) {
-        this.firstName = firstName;
-        this.email = email;
-        this.password = password;
-        this.role = roleAcount;
+    public Uzytkownik(List<Auto> auto) {
+        this.auto = auto;
     }
 
-    public Uzytkownik(String firstName, String email, String password) {
-        this.firstName = firstName;
-        this.email = email;
-        this.password = password;
-    }
-
-
-    public Uzytkownik(long id) {
+    public Uzytkownik(long id, List<Auto> auto) {
         this.id = id;
+        this.auto = auto;
+    }
+
+    public Uzytkownik(String firstName, String email, String password, Role role) {
+        this.firstName = firstName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+//
+//    public Uzytkownik(long id) {
+//        this.id = id;
+//    }
+
+
+    public Uzytkownik(String firstName, String email, String password, Role role, List<Auto> auto) {
+        this.firstName = firstName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.auto = auto;
     }
 
     public Role getRole() {
@@ -73,11 +79,9 @@ public class Uzytkownik {
         this.firstName = firstName;
     }
 
-
     public long getId() {
         return id;
     }
-
 
     public String getEmail() {
         return email;
@@ -91,12 +95,31 @@ public class Uzytkownik {
         this.id = id;
     }
 
-
     public void setEmail(String email) {
         this.email = email;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setAuto(List<Auto> auto) {
+        this.auto = auto;
+    }
+
+    public List<Auto> getAuto() {
+        return auto;
+    }
+
+    @Override
+    public String toString() {
+        return "Uzytkownik{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", auto=" + auto +
+                '}';
     }
 }

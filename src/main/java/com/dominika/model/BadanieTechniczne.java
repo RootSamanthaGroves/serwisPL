@@ -16,12 +16,13 @@ public class BadanieTechniczne {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private Date dataBadania;
-    private Date DataWaznosci;
 
-    public BadanieTechniczne(Date dataBadania, Date dataWaznosci) {
-        this.dataBadania = dataBadania;
-        DataWaznosci = dataWaznosci;
+    private Date dataBadania;
+    private Date dataWaznosci;
+
+
+    public BadanieTechniczne() {
+
     }
 
     public long getId() {
@@ -40,11 +41,21 @@ public class BadanieTechniczne {
         this.dataBadania = dataBadania;
     }
 
+
     public Date getDataWaznosci() {
-        return DataWaznosci;
+        return dataWaznosci;
     }
 
     public void setDataWaznosci(Date dataWaznosci) {
-        DataWaznosci = dataWaznosci;
+        this.dataWaznosci = dataWaznosci;
+    }
+
+    @Override
+    public String toString() {
+        return "BadanieTechniczne{" +
+                "id=" + id +
+                ", dataBadania=" + dataBadania +
+                ", dataWaznosci=" + dataWaznosci +
+                '}';
     }
 }

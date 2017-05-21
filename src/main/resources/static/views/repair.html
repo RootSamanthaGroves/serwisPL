@@ -1,0 +1,345 @@
+<div class="account backgroundT">
+    <div class="container-fluid">
+        <div class=" content">
+
+
+            <div class="row">
+
+                <div class="col-sm-5  jumbotron ">
+
+                    <h3>Dodaj Naprawę</h3>
+                    <form>
+                        <div class="form-group">
+                            <div>
+                                <select ng-model="selectCar" class="form-control btn-default"
+                                        ng-init="selectCar = carList[0]">
+                                    <option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}
+                                        {{x.model}}
+                                    </option>
+                                </select>
+                                <!--<h1>You selected: {{selectCar}} </h1>-->
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Data:</label>
+                            <input id="dataNaprawy" type="date" class="form-control"
+                                   name="dataNaprawy" value=""
+                                   placeholder="data naprawy" ng-model="dataNaprawy">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Przebieg:</label>
+                            <input id="przebiegAuto" type="number" class="form-control"
+                                   name="przebiegAuto" value=""
+                                   placeholder="Przebieg" ng-model="przebiegAuto">
+                        </div>
+                        <div class="form-group">
+                            <label>Rodzaj:</label>
+                            <input id="rodzajNaprawy" type="text" class="form-control"
+                                   name="rodzajNaprawy" value=""
+                                   placeholder="Rodzaj naprawy" ng-model="rodzajNaprawy">
+                        </div>
+                        <div class="form-group">
+                            <label>Opis:</label>
+                            <input id="opisNaprawy" type="text" class="form-control"
+                                   name="opisNaprawy" value=""
+                                   placeholder="Opis naprawy" ng-model="opisNaprawy">
+                        </div>
+                        <div class="form-group">
+                            <label>Kosz naprawy:</label>
+                            <input id="kosztNaprawy" type="number" class="form-control"
+                                   name="kosztNaprawy" value=""
+                                   placeholder="Koszt naprawy" ng-model="kosztNaprawy">
+                        </div>
+                        <button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">
+                            Dodaj
+                            informacje do bazy
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-sm-6  jumbotron">
+
+                    <select ng-model="selectCarOne" class="form-control btn-default"
+                    ng-init="selectCarOne = carList[0]">
+                    <option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}
+                    {{x.model}}
+                    </option>
+                    </select>
+
+                    <button type="button" ng-click="loadData()"
+                            class="btn btn-primary btn btn-inf" data-toggle="modal">
+
+                        <span class="glyphicon glyphicon-arrow-down"></span> Załaduj auto
+                    </button>
+                    <table class="table table-hover " style="margin-left: 20px; width: 500px">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>data</th>
+                            <th>Przebieg</th>
+                            <th>Rorzaj</th>
+                            <th>Opis</th>
+                            <th>Koszt</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-init="selectCarOne = carList[0]"
+                            ng-repeat="r in repairOneCar.naprawa |orderBy:'data'">
+                            <td>{{ r.id }}</td>
+                            <td>{{r.date}}
+                                {{r.data | date: "yyyy-MM-dd"}}
+                            </td>
+                            <td>{{ r.przebieg }}</td>
+                            <td>{{ r.rodzaj}}</td>
+                            <td>{{ r.opis}}</td>
+                            <td>{{ r.koszt}}</td>
+                            <td><a href="" class="btn btn-danger"
+                                   ng-click="deleteOneRepair(r.id)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a></td>
+                            <td>
+                                <button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"
+                                        class="btn btn-primary btn btn-inf" data-toggle="modal"
+                                        data-target="#exampleModalLong2">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+
+
+                    </table>
+                </div>
+
+            </div>
+
+
+            <!--<div class="row">-->
+                <!--<div class="col-md-6">-->
+                    <!--<select ng-model="selectCarOne" class="form-control btn-default"-->
+                            <!--ng-init="selectCarOne = carList[0]">-->
+                        <!--<option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}-->
+                            <!--{{x.model}}-->
+                        <!--</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+
+
+                <!--<h3>Dodaj Naprawę</h3>-->
+                <!--<form>-->
+                    <!--<div class="form-group">-->
+                        <!--<div>-->
+
+
+                            <!--<select ng-model="selectCar" class="form-control btn-default"-->
+                                    <!--ng-init="selectCar = carList[0]">-->
+                                <!--<option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}-->
+                                    <!--{{x.model}}-->
+                                <!--</option>-->
+                            <!--</select>-->
+                            <!--<h1>You selected: {{selectCar}} </h1>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label>Data:</label>-->
+                        <!--<input id="dataNaprawy" type="date" class="form-control"-->
+                               <!--name="dataNaprawy" value=""-->
+                               <!--placeholder="data naprawy" ng-model="dataNaprawy">-->
+
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label>Przebieg:</label>-->
+                        <!--<input id="przebiegAuto" type="number" class="form-control"-->
+                               <!--name="przebiegAuto" value=""-->
+                               <!--placeholder="Przebieg" ng-model="przebiegAuto">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label>Rodzaj:</label>-->
+                        <!--<input id="rodzajNaprawy" type="text" class="form-control"-->
+                               <!--name="rodzajNaprawy" value=""-->
+                               <!--placeholder="Rodzaj naprawy" ng-model="rodzajNaprawy">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label>Opis:</label>-->
+                        <!--<input id="opisNaprawy" type="text" class="form-control"-->
+                               <!--name="opisNaprawy" value=""-->
+                               <!--placeholder="Opis naprawy" ng-model="opisNaprawy">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label>Kosz naprawy:</label>-->
+                        <!--<input id="kosztNaprawy" type="number" class="form-control"-->
+                               <!--name="kosztNaprawy" value=""-->
+                               <!--placeholder="Koszt naprawy" ng-model="kosztNaprawy">-->
+                    <!--</div>-->
+                    <!--<button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">-->
+                        <!--Dodaj-->
+                        <!--informacje do bazy-->
+                    <!--</button>-->
+                <!--</form>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+                <!--<div class="col-md-5">-->
+                    <!--<button type="button" ng-click="loadData()"-->
+                            <!--class="btn btn-primary btn btn-inf" data-toggle="modal">-->
+
+                        <!--<span class="glyphicon glyphicon-arrow-down"></span> Załaduj auto-->
+                    <!--</button>-->
+
+
+                    <!--<table class="table table-hover " style="margin-left: 20px; width: 500px">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>Id</th>-->
+                            <!--<th>data</th>-->
+                            <!--<th>Przebieg</th>-->
+                            <!--<th>Rorzaj</th>-->
+                            <!--<th>Opis</th>-->
+                            <!--<th>Koszt</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<tr ng-init="selectCarOne = carList[0]"-->
+                            <!--ng-repeat="r in repairOneCar.naprawa |orderBy:'data'">-->
+                            <!--<td>{{ r.id }}</td>-->
+                            <!--<td>{{r.date}}-->
+                                <!--{{r.data | date: "yyyy-MM-dd"}}-->
+                            <!--</td>-->
+                            <!--<td>{{ r.przebieg }}</td>-->
+                            <!--<td>{{ r.rodzaj}}</td>-->
+                            <!--<td>{{ r.opis}}</td>-->
+                            <!--<td>{{ r.koszt}}</td>-->
+                            <!--<td><a href="" class="btn btn-danger"-->
+                                   <!--ng-click="deleteOneRepair(r.id)">-->
+                                <!--<span class="glyphicon glyphicon-trash"></span>-->
+                            <!--</a></td>-->
+                            <!--<td>-->
+                                <!--<button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"-->
+                                        <!--class="btn btn-primary btn btn-inf" data-toggle="modal"-->
+                                        <!--data-target="#exampleModalLong2">-->
+                                    <!--<span class="glyphicon glyphicon-edit"></span>-->
+                                <!--</button>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+
+
+                    <!--</table>-->
+                <!--</div>-->
+
+
+                <!--<div>-->
+
+
+                    <!--<div class="jumbotron ">-->
+
+                    <!--<table class="table table-hover " style="margin-left: 20px; width: 500px">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                    <!--<th>Id</th>-->
+                    <!--<th>data</th>-->
+                    <!--<th>Przebieg</th>-->
+                    <!--<th>Rorzaj</th>-->
+                    <!--<th>Opis</th>-->
+                    <!--<th>Koszt</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--<tr ng-init="selectCarOne = carList[0]"-->
+                    <!--ng-repeat="r in repairOneCar.naprawa |orderBy:'data'">-->
+                    <!--<td>{{ r.id }}</td>-->
+                    <!--<td>{{r.date}}-->
+                    <!--{{r.data | date: "yyyy-MM-dd"}}-->
+                    <!--</td>-->
+                    <!--<td>{{ r.przebieg }}</td>-->
+                    <!--<td>{{ r.rodzaj}}</td>-->
+                    <!--<td>{{ r.opis}}</td>-->
+                    <!--<td>{{ r.koszt}}</td>-->
+                    <!--<td><a href="" class="btn btn-danger"-->
+                    <!--ng-click="deleteOneRepair(r.id)">-->
+                    <!--<span class="glyphicon glyphicon-trash"></span>-->
+                    <!--</a></td>-->
+                    <!--<td>-->
+                    <!--<button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"-->
+                    <!--class="btn btn-primary btn btn-inf" data-toggle="modal"-->
+                    <!--data-target="#exampleModalLong2">-->
+                    <!--<span class="glyphicon glyphicon-edit"></span>-->
+                    <!--</button>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+
+
+                    <!--</table>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+
+<!-- Edycja naprawy -->
+<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle2">Edytuj</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form>
+                    <div class="form-group">
+                        <label>Data:</label>
+                        <input id="dataE" type="date" class="form-control"
+                               name="dataE" value=""
+                               placeholder="data naprawy" ng-model="dataE">
+                    </div>
+                    <div class="form-group">
+                        <label>Przebieg:</label>
+                        <input id="przebiegE" type="number" class="form-control"
+                               name="przebiegE" value=""
+                               placeholder="Przebieg" ng-model="przebiegE">
+                    </div>
+                    <div class="form-group">
+                        <label>Rodzaj:</label>
+                        <input id="rodzajE" type="text" class="form-control"
+                               name="rodzajE" value=""
+                               placeholder="Rodzaj naprawy" ng-model="rodzajE">
+                    </div>
+                    <div class="form-group">
+                        <label>Opis:</label>
+                        <input id="opisE" type="text" class="form-control"
+                               name="opisE" value=""
+                               placeholder="Opis naprawy" ng-model="opisE">
+                    </div>
+                    <div class="form-group">
+                        <label>Kosz naprawy:</label>
+                        <input id="kosztE" type="number" class="form-control"
+                               name="kosztE" value=""
+                               placeholder="Koszt naprawy" ng-model="kosztE">
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-primary" ng-click="editRepair()" data-dismiss="modal">Zapisz
+                    zmiany
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

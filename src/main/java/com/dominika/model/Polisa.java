@@ -1,7 +1,5 @@
 package com.dominika.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,22 +16,20 @@ public class Polisa {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+
     private Date data;
     private String numerPolisy;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
-    private Date dataOd;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
-    private Date dataDo;
-    private  int Skladka;
 
-    public Polisa(Date data, String numerPolisy, Date dataOd, Date dataDo, int skladka) {
-        this.data = data;
-        this.numerPolisy = numerPolisy;
-        this.dataOd = dataOd;
-        this.dataDo = dataDo;
-        Skladka = skladka;
+    private Date dataOd;
+
+    private Date dataDo;
+    private  int skladka;
+
+
+    public Polisa() {
     }
+
+
 
     public long getId() {
         return id;
@@ -76,10 +72,22 @@ public class Polisa {
     }
 
     public int getSkladka() {
-        return Skladka;
+        return skladka;
     }
 
     public void setSkladka(int skladka) {
-        Skladka = skladka;
+        this.skladka = skladka;
+    }
+
+    @Override
+    public String toString() {
+        return "Polisa{" +
+                "id=" + id +
+                ", data=" + data +
+                ", numerPolisy='" + numerPolisy + '\'' +
+                ", dataOd=" + dataOd +
+                ", dataDo=" + dataDo +
+                ", skladka=" + skladka +
+                '}';
     }
 }

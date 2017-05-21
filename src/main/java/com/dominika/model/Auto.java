@@ -6,9 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Dominika on 2017-04-03.
- */
-@Entity
+ * Created by Dominika on 2017-05-03.
+ */@Entity
 public class Auto {
     @Id
     @NotNull
@@ -23,30 +22,37 @@ public class Auto {
     private int pojemnoscSilnika;
     private int mocSilnika;
     private String rodzajPaliwa;
-    @OneToMany
+    @Lob
+    private  byte[] image;
+    @ManyToMany
     private List<Naprawa> naprawa;
-    @OneToMany
-    private List<Czesci> czesc;
 
     public Auto() {
     }
 
-    public Auto(String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa) {
-        this.marka = marka;
-        this.model = model;
-        this.numerVIN = numerVIN;
-        this.numerRejestracyjny = numerRejestracyjny;
-        this.rokProdukcji = rokProdukcji;
-        this.rodzajNadwozia = rodzajNadwozia;
-        this.pojemnoscSilnika = pojemnoscSilnika;
-        this.mocSilnika = mocSilnika;
-        this.rodzajPaliwa = rodzajPaliwa;
-
+    @Override
+    public String toString() {
+        return "Auto{" +
+                "id=" + id +
+                ", marka='" + marka + '\'' +
+                ", model='" + model + '\'' +
+                ", numerVIN='" + numerVIN + '\'' +
+                ", numerRejestracyjny='" + numerRejestracyjny + '\'' +
+                ", rokProdukcji=" + rokProdukcji +
+                ", rodzajNadwozia='" + rodzajNadwozia + '\'' +
+                ", pojemnoscSilnika=" + pojemnoscSilnika +
+                ", mocSilnika=" + mocSilnika +
+                ", rodzajPaliwa='" + rodzajPaliwa + '\'' +
+                ", naprawa=" + naprawa +
+                '}';
     }
 
-    public Auto(String marka) {
-        this.marka = marka;
+    public byte[] getImage() {
+        return image;
+    }
 
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public long getId() {
@@ -101,7 +107,6 @@ public class Auto {
         return rodzajNadwozia;
     }
 
-
     public void setRodzajNadwozia(String rodzajNadwozia) {
         this.rodzajNadwozia = rodzajNadwozia;
     }
@@ -130,5 +135,11 @@ public class Auto {
         this.rodzajPaliwa = rodzajPaliwa;
     }
 
+    public List<Naprawa> getNaprawa() {
+        return naprawa;
+    }
 
+    public void setNaprawa(List<Naprawa> naprawa) {
+        this.naprawa = naprawa;
+    }
 }

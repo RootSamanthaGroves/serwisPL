@@ -1,6 +1,7 @@
 package com.dominika.controller;
 
 import com.dominika.model.Auto;
+import com.dominika.model.Naprawa;
 import com.dominika.repository.AutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Dominika on 2017-04-07.
+ * Created by Dominika on 2017-05-03.
  */
 @RestController
 @RequestMapping("auto")
@@ -39,11 +40,7 @@ public class AutoController {
             return ResponseEntity.ok(auto);
         }
         return new ResponseEntity<Auto>(HttpStatus.BAD_REQUEST);
-
-
     }
-
-
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Auto> getOneAuto(@PathVariable Optional<Long> id) {
@@ -60,25 +57,46 @@ public class AutoController {
 
 
     @DeleteMapping("delete/id/{id}")
-    public ResponseEntity<Auto> deleteAuto(@PathVariable Optional<Long> id) {
-        if (!id.equals(null)) {
-            Auto a = autoRepository.findOne(id.get());
-            autoRepository.removeOne(id.get());
+    public ResponseEntity<Auto> deleteAuto(@PathVariable long id) {
+        System.out.println("AutoController.deleteAuto");
+        if (id != -1) {
+            System.out.println("AutoController.deleteAuto");
+            Auto a = autoRepository.findOne(id);
+            autoRepository.removeOne(id);
             if (a != null) {
+                System.out.println("AutoController.deleteAuto ok");
                 return new ResponseEntity(a, new HttpHeaders(), HttpStatus.OK);
             } else {
+                System.out.println("AutoController.deleteAuto 404");
                 return new ResponseEntity(new HttpHeaders(), HttpStatus.NOT_FOUND);
             }
         } else {
+            System.out.println("AutoController.deleteAuto 400");
             return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PostMapping("/put/{id}")
-    public ResponseEntity<Auto> update(@PathVariable long id, @RequestBody Auto auto) {
-        autoRepository.update(Long.valueOf(id), auto);
+    @Transactional
+    @PostMapping("/update/")
+    public ResponseEntity<Auto> update(@RequestBody Auto auto) {
+        autoRepository.update(auto.getId(), auto);
         return new ResponseEntity<Auto>(auto, new HttpHeaders(), HttpStatus.OK);
     }
+
+    @PostMapping("/putRelation/{id}")
+    public ResponseEntity<?> updateRelNap(@PathVariable long id, @RequestBody Naprawa naprawa) {
+        autoRepository.updateRelInAuto(id, naprawa);
+        return new ResponseEntity<>(naprawa, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/deleteNap/id/{id}/{idNap}")
+    public ResponseEntity<?> deleteNap(@PathVariable long id, @PathVariable long idNap) {
+        System.out.println("dotarłem");
+        autoRepository.deleteRelInAuto(id, idNap);
+        return new ResponseEntity<>(idNap, new HttpHeaders(), HttpStatus.OK);
+    }
+
 
 }
 

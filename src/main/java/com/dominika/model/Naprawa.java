@@ -1,9 +1,8 @@
 package com.dominika.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -16,11 +15,14 @@ public class Naprawa {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private Date data;
+    @DateTimeFormat
+    protected Date data;
     private int przebieg;
     private String rodzaj;
     private String opis;
     private int koszt;
+    @Lob
+    private  byte[] paragon;
 
     public Naprawa() {
     }
@@ -32,6 +34,14 @@ public class Naprawa {
         this.rodzaj = rodzaj;
         this.opis = opis;
         this.koszt = koszt;
+    }
+
+    public byte[] getParagon() {
+        return paragon;
+    }
+
+    public void setParagon(byte[] paragon) {
+        this.paragon = paragon;
     }
 
     public long getId() {

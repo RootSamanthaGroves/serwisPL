@@ -1,29 +1,152 @@
 <div class="account backgroundT">
-
-
-
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-2 sidenav ">
 
                 <ul class="nav  nav-stacked">
-                    <li class="active">
-                    <a href="#dodajAuto" data-toggle="tab"> <span>   <i class="fa fa-automobile"
-                    style="font-size:42px"></i></span></a></li>
-                    <li><a href="#dodajNaprawe" data-toggle="tab"> <span
+
+                    <li><a href="#kokpit" data-toggle="tab" class="tabs"> <span
+                            class="glyphicon glyphicon-user logo-small"></span></a></li>
+                    <li><a href="#dodajAuto" data-toggle="tab" class="tabs"> <span><i class="fa fa-automobile"
+                                                                                      style="font-size:42px"></i></span></a>
+                    </li>
+                    <li><a href="#dodajNaprawe" data-toggle="tab" class="tabs"> <span
                             class="glyphicon glyphicon-wrench logo-small"></span></a></li>
-                    <li><a href="#dodajDaty" data-toggle="tab"> <span
-                    class="glyphicon glyphicon-calendar logo-small"></span></a></li>
+                    <li><a href="#dodajDaty" data-toggle="tab" class="tabs"> <span
+                            class="glyphicon glyphicon-calendar logo-small"></span></a></li>
 
-                </ul><br>
-
+                </ul>
+                <br>
             </div>
-
             <div class="col-sm-10">
 
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="kokpit">
+                        <h3>Kokpit</h3>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"></div>
+                            <div class="chat-box-single-line">
+                                <abbr class="timestamp">Profil użytkownika</abbr>
+                            </div>
 
-                <div  class="tab-content clearfix">
-                    <div class="tab-pane active" id="dodajAuto">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+
+                                    <div class="container" style="margin-left: 20px">
+                                        <img src="ikony/user.jpg" alt="Avatar" class="image">
+                                        <div class="overlay">
+                                            <div class="text">Login</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1">
+
+
+                                </div>
+
+                                <div class=" col-lg-9 col-md-8 col-sm-8" >
+                                    <div class="well"  >
+                                    <h2>Login: {{curUser.firstName}}</h2>
+                                    <h2 >E-mail: {{email}}</h2>
+                                    <h2>Rola: {{curUser.role}}</h2>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+                                <table class="table table-hover " style="margin-left: 20px; width: 500px">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>data</th>
+                                        <th>Przebieg</th>
+                                        <th>Rorzaj</th>
+                                        <th>Opis</th>
+                                        <th>Koszt</th>
+                                    </tr>
+                                    </thead>
+                                    <!--mamy petle for each-->
+                                    <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
+                                    <tbody>
+                                    <!--Date data, int przebieg, String rodzaj, String opis, int koszt-->
+                                    <tr ng-repeat="r in repair |orderBy:'data'">
+                                        <td>{{ r.id }}</td>
+                                        <td > {{r.date}}
+                                             {{r.data | date: "yyyy-MM-dd"}}
+                                        </td>
+                                        <td>{{ r.przebieg }}</td>
+                                        <td>{{ r.rodzaj}}</td>
+                                        <td>{{ r.opis}}</td>
+                                        <td>{{ r.koszt}}</td>
+                                        <td><a href="" class="btn btn-danger"
+                                               ng-click="deleteRepair(r.id)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a></td>
+                                        <td>
+                                            <!--<a href="" class="btn btn-info "-->
+                                               <!--ng-click="editRepair(r.id)">-->
+                                            <!--<span class="glyphicon glyphicon-edit"></span>-->
+                                        <!--</a>-->
+                                            <button type="button"alt="{{r.id}}"  ng-click="showRepair(r.id)" class="btn btn-primary btn btn-inf"  data-toggle="modal" data-target="#exampleModalLong2" >
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="dodajAuto">
+
+
+                        <table class="table table-hover " style="margin-left: 20px; width: 500px" ng-controller="AutoController">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Marka</th>
+                                <th>Model</th>
+                                <th>Rejstracja</th>
+                                <th>Rok produkcji</th>
+                            </tr>
+                            </thead>
+                            <!--mamy petle for each-->
+                            <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
+                            <tbody>
+                            <!--String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa-->
+                            <tr ng-repeat="c in car |orderBy:'marka'">
+
+                                <td>{{ c.id }}</td>
+                                <td>{{ c.marka }}</td>
+                                <td>{{ c.model }}</td>
+                                <td>{{ c.numerRejestracyjny}}</td>
+                                <td >{{c.rokProdukcji | date: "yyyy-MM-dd"}}</td>
+                                <td><a href="" class="btn btn-danger"
+                                       ng-click="deleteCar(c.id)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a></td>
+                                <td>
+                                    <!--<a href="" class="btn btn-info "&ndash;&gt;-->
+                                    <!--ng-click="editCar(c.id)">-->
+                                    <!--<span class="glyphicon glyphicon-edit"></span>-->
+                                    <!--</a>-->
+
+                                    <button type="button"alt="{{c.id}}"  ng-click="showCar(c.id)" class="btn btn-primary btn btn-inf"  data-toggle="modal" data-target="#exampleModalLong" >
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
                         <h3>Dodaj auto</h3>
 
                         <form>
@@ -55,15 +178,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj nadwozia:</label>
-                                <input id="rodzNadwoziaAuto" type="text" class="form-control" name="rodzNadwoziaAuto"
+                                <input id="rodzNadwoziaAuto" type="text" class="form-control"
+                                       name="rodzNadwoziaAuto"
                                        value=""
                                        placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaAuto">
                             </div>
                             <div class="form-group">
                                 <label>Pojemność silnika:</label>
-                                <input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto"
-                                       value=""
-                                       placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
+                                <!--<input id="pojSilnikaAuto" type="number" class="form-control" name="pojSilnikaAuto"-->
+                                       <!--value=""-->
+                                       <!--placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">-->
+
+                                <input type="number" string-to-number ng-model="pojSilnikaAuto" /> {{ pojSilnikaAuto }} : {{ typeOf(pojSilnikaAuto) }}
                             </div>
                             <div class="form-group">
                                 <label>Moc silnika:</label>
@@ -72,185 +198,289 @@
                             </div>
                             <div class="form-group">
                                 <label>Rodzaj paliwa:</label>
-                                <input id="rodzPaliwAuto" type="text" class="form-control" name="rodzajPaliwa" value=""
+                                <input id="rodzPaliwAuto" type="text" class="form-control" name="rodzajPaliwa"
+                                       value=""
                                        placeholder="Rodzaj Paliwa" ng-model="rodzajPaliwAuto">
 
 
                             </div>
 
-                            <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj Auto
+                            <button id="submit" type="submit" class="btn btn-default" ng-click="saveAuto()">Dodaj
+                                Auto
                             </button>
                         </form>
 
                     </div>
+                    <div class="tab-pane" id="dodajNaprawe">
+
+                        <h3>Dodaj Naprawę</h3>
+                        <form>
+                            <div class="form-group">
 
 
-                <!--<h4><small>RECENT POSTS</small></h4>-->
-                <!--<hr>-->
-                <!--<h2>I Love Food</h2>-->
-                <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
-                <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
-                <!--<p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
-                <!--<br><br>-->
+                                <label>Data:</label>
+                                <input id="dataNaprawy" type="date" class="form-control"
+                                       name="dataNaprawy" value=""
+                                       placeholder="data naprawy" ng-model="dataNaprawy">
 
-                <!--<h4><small>RECENT POSTS</small></h4>-->
-                <!--<hr>-->
-                <!--<h2>Officially Blogging</h2>-->
-                <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
-                <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
-                <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
-                <!--<hr>-->
+                            </div>
+                            <div class="form-group">
+                                <label>Przebieg:</label>
+                                <input id="przebiegAuto" type="number" class="form-control"
+                                       name="przebiegAuto" value=""
+                                       placeholder="Przebieg" ng-model="przebiegAuto">
+                            </div>
+                            <div class="form-group">
+                                <label>Rodzaj:</label>
+                                <input id="rodzajNaprawy" type="text" class="form-control"
+                                       name="rodzajNaprawy" value=""
+                                       placeholder="Rodzaj naprawy" ng-model="rodzajNaprawy">
+                            </div>
+                            <div class="form-group">
+                                <label>Opis:</label>
+                                <input id="opisNaprawy" type="text" class="form-control"
+                                       name="opisNaprawy" value=""
+                                       placeholder="Opis naprawy" ng-model="opisNaprawy">
+                            </div>
+                            <div class="form-group">
+                                <label>Kosz naprawy:</label>
+                                <input id="kosztNaprawy" type="number" class="form-control"
+                                       name="kosztNaprawy" value=""
+                                       placeholder="Koszt naprawy" ng-model="kosztNaprawy">
+                            </div>
+                            <button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">
+                                Dodaj
+                                informacje do bazy
+                            </button>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="dodajDaty">
 
-                <!--<h4>Leave a Comment:</h4>-->
-                <!--<form role="form">-->
-                    <!--<div class="form-group">-->
-                        <!--<textarea class="form-control" rows="3" required></textarea>-->
-                    <!--</div>-->
-                    <!--<button type="submit" class="btn btn-success">Submit</button>-->
-                <!--</form>-->
-                <!--<br><br>-->
+                        <h3>Dodaj Polise</h3>
 
-                <!--<p><span class="badge">2</span> Comments:</p><br>-->
+                        <form>
 
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-2 text-center">-->
-                        <!--<img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-10">-->
-                        <!--<h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>-->
-                        <!--<p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                        <!--<br>-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-2 text-center">-->
-                        <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-10">-->
-                        <!--<h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>-->
-                        <!--<p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                        <!--<br>-->
-                        <!--<p><span class="badge">1</span> Comment:</p><br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-sm-2 text-center">-->
-                                <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-10">-->
-                                <!--<h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>-->
-                                <!--<p>Me too! WOW!</p>-->
-                                <!--<br>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                            <div class="form-group">
+                                <label>Data dodania:</label>
+                                <input id="dataDodania" type="date" class="form-control"
+                                       name="dataDodania" value=""
+                                       placeholder="Data dodania" ng-model="dataDodania">
 
+                                <input type="date"
+                                       ng-model="string"
+                                       [name="string"]
+                                       [min="string"]
+                                       [max="string"]
+                                       [ng-min=""]
+                                       [ng-max=""]
+                                       [required="string"]
+                                       [ng-required="string"]
+                                       [ng-change="string"]>
+                            </div>
+                            <div class="form-group">
+                                <label>Numer polisy:</label>
+                                <input id="numerPolisy" type="text" class="form-control"
+                                       name="numerPolisy" value=""
+                                       placeholder="Numer polisy" ng-model="numerPolisy">
+                            </div>
+                            <div class="form-group">
+                                <label>Okres ochrony OC:</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Data od: </label>
+                                <input id="dataOd" type="date" class="form-control"
+                                       name="dataOd" value=""
+                                       placeholder="Data od" ng-model="dataOd">
+                                <label> do: </label>
+                                <input id="dataDo" type="date" class="form-control"
+                                       name="dataDo" value=""
+                                       placeholder="Data do" ng-model="dataDo">
+                            </div>
+                            <div class="form-group">
+                                <label>Składka OC:</label>
+                                <input id="skladkaOC" type="number" class="form-control"
+                                       name="skladkaOC" value=""
+                                       placeholder="Skłądka  OC" ng-model="skladkaOC">
+                            </div>
 
-                <div class="tab-pane" id="dodajNaprawe">
+                            <button type="submit" type="submit" class="btn btn-default" ng-click="saveUbezpieczenie()">
+                                Dodaj
+                                informacje
+                            </button>
+                        </form>
 
-
-                    <h3>Dodaj Naprawę</h3>
-
-                    <form>
-                        <div class="form-group">
-                            <label>Data:</label>
-                            <input id="dataNaprawy" type="date" class="form-control"
-                                   name="dataNaprawy" value=""
-                                   placeholder="data naprawy" ng-model="dataNaprawy">
-                        </div>
-                        <div class="form-group">
-                            <label>Przebieg:</label>
-                            <input id="przebiegAuto" type="number" class="form-control"
-                                   name="przebiegAuto" value=""
-                                   placeholder="Przebieg" ng-model="przebiegAuto">
-                        </div>
-                        <div class="form-group">
-                            <label>Rodzaj:</label>
-                            <input id="rodzajNaprawy" type="text" class="form-control"
-                                   name="rodzajNaprawy" value=""
-                                   placeholder="Rodzaj naprawy" ng-model="rodzajNaprawy">
-                        </div>
-                        <div class="form-group">
-                            <label>Opis:</label>
-                            <input id="opisNaprawy" type="text" class="form-control"
-                                   name="opisNaprawy" value=""
-                                   placeholder="Opis naprawy" ng-model="opisNaprawy">
-                        </div>
-                        <div class="form-group">
-                            <label>Kosz naprawy:</label>
-                            <input id="kosztNaprawy" type="number" class="form-control"
-                                   name="kosztNaprawy" value=""
-                                   placeholder="Koszt naprawy" ng-model="kosztNaprawy">
-                        </div>
-
-
-                        <button type="submit" type="submit" class="btn btn-default" ng-click="saveNaprawa()">Dodaj
-                            informacje do bazy
-                        </button>
-
-                    </form>
-
-                </div>
-                <div class="tab-pane" id="dodajDaty">
-
-
-                    <h3>Dodaj Polise</h3>
-
-                    <form>
-
-                        <div class="form-group">
-                            <label for="email">Data dodania:</label>
-                            <input type="date" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Numer polisy:</label>
-                            <input type="number" class="form-control" id="pwd">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Okres ochrony OC:</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Data od: </label><input type="date" class="form-control" id="pwd">
-                            <label for="pwd"> do: </label><input type="date" class="form-control" id="pwd">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Składka OC:</label>
-                            <input type="number" class="form-control" id="pwd">
-                        </div>
+                        <h3>Dodaj badanie techniczne</h3>
+                        <form>
+                            <div class="form-group">
+                                <label>Data wykonania badania:</label>
+                                <input id="datawykonaniaBadania" type="date" class="form-control"
+                                       name="datawykonaniaBadania" value=""
+                                       placeholder="Data wykonania Badania technicznego"
+                                       ng-model="datawykonaniaBadania">
+                            </div>
+                            <div class="form-group">
+                                <label>Termin ważności badania:</label>
+                                <input id="terminBadania" type="date" class="form-control"
+                                       name="terminBadania" value=""
+                                       placeholder="Termin Badania technicznego" ng-model="terminBadania">
+                            </div>
+                            <button type="submit" type="submit" class="btn btn-default" ng-click="saveBadanie()">
+                                Dodaj
+                                informacje
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-sm-12">
 
 
-                        <button type="submit" class="btn btn-default">Dodaj</button>
-                    </form>
-
-                    <h3>Dodaj badanie techniczne</h3>
-
-                    <form>
-
-                        <div class="form-group">
-                            <label for="email">Data wykonania badania:</label>
-                            <input type="date" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Termin ważności badania:</label>
-                            <input type="number" class="form-control" id="pwd">
-                        </div>
-
-
-                        <button type="submit" class="btn btn-default">Dodaj</button>
-                    </form>
+                    </div>
 
                 </div>
-
-
+            </div>
         </div>
+
+
+        <!-- Edycja auta -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" >Edytuj</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="form-group">
+                                <label>Id:</label>
+                                <input id="idE" type="text" class="form-control" name="idAutoE" value="IdAutoE"
+                                       placeholder="id" ng-model="idAutoE">
+                            </div>
+                            <div class="form-group">
+                                <label>Marka:</label>
+                                <input id="MarkaE" type="text" class="form-control" name="MarkaE" value="MarkaE"
+                                       placeholder="Marka" ng-model="markaAutoE">
+                            </div>
+                            <div class="form-group">
+                                <label>Model:</label>
+                                <input id="ModelE" type="text" class="form-control" name="MarkaE" value="Model"
+                                       placeholder="Model" ng-model="modelAutoE">
+                            </div>
+                            <div class="form-group">
+                                <label>Numer VIN:</label>
+                                <input id="numerVINAutoE" type="text" class="form-control" name="NumerVin" value="numerVin"
+                                       placeholder="Numer VIN" ng-model="numerVinAuto">
+                            </div>
+                            <div class="form-group">
+                                <label>Numer rejestracyjny:</label>
+                                <input id="numerRejAutoE" type="text" class="form-control" name="numerRej" value="numerRej"
+                                       placeholder="Numer rejestracyjny" ng-model="numerRejAuto">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Rok produkcji:</label>
+                                <input id="rokProAutoE" type="data" class="form-control" name="rokProAuto" value="rokProdukcj"
+                                       placeholder="Rok produkcji " ng-model="rokProAuto">
+                            </div>
+                            <div class="form-group">
+                                <label>Rodzaj nadwozia:</label>
+                                <input id="rodzNadwoziaAutoE" type="text" class="form-control"
+                                       name="rodzNadwoziaAuto"
+                                       value="rodzajNadwoziaAuto"
+                                       placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaAuto">
+                            </div>
+                            <div class="form-group">
+                                <label>Pojemność silnika:</label>
+                                <!--<input id="pojSilnikaAutoE" type="text" class="form-control" name="pojSilnikaAuto"-->
+                                       <!--value="pojSilnikaAuto"-->
+                                       <!--placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">-->
+
+                                <input type="number" string-to-number ng-model="pojSilnikaAutoE" /> {{ pojSilnikaAutoE }} : {{ typeOf(pojSilnikaAutoE) }}
+
+                            </div>
+                            <div class="form-group">
+                                <label>Moc silnika:</label>
+                                <input id="mocAutoE" type="text" class="form-control" name="mocAuto" value="mocAuto"
+                                       placeholder=" Moc silnika" ng-model="mocAuto">
+                            </div>
+                            <div class="form-group">
+                                <label>Rodzaj paliwa:</label>
+                                <input id="rodzPaliwAutoE" type="text" class="form-control" name="rodzajPaliwa"
+                                       value="rodzjaPaliwAuto"
+                                       placeholder="Rodzaj Paliwa" ng-model="rodzajPaliwAuto">
+
+
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="button" class="btn btn-primary" ng-click="editCar()">Zapisz zmiany</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edycja naprawy -->
+        <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle2" >Edytuj</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <form>
+                            <div class="form-group">
+                                <label>Data:</label>
+                                <input id="dataE" type="date" class="form-control"
+                                       name="dataE" value=""
+                                       placeholder="data naprawy" ng-model="dataE">
+                            </div>
+                            <div class="form-group">
+                                <label>Przebieg:</label>
+                                <input id="przebiegE" type="number" class="form-control"
+                                       name="przebiegE" value=""
+                                       placeholder="Przebieg" ng-model="przebiegE">
+                            </div>
+                            <div class="form-group">
+                                <label>Rodzaj:</label>
+                                <input id="rodzajE" type="text" class="form-control"
+                                       name="rodzajE" value=""
+                                       placeholder="Rodzaj naprawy" ng-model="rodzajE">
+                            </div>
+                            <div class="form-group">
+                                <label>Opis:</label>
+                                <input id="opisE" type="text" class="form-control"
+                                       name="opisE" value=""
+                                       placeholder="Opis naprawy" ng-model="opisE">
+                            </div>
+                            <div class="form-group">
+                                <label>Kosz naprawy:</label>
+                                <input id="kosztE" type="number" class="form-control"
+                                       name="kosztE" value=""
+                                       placeholder="Koszt naprawy" ng-model="kosztE">
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="button" class="btn btn-primary" ng-click="editRepair()">Zapisz zmiany</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-
-    </div>
 </div>
-</div>
-
-
-</div>
-
-
-</div>
-

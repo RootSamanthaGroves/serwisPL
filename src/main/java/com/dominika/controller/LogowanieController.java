@@ -1,6 +1,8 @@
 package com.dominika.controller;
 
+import com.dominika.model.Logowanie;
 import com.dominika.model.Uzytkownik;
+import com.dominika.repository.LogowanieRepository;
 import com.dominika.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,20 +19,45 @@ import java.util.Optional;
  */
 
 @RestController
-@RequestMapping("app")
+@RequestMapping("log")
 public class LogowanieController {
 
 
-
     @Autowired
+    LogowanieRepository logowanieRepository;
     UserRepository userRepository;
 
+
+
+//    @PostMapping("/newUser")
+//    public ResponseEntity<Uzytkownik> postUser(@RequestBody Uzytkownik u) {
+//        System.out.println(u.getEmail());
+//        userRepository.save(u);
+//        userRepository.save(u);
+//        if ((u.getId() != -1)) {
+//            return ResponseEntity.ok(u);
+//        }
+//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+//
+//
+//    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll() {
+        List<Logowanie> ListOfLog = logowanieRepository.findAll();
+        if (ListOfLog.isEmpty())
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(ListOfLog);
+    }
+
+
+
     @Transactional
-    @PostMapping("logowanie")
-    public ResponseEntity<?> addUser(@RequestBody Uzytkownik user) {
-        userRepository.save(user);
-        if ((user.getId() != -1)) {
-            return ResponseEntity.ok(user);
+    @PostMapping("/  login")
+    public ResponseEntity<?> loginUser(@RequestBody Logowanie l) {
+        logowanieRepository.save(l);
+        if ((l.getId() != -1)) {
+            return ResponseEntity.ok(l);
         }
         return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
     }
@@ -39,12 +67,12 @@ public class LogowanieController {
 
 
     @DeleteMapping("wylogowanie/id/{id}")
-    public ResponseEntity<Uzytkownik> deleteEmployee(@PathVariable Optional<Long> id) {
+    public ResponseEntity<Logowanie> deleteEmployee(@PathVariable Optional<Long> id) {
         if (!id.equals(null)) {
-            Uzytkownik u = userRepository.findOne(id.get());
-            userRepository.removeOne(id.get());
-            if (u != null) {
-                return new ResponseEntity(u, new HttpHeaders(), HttpStatus.OK);
+            Logowanie l = logowanieRepository.findOne(id.get());
+            logowanieRepository.removeOne(id.get());
+            if (l != null) {
+                return new ResponseEntity(l, new HttpHeaders(), HttpStatus.OK);
             } else {
                 return new ResponseEntity(new HttpHeaders(), HttpStatus.NOT_FOUND);
             }
@@ -56,15 +84,15 @@ public class LogowanieController {
 
 
     @RequestMapping(value = "/id/{id}")
-    public ResponseEntity<Uzytkownik> getDetailsOfUsers(@PathVariable Optional<Long> id) {
+    public ResponseEntity<Logowanie> getDetailsOfUsers(@PathVariable Optional<Long> id) {
         if (id.isPresent()) {
-            Uzytkownik user = userRepository.findOne(id.get());
-            if (user != null) {
-                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
+            Logowanie l = logowanieRepository.findOne(id.get());
+            if (l != null) {
+                return new ResponseEntity<Logowanie>(l, new HttpHeaders(), HttpStatus.OK);
             } else {
-                return new ResponseEntity<Uzytkownik>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<Logowanie>(HttpStatus.NOT_FOUND);
             }
         }
-        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Logowanie>(HttpStatus.BAD_REQUEST);
     }
 }
