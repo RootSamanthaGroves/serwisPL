@@ -1,9 +1,10 @@
 <html ng-app="nikoApp">
-
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta charset="utf-8"/>
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+
 
     <script src="AngularJS/angular.min.js"></script>
     <script src="AngularJS/angular-resource.js"></script>
@@ -20,13 +21,10 @@
     <script type="text/javascript" src='js/LoginController.js'></script>
     <script type="text/javascript" src='js/AutoController.js'></script>
     <script type="text/javascript" src='js/NaprawaController.js'></script>
-
     <script type="text/javascript" src='js/PolicyController.js'></script>
     <script type="text/javascript" src='js/TechnicalController.js'></script>
-
     <script type="text/javascript" src='js/DatyController.js'></script>
     <script type="text/javascript" src='js/NavbarController.js'></script>
-    <!--<script type="text/javascript" src='js/ValidEmail.js'></script>-->
 
 
     <!--serwisy-->
@@ -39,329 +37,20 @@
     <script type="text/javascript" src='AngularJS/ngStorage/ngStorage.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--do ikonki-->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/2bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/2bootstrap.css">
 
 
-    <!--te dwa js odpowiadaja za zmienianie sie tabów w account-->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
-    <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
-
-
-
-
-
-
-
-    <style>
-
-
-        div.background {
-            /*background: url(ikony/tło.jpg) repeat;*/
-            background-color: #0f0f0f;
-            border: 2px solid black;
-        }
-
-        div.transbox {
-            margin: 30px;
-            /*background-color: #ffffff;*/
-            border: 1px solid black;
-            opacity: 1.0;
-            filter: alpha(opacity=60); /* For IE8 and earlier */
-        }
-
-        div.transbox p {
-            margin: 5%;
-            font-weight: bold;
-            color: #000000;
-        }
-
-        footer .glyphicon {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #f4511e;
-        }
-
-        #exTab3 .nav-pills > li > a {
-            border-radius: 4px 4px 0 0;
-        }
-
-        #exTab3 .tab-content {
-            color: white;
-            background-color: #428bca;
-            padding: 5px 15px;
-        }
-
-        .bg-1 {
-
-            background-image: url("ikony/pp.png");
-            /*background-image: url("https://www.tomswallpapers.com/pic/201503/1920x1080/tomswallpapers.com-18375.jpg");*! background-position: center top;*/
-            min-height: 800px;
-            margin-top: -20px;
-
-            background-attachment: fixed;
-            background-position: center;
-            /*background-repeat: no-repeat;*/
-            background-size: cover;
-
-        }
-
-        body {
-            position: relative;
-        }
-
-
-
-        .bg-2 {
-            background-image: url("ikony/engine.jpg");
-            /* background-image: url("https://www.tomswallpapers.com/pic/201503/1920x1080/tomswallpapers.com-18375.jpg");*/
-            background-position: center top;
-            min-height: 650px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .home {
-            margin-top: 50px;
-        }
-
-        .about {
-            margin-top: 50px;
-            background-image: url("ikony/pp.png");
-            /*background-image: url("https://www.tomswallpapers.com/pic/201503/1920x1080/tomswallpapers.com-18375.jpg");*! background-position: center top;*/
-            min-height: 800px;
-            margin-top: -20px;
-            background-attachment: fixed;
-            background-position: center;
-            /*background-repeat: no-repeat;*/
-            background-size: cover;
-        }
-
-        .people {
-            margin-top: 50px;
-        }
-
-        .account {
-            margin-top: 50px;
-            padding: 10px;
-            /*background-color: rgba(0,0,0,.5);*/
-            background-color: transparent;
-            background-color: #0f0f0f;
-            /*filter: alpha(opacity=60); !* For IE8 and earlier *!*/
-        }
-
-        .logo-small {
-            /* color: #f4511e;*/
-            font-size: 50px;
-        }
-
-        .logo {
-            color: #f4511e;
-            font-size: 200px;
-        }
-
-        footer .glyphicon {
-            font-size: 20px;
-            margin-bottom: 50px;
-            color: #f4511e;
-        }
-
-        .slideanim {
-            visibility: hidden;
-        }
-
-        .slide {
-            animation-name: slide;
-            -webkit-animation-name: slide;
-            animation-duration: 1s;
-            -webkit-animation-duration: 1s;
-            visibility: visible;
-        }
-
-        @keyframes slide {
-            0% {
-                opacity: 0;
-                transform: translateY(70%);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0%);
-            }
-        }
-
-        body {
-            position: relative;
-        }
-
-        ul.nav-pills {
-            top: 50px;
-            position: fixed;
-
-        }
-
-        div.col-sm-11 div {
-            height: 50px;
-            font-size: 28px;
-        }
-
-        /*@media screen and (max-width: 1000px) {*/
-        /*#section1, #section2, #section3, #section41, #section42 {*/
-        /*margin-left: -10px;*/
-        /*!*margin-right: 150px;*!*/
-
-        /*}*/
-        /*}*/
-
-        /*.nav-stacked {*/
-        /*width: 0px;*/
-        /*}*/
-
-        .aboutNap {
-            font-style: italic;
-            font-style: oblique;
-            margin-top: 20px;
-            color: #0f0f0f;
-            text-align: center;
-        }
-
-        #exTab1 .tab-content {
-            padding-top: 60px;
-            color: white;
-            background-color: #303030;
-            padding: 50px 15px;
-        }
-
-        .tooltip {
-            font-size: 18px;
-        }
-
-        div.ex2 {
-            padding: 330px 50px 75px;
-        }
-
-        /*do navbara przezroczystkosc*/
-        .navbar-inverse {
-            margin-bottom: 0;
-            background-color: black;
-            background-color: #262626;
-            border: 0;
-            font-size: 11px !important;
-            letter-spacing: 4px;
-            opacity: 0.8;
-        }
-
-        .jumbBack{
-
-            background-color: black;
-            background-color: #262626;
-            border: 0;
-            font-size: 11px !important;
-            letter-spacing: 4px;
-            opacity: 0.8;
-            color: white;
-
-        }
-
-        /* Set black background color, white text and some padding */
-        footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
-        }
-
-        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {
-            height: 550px
-        }
-
-        /* Set gray background color and 100% height */
-        .sidenav {
-            background-color: #222222;
-            height: auto;
-            width: 100px;
-        }
-
-        /* On small screens, set height to 'auto' for the grid */
-        @media screen and (max-width: 767px) {
-            .row.content {
-                height: auto;
-            }
-        }
-
-        .chat-box-single-line {
-            border-bottom: 1px solid #008CBA;
-            height: 12px;
-            margin: 7px 0 20px;
-            position: relative;
-            text-align: center;
-            color: #2e6da4;
-        }
-
-        .timestamp {
-            background: #008CBA none repeat scroll 0 0;
-            color: #fff;
-            padding: 0 11px;
-        }
-
-        .popup-head-right .btn-group {
-            display: inline-flex;
-            margin: 0 8px 0 0;
-            vertical-align: top !important;
-        }
-
-        .container {
-            margin-left: 0px;
-            position: relative;
-            width: 50%;
-        }
-
-        .image {
-            margin-left: 0px;
-            display: block;
-            width: 200px;
-            height: auto;
-        }
-
-        .overlay {
-            /*margin-left: 10px;*/
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            right: 0;
-            width: 195px;
-            height: auto;
-            opacity: 0;
-            transition: .5s ease;
-            background-color: #008CBA;
-        }
-
-        .container:hover .overlay {
-            opacity: 1;
-        }
-
-        .text {
-            color: white;
-            font-size: 20px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-        }
-
-    </style>
 </head>
 
 <body id="myPage">
@@ -390,9 +79,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#/me"><i class="glyphicon glyphicon-user"></i>{{email}} </a></li>
-                            <li ng-click="Refresh()"><a href="#/auta"> <i class="fa fa-car" style="font-size:12px"></i> Autka</a></li>
-                            <li><a href="#/naprawy">  <span class="glyphicon glyphicon-wrench "></span>  Moje naprawy</a></li>
-                            <li><a href="#/policy">  <span class="glyphicon glyphicon-calendar"></span>  Polisa</a></li>
+                            <li ng-click="Refresh()"><a href="#/auta"> <i class="fa fa-car" style="font-size:12px"></i>
+                                Autka</a></li>
+                            <li><a href="#/naprawy"> <span class="glyphicon glyphicon-wrench "></span> Moje naprawy</a>
+                            </li>
+                            <li><a href="#/policy"> <span class="glyphicon glyphicon-calendar"></span> Polisa</a></li>
                             <li><a href="#/technical">Badanie techniczne</a></li>
                         </ul>
                     </li>
@@ -426,7 +117,7 @@
     <a href="#myPage" title="To Top">
         <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
-    <p>Made By <a href="https://www.facebook.com/Domienieka"> © 2017Dominika Sporzyńska</a></p>
+    <p>Made By <a href="https:/"> © 2017Dominika Sporzyńska</a></p>
     <p>dominika.sporzynska@gmail.com
     <p>
 </footer>

@@ -56,9 +56,7 @@ public class AutoRepository {
 
     @Transactional
     public Auto update(long id, Auto a) {
-
-
-        Auto auto = entityManager.find(Auto.class, id);
+              Auto auto = entityManager.find(Auto.class, id);
 
 //        if (!auto.getMarka().isEmpty()) {
 //            auto.setMarka(a.getMarka());
@@ -70,7 +68,7 @@ public class AutoRepository {
 //            auto.setMarka(a.getMarka());
 //        }
 
-
+        a.setImage(auto.getImage());
         entityManager.merge(a);
 
 
