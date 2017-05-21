@@ -39,25 +39,18 @@
                                        data-placement="right" title=" Hasło powinno być  dłuższe niż 5 znaków!">
                             </div>
                         </div>
-                        <div class="input-group col-md-4">
+                        <div class=" col-ms-4">
                             <button id="submit" type="submit"
-                                                                            class="btn btn-primary sendButton"
-                                                                            ng-click="saveUser()">
-                                                                            Zarejestruj się
+                                    class="btn btn-block btn-default sendButton"
+                                    ng-click="saveUser()">
+                                Zarejestruj się
                             </button>
-                            <!--<input type="submit" id="submit"-->
-                                   <!--ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||-->
-<!--myForm.email.$dirty && myForm.email.$invalid myForm.$dirty "-->
-                                   <!--ng-click="saveUser()" value="Zarejestruj się" class="btn btn-primary  ">-->
-
-
                             <div ng-if="error" class="alert alert-warning">
                                 <strong>Warning!</strong>
                                 <p id="demo"></p>
                             </div>
-
-
                         </div>
+
                     </div>
                 </form>
 
