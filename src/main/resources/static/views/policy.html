@@ -1,130 +1,172 @@
-<div class="account backgroundT" xmlns:date="http://www.w3.org/1999/xhtml">
+<div class="account backgroundT">
     <div class="container-fluid">
-        <div class="row content">
+        <div class=" content">
 
-            <div class="col-sm-10">
 
-                <div class="tab-content clearfix">
-                    <div class="tab-pane active" id="kokpit">
-                        <h3>Kokpit</h3>
-                        <div class="panel panel-primary">
-                            <div class="panel-heading"></div>
-                            <div class="chat-box-single-line">
-                                <abbr class="timestamp">Twoje Pojazdy</abbr>
+            <div class="row">
+
+                <div class="col-sm-3  jumbotron ">
+                    <h3>Dodaj Polise</h3>
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Wybierz auto:</label>
+                                <select ng-model="selectCar" class="form-control btn-default"
+                                        ng-init="selectCar = carList[0]">
+                                    <option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}
+                                        {{x.model}}
+                                    </option>
+                                </select>
                             </div>
 
-                            <div class="row">
+                            <div class="form-group col-md-12">
+                                <!--<label>Numer Polisy:</label>-->
+                                <input id="NumerPolisy" type="text" class="form-control" name="NumerPolisy" value=""
+                                       placeholder="NumerPolisy" ng-model="NumerPolisy">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Data:</label>
+                                <input id="DataDodania" type="date" class="form-control" name="DataDodania" value=""
+                                       placeholder="DataDodania" ng-model="DataDodania">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <!--<label>Składka:</label>-->
+                                <input id="Skladka" type="number" class="form-control" name="Skladka" value=""
+                                       placeholder="Skladka" ng-model="Skladka">
+                            </div>
 
-
-                                <div class=" col-lg-9 col-md-8 col-sm-8">
-                                    <div class="well">
-
-
-
-                                        <table class="table table-hover " style="margin-left: 20px; width: 500px">
-                                            <thead>
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Numer polisy</th>
-                                                <th>data od</th>
-                                                <th>data do</th>
-                                                <th>składka</th>
-                                                <th>data</th>
-                                            </tr>
-                                            </thead>
-                                            <!--mamy petle for each-->
-                                            <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
-                                            <tbody>
-                                            <!--String marka, String model, String numerVIN, String numerRejestracyjny, Date rokProdukcji, String rodzajNadwozia, int pojemnoscSilnika, int mocSilnika, String rodzajPaliwa-->
-                                            <tr ng-repeat="c in policy |orderBy:'id'">
-
-                                                <td>{{ c.id }}</td>
-                                                <td>{{ c.numerPolisy }}</td>
-                                                <td>{{ c.dataOd | date: "yyyy-MM-dd"}}</td>
-                                                <td>{{ c.dataDo | date: "yyyy-MM-dd"}}</td>
-                                                <td>{{ c.skladka}}</td>
-                                                <td >{{c.data | date: "yyyy-MM-dd"}}</td>
-                                                <td>
-                                                    <button type="button"alt="{{c.id}}"  ng-click="deletePolicy(c.id)" class="btn btn-primary btn btn-danger"  data-toggle="modal"  >
-                                                        <span class="glyphicon glyphicon-trash"></span>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button"alt="{{c.id}}"  ng-click="showPolicy(c.id)" class="btn btn-primary btn btn-inf"  data-toggle="modal" data-target="#exampleModalLong" >
-                                                        <span class="glyphicon glyphicon-edit"></span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-
-
-
-                                    </div>
-
-                                </div>
-
-
+                            <div class="form-group col-md-12" >
+                                <label>data od:</label>
+                                <input id="DataOd" type="date" class="form-control" name="DataOd" value=""
+                                       placeholder="DataOd" ng-model="DataOd">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label> do:</label>
+                                <input id="DataDo" type="date" class="form-control" name="DataDo" value=""
+                                       placeholder="DataDo" ng-model="DataDo">
                             </div>
 
 
 
+                            <button id="submitsave" type="submit" class="btn btn-default btn-block" ng-click="savePolicy()">Dodaj
+                                Polise
+                            </button>
 
 
-                            <h3>Dodaj Polise</h3>
 
-                            <form>
-                                <div class="form-group">
-                                    <label>Data:</label>
-                                    <input id="DataDodania" type="date" class="form-control" name="DataDodania" value=""
-                                           placeholder="DataDodania" ng-model="DataDodania">
-                                </div>
-                                <div class="form-group">
-                                    <label>Numer Polisy:</label>
-                                    <input id="NumerPolisy" type="text" class="form-control" name="NumerPolisy" value=""
-                                           placeholder="NumerPolisy" ng-model="NumerPolisy">
-                                </div>
-                                <div class="form-group">
-                                    <label>data od:</label>
-                                    <input id="DataOd" type="date" class="form-control" name="DataOd" value=""
-                                           placeholder="DataOd" ng-model="DataOd">
-                                </div>
-                                <div class="form-group">
-                                    <label>data do:</label>
-                                    <input id="DataDo" type="date" class="form-control" name="DataDo" value=""
-                                           placeholder="DataDo" ng-model="DataDo">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Składka:</label>
-                                    <input id="Skladka" type="number" class="form-control" name="Skladka" value=""
-                                           placeholder="Skladka" ng-model="Skladka">
-                                </div>
-
-                                <button id="submitsave" type="submit" class="btn btn-default" ng-click="savePolicy()">Dodaj
-                                    Polise
-                                </button>
-                            </form>
                         </div>
-                    </div>
-
-                    <div class="col-sm-12">
 
 
-                    </div>
+                    </form>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-sm-8  jumbotron">
+
+                    <select ng-model="selectCarOne" class="form-control btn-default"
+                            ng-init="selectCarOne = carList[0]">
+                        <option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}
+                            {{x.model}}
+                        </option>
+                    </select>
+
+                    <button type="button" ng-click="loadData()"
+                            class="btn btn-primary btn btn-inf" data-toggle="modal">
+
+                        <span class="glyphicon glyphicon-arrow-down"></span> Załaduj auto
+                    </button>
+
+
+                    <!--<table class="table table-hover " style="margin-left: 20px; width: 600px">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--&lt;!&ndash;<th>Id</th>&ndash;&gt;-->
+                            <!--<th>Numer polisy</th>-->
+                            <!--<th>data od</th>-->
+                            <!--<th >data do</th>-->
+                            <!--<th>składka</th>-->
+                            <!--&lt;!&ndash;<th>data</th>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                          <!--<tr ng-repeat="c in policy |orderBy:'id'">-->
+
+                            <!--&lt;!&ndash;<td>{{ c.id }}</td>&ndash;&gt;-->
+                            <!--<td>{{ c.numerPolisy }}</td>-->
+                            <!--<td>{{ c.dataOd | date: "yyyy-MM-dd"}}</td>-->
+                            <!--<td>{{ c.dataDo | date: "yyyy-MM-dd"}}</td>-->
+                            <!--<td>{{ c.skladka}}</td>-->
+                            <!--&lt;!&ndash;<td>{{c.data | date: "yyyy-MM-dd"}}</td>&ndash;&gt;-->
+                            <!--<td width="10px">-->
+                                <!--<button type="button" alt="{{c.id}}" ng-click="deleteOnePolicy(c.id)"-->
+                                        <!--class="btn btn-primary btn btn-danger" data-toggle="modal">-->
+                                    <!--<span class="glyphicon glyphicon-trash"></span>-->
+                                <!--</button>-->
+                            <!--</td>-->
+                            <!--<td width="10px">-->
+                                <!--<button type="button" alt="{{c.id}}" ng-click="showPolicy(c.id)"-->
+                                        <!--class="btn btn-primary btn btn-inf" data-toggle="modal"-->
+                                        <!--data-target="#exampleModalLong">-->
+                                    <!--<span class="glyphicon glyphicon-edit"></span>-->
+                                <!--</button>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+
+                    <table class="table table-hover " style="margin-left: 20px; width: 500px">
+                        <thead>
+                        <tr>
+                            <th>Numer polisy</th>
+                            <th>data od</th>
+                            <th >data do</th>
+                            <th>składka</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr
+                            ng-repeat="p in policyOneCar.polisa |orderBy:'data'">
+                            <td>{{ p.numerPolisy }}</td>
+                            <td>{{ p.dataOd | date: "yyyy-MM-dd"}}</td>
+                            <td>{{ p.dataDo | date: "yyyy-MM-dd"}}</td>
+                            <td>{{ p.skladka}}</td>
+                            <td width="10px">
+                                <button type="button" alt="{{p.id}}" ng-click="deleteOnePolicy(p.id)"
+                                        class="btn btn-primary btn btn-danger" data-toggle="modal">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                            <td width="10px">
+                                <button type="button" alt="{{p.id}}" ng-click="showPolicy(p.id)"
+                                        class="btn btn-primary btn btn-inf" data-toggle="modal"
+                                        data-target="#exampleModalLong">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+
+
+                    </table>
+
 
                 </div>
+
             </div>
+
+
+
         </div>
+    </div>
+</div>
 
 
-        <!-- Edycja Polisa -->
+
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Edytuj</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -135,11 +177,11 @@
 
                         <form>
 
-                            <div class="form-group">
-                                <label>Id:</label>
-                                <input id="IdE" type="text" class="form-control" name="IdE" value=""
-                                       placeholder="IdE" ng-model="IdE">
-                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label>Id:</label>-->
+                                <!--<input id="IdE" type="text" class="form-control" name="IdE" value=""-->
+                                       <!--placeholder="IdE" ng-model="IdE">-->
+                            <!--</div>-->
                             <div class="form-group">
                                 <label>Data:</label>
                                 <input id="DataDodaniaE" type="date" class="form-control" name="DataDodaniaE" value=""
@@ -149,7 +191,7 @@
                             <div class="form-group">
                                 <label>Numer Polisy:</label>
                                 <input id="NumerPolisyE" type="text" class="form-control" name="NumerPolisyE" value=""
-                                       placeholder="NumerPolisyE" ng-model="NumerPolisyE">
+                                       placeholder="NumerPolisy" ng-model="NumerPolisyE">
                             </div>
                             <div class="form-group">
                                 <label>data od:</label>
@@ -173,13 +215,11 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                        <button type="button" class="btn btn-primary" ng-click="editPolicy()">Zapisz zmiany</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                        <button type="button" class="btn btn-success" ng-click="editPolicy()">Zapisz zmiany</button>
                     </div>
                 </div>
             </div>
         </div>
 
 
-    </div>
-</div>

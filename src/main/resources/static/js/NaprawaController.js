@@ -69,19 +69,6 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
     };
 
 
-    $scope.saveRelations = function (Id) {
-
-        console.log(Id);
-
-
-        var questionObject = {
-            question: $scope.question,
-            answers: $scope.selected
-        };
-
-
-    }
-
 
     var idUser = function () {
         LoginService.getCurrentUser().then(function (response) {
@@ -108,18 +95,7 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
     };
 
 
-    // var loadMeCars = function (id) {
-    //     var Car = $resource('auto/', {}, {
-    //         query: {method: 'get', isArray: true, cancellable: true}
-    //     });
-    //
-    //     Car.query(function (response) {
-    //         $scope.dataM=$scope.car.data;
-    //         //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
-    //         $scope.car = response; // widoku będziesz używał teraz people
-    //     });
-    // };
-    // loadMeCars();
+
 
     // wyswietlanie naprawy
     var loadAllRepair = function () {

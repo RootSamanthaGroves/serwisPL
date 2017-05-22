@@ -2,6 +2,7 @@ package com.dominika.controller;
 
 import com.dominika.model.Auto;
 import com.dominika.model.Naprawa;
+import com.dominika.model.Polisa;
 import com.dominika.repository.AutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -96,7 +97,19 @@ public class AutoController {
         autoRepository.deleteRelInAuto(id, idNap);
         return new ResponseEntity<>(idNap, new HttpHeaders(), HttpStatus.OK);
     }
+    @PostMapping("/putRelationPolisa/{id}")
+    public ResponseEntity<?> updateRelPol(@PathVariable long id, @RequestBody Polisa polisa) {
+        autoRepository.updateRelPol(id, polisa);
+        return new ResponseEntity<>(polisa, new HttpHeaders(), HttpStatus.OK);
+    }
 
+
+    @DeleteMapping("/deleteRelPolisa/id/{id}/{idPol}")
+    public ResponseEntity<?> deleteRelPol(@PathVariable long id, @PathVariable long idPol) {
+        System.out.println("dotarłem");
+        autoRepository.deleteRelInAutoPol(id, idPol);
+        return new ResponseEntity<>(idPol, new HttpHeaders(), HttpStatus.OK);
+    }
 
 }
 

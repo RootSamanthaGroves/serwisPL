@@ -40,6 +40,16 @@ angular.module('nikoApp').service('AutoService', function ($http) {
         });
     };
 
+    this.deleteOnePolicy = function (id, idPol) {
+        return $http({
+            method: 'DELETE',
+            url: 'auto/deleteRelPolisa/id/' + id + '/' + idPol
+        }).then(function successCallback(response) {
+            return response;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    };
 
     this.updateCar = function (car) {
         return $http({

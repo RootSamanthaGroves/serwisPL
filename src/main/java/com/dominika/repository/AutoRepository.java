@@ -2,6 +2,7 @@ package com.dominika.repository;
 
 import com.dominika.model.Auto;
 import com.dominika.model.Naprawa;
+import com.dominika.model.Polisa;
 import com.dominika.model.Uzytkownik;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -102,4 +103,31 @@ public class AutoRepository {
         return auto;
 
     }
+
+    @Transactional
+    public Auto updateRelPol(long id, Polisa polisa) {
+        Auto auto = entityManager.find(Auto.class, id);
+        auto.getPolisa().add(polisa);
+        entityManager.merge(auto);
+        return auto;
+    }
+
+
+
+    @Transactional
+    public Auto deleteRelInAutoPol(long id, long idPol) {
+        Auto auto = entityManager.find(Auto.class, id);
+        System.out.println(auto.getPolisa().size());
+        for (int i = 0; i < auto.getPolisa().size(); i++) {
+            auto.getPolisa().indexOf(i);
+            if (auto.getPolisa().get(i).getId() == idPol) {
+                auto.getPolisa().remove(i);
+            }
+
+        }
+        entityManager.merge(auto);
+        return auto;
+
+    }
+
 }

@@ -26,6 +26,8 @@ public class Auto {
     private  byte[] image;
     @ManyToMany
     private List<Naprawa> naprawa;
+    @ManyToMany
+    private List<Polisa> polisa;
 
     public Auto() {
     }
@@ -45,6 +47,14 @@ public class Auto {
                 ", rodzajPaliwa='" + rodzajPaliwa + '\'' +
                 ", naprawa=" + naprawa +
                 '}';
+    }
+
+    public List<Polisa> getPolisa() {
+        return polisa;
+    }
+
+    public void setPolisa(List<Polisa> polisa) {
+        this.polisa = polisa;
     }
 
     public byte[] getImage() {

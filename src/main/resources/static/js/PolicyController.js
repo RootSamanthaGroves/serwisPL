@@ -2,9 +2,49 @@
  * Created by Dominika on 2017-05-04.
  */
 
-angular.module('nikoApp').controller('PolicyController', function ($scope, $resource, $http) {
+angular.module('nikoApp').controller('PolicyController', function ($scope, $resource, $http, $localStorage, LoginService, AutoService, UserService) {
     $scope.message = 'Hello from AccountController';
 
+    $scope.loadData = function () {
+        loadAllPolicyOfMyCar();
+
+    };
+
+
+
+    var idUser = function () {
+        LoginService.getCurrentUser().then(function (response) {
+            if (response.status == 200) {
+                $scope.currentUserID = response.data.id;
+                showMyCars(response.data.id);
+            }
+        })
+    };
+    idUser();
+
+    var showMyCars = function (Id) {
+        $http({
+            method: 'GET',
+            url: '/user/id/' + Id
+        }).success(function (data) {
+            $scope.myCar = data; // widoku będziesz używał teraz people
+            // console.log(myCar);
+        }).error(function (error) {
+            //Showing error message
+            $scope.status = 'Unable to delete a person:';
+        });
+    };
+
+
+
+
+
+    $scope.selectQ = function (id) {
+        $scope.IdCar = 0;
+        $scope.IdCar = id;
+        $routeParams.id = id;
+        console.log(id);
+    };
 
     // wyswietlanie polis
     var loadAllPolicy = function () {
@@ -31,6 +71,22 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
     loadAllBadanieTechniczne();
 
 
+    var loadAllPolicyOfMyCar = function () {
+
+        console.log($scope.selectCarOne);
+        $http({
+            method: 'GET',
+            url: '/auto/id/' + $scope.selectCarOne
+        }).success(function (data) {
+            $scope.policyOneCar = data;
+            console.log(data);
+        }).error(function (error) {
+            $scope.status = 'Unable to delete a person:';
+        });
+
+    };
+
+
     $scope.deletePolicy = function (Id) {
         $http({
             method: 'DELETE',
@@ -44,6 +100,16 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
             });
     }
 
+
+    $scope.deleteOnePolicy = function (id) {
+        AutoService.deleteOnePolicy($scope.selectCarOne, id).then(function (response2) {
+            if (response2.status == 200) {
+                $scope.deletePolicy(id);
+            }
+
+            loadAllPolicyOfMyCar();
+        });
+    };
 
     $scope.showPolicy = function (Id) {
 
@@ -82,12 +148,18 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
         };
 
 
-        $http.post('/daty/addPolisa', policyObject).success(function (data) { //wywloujemy
+
+        $http.post('/daty/addPolisa', policyObject).success(function (data) {
+            $http.post('/auto/putRelationPolisa/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
+                alert("Polisa dodane");
+            });
+
             loadAllPolicy();
         }).error(function () {
-            alert('Coś poszło nie tak' +
-                ' Możliwe ze konto o podanym adresie email już istnieje');
+            alert('Coś poszło nie tak');
         })
+
+
     };
 
 
@@ -105,7 +177,7 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
 
         alert("indeks " + policyObj.id)
         $http.post('daty/polisa/put/', policyObj).success(function () { //wywloujemy
-            loadAllPolicy();
+            loadAllPolicyOfMyCar();
 
         }).error(function (error) {
             alert("nie udało się ")
