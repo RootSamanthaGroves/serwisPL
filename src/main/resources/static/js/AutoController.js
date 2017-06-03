@@ -8,7 +8,6 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         $scope.selected = [];
 
 
-
         // walidania do nazwy numeru vin
         $(document).ready(function () {
             $('.sendButton').attr('disabled', true);
@@ -38,6 +37,8 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         });
 
 
+
+
         var idUser = function () {
             LoginService.getCurrentUser().then(function (response) {
                 if (response.status == 200) {
@@ -51,18 +52,14 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         $scope.saveAuto = function () {
 
 
-
-            if ($scope.gallery[0]=  "undefined") {
-
+            if ($scope.gallery[0] = "undefined") {
             }
-
             if ($scope.gallery[0].indexOf('data:image/jpeg;base64,') >= 0) {
                 $scope.image = $scope.gallery[0].replace('data:image/jpeg;base64,', '');
             }
             if ($scope.gallery[0].indexOf('data:image/png;base64,') >= 0) {
                 $scope.image = $scope.gallery[0].replace('data:image/png;base64,', '');
             }
-
 
             var autoObject = {
                 image: $scope.image,
@@ -77,19 +74,31 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 rokProdukcji: $scope.rokProAuto
             };
 
-            AutoService.saveCar(autoObject).then(function (response) {
-                if (response.status == 200) {
-                    $scope.savedCar = response.data;
-                    UserService.addUserCar($scope.savedCar).then(function (response2) {
-                        if (response2.status == 200) {
-                            alert("Auto zostało dodane");
-                            showMe($scope.currentUserID);
-                        }
-                    })
-                } else {
-                    alert("Dodawanie auta nie powiodło się");
-                }
-            })
+            msg= $scope.numerVinAuto.toUpperCase();
+            console.log(msg.includes("Q")+" "+ msg);
+            if (msg.includes("O") || msg.includes("I") || msg.includes("Q")) {
+
+                $('.addCar').attr('disabled', false);
+                    alert("Numer VIN nie mowinien zawierać liter I, Q, O");
+
+            } else {
+                AutoService.saveCar(autoObject).then(function (response) {
+                    if (response.status == 200) {
+                        $scope.savedCar = response.data;
+                        UserService.addUserCar($scope.savedCar).then(function (response2) {
+                            if (response2.status == 200) {
+                                alert("Auto zostało dodane");
+                                showMe($scope.currentUserID);
+
+                            }
+                        })
+                    } else {
+                        alert("Dodawanie auta nie powiodło się");
+                    }
+                })
+            }
+
+
         };
 
         // wyświetlanie aut
@@ -137,7 +146,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 $scope.pojSilnikaE = data.pojemnoscSilnika;
                 $scope.mocAutoE = data.mocSilnika;
                 $scope.rodzajPaliE = data.rodzajPaliwa;
-                 // console.log(data.image);
+                // console.log(data.image);
             })
                 .error(function (error) {
                     //Showing error message
@@ -147,7 +156,6 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         }
 
         $scope.editCar = function () {
-
 
 
             var carObj = {
@@ -163,13 +171,26 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 mocSilnika: $scope.mocAutoE,
                 rodzajPaliwa: $scope.rodzajPaliE
             };
-            AutoService.updateCar(carObj).then(function (response) {
-                if (response.status == 200) {
-                    showMe($scope.currentUserID);
-                } else {
-                    alert("Nie udało się edytować auta");
-                }
-            });
+
+
+
+            msg= $scope.numerVinE.toUpperCase();
+            console.log(msg.includes("Q")+" "+ msg);
+            if (msg.includes("O") || msg.includes("I") || msg.includes("Q")) {
+
+                $('.addCar').attr('disabled', false);
+                alert("Numer VIN nie mowinien zawierać liter I, Q, O");
+            }else
+            {
+                AutoService.updateCar(carObj).then(function (response) {
+                    if (response.status == 200) {
+                        showMe($scope.currentUserID);
+                    } else {
+                        alert("Nie udało się edytować auta");
+                    }
+                });
+            }
+
         };
 
         var showMe = function (Id) {
@@ -249,11 +270,9 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 var picker_preview_image = $('<img src="' + src + '" class="img-responsive img-rounded" />');
 
 
-
-
                 //MOJE
 
-                  console.log(src);
+                console.log(src);
                 $scope.immmg = src;
                 $scope.gallery.push(src);
                 // The remove image button

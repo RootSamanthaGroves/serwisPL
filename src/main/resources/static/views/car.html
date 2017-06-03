@@ -47,10 +47,19 @@
 
                                                     <br/>
                                                     <div class="col-md-12">
-                                                        <h6><p class="uppercase" align="left"><i class="fa fa-id-card-o"
-                                                                                                 aria-hidden="true"></i>:
-                                                            {{c.numerRejestracyjny}} </p></h6>
-                                                        <h6 style=" text-transform: uppercase" align="left"> VIN: {{c.numerVIN}}</h6>
+                                                        <div class="col-sm-offset-3">
+                                                            <h6>
+                                                                <p style="text-transform: uppercase" align="left"><i
+                                                                        class="fa fa-id-card-o"
+                                                                        aria-hidden="true"></i>{{c.numerRejestracyjny}}
+                                                                </p>
+                                                            </h6>
+                                                        </div>
+
+
+                                                        <h7 style=" text-transform: uppercase" align="left"> VIN:
+                                                            {{c.numerVIN}}
+                                                        </h7>
 
                                                         <h6><span class="glyphicon glyphicon-calendar"></span>
                                                             {{c.rokProdukcji | date:"yyyy-MM-dd"}}</h6>
@@ -142,10 +151,11 @@
                     </div>
                     <div class="form-group">
                         <label>Numer VIN:</label>
-                        <input id="numerVinE" type="text" class="form-control" name="NumerVinE"
-                               value="numerVinE" required="required"
-                               placeholder="Numer VIN" ng-model="numerVinE" class="help-block" data-toggle="tooltip"
-                               data-placement="right"
+                        <input style="text-transform: uppercase" id="numerVinE" type="text" class="form-control" name="NumerVinE"
+                               value="numerVinE" maxLength="17"
+                               placeholder="WVW ZZZ1KZ 4W135988" ng-model="numerVinE" class="help-block"
+                               data-toggle="tooltip"
+                               data-placement="left"
                                title=" Numer VIN musi zawierać 17 znaków!">
 
                     </div>
@@ -200,7 +210,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-                <button type="button" class="btn btn-success sendButton" ng-click="editCar()" data-dismiss="modal">
+                <button type="button" class="btn btn-success sendButton" ng-click="editCar()" >
                     Zapisz zmiany
                 </button>
             </div>
@@ -247,11 +257,15 @@
                         </div>
                         <div class="form-group ">
                             <label>Numer VIN:</label>
-                            <input id="numerVINAuto" type="text" class="form-control" style=" text-transform: uppercase"
-                                   name="NumerVin" value=""
-                                   placeholder="WVW ZZZ1KZ 4W135988" ng-model="numerVinAuto" class="help-block" data-toggle="tooltip"
+                            <input id="numerVINAuto" type="text" class="form-control" maxLength="17" style=" text-transform: uppercase"
+                                   name="NumerVinAuto" value=""
+                                   placeholder="WVW ZZZ1KZ 4W135988" ng-model="numerVinAuto" class="help-block"
+                                   data-toggle="tooltip"
                                    data-placement="right"
                                    title=" Numer VIN musi zawierać 17 znaków!"></div>
+
+
+
 
                         <div class="form-group">
                             <label>Numer rejestracyjny:</label>
@@ -276,8 +290,7 @@
                                    value=""
                                    placeholder="Pojemność silnika" ng-model="pojSilnikaAuto">
 
-                            <!--<input type="text" string-to-number ng-model="pojSilnika" /> {{ pojSilnika }} : {{ typeOf(pojSilnika) }}-->
-                        </div>
+                              </div>
                         <div class="form-group">
                             <label>Moc silnika:</label>
                             <input id="mocAuto" type="number" class="form-control" name="mocAuto" value=""
@@ -300,15 +313,17 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 
-                <button id="submit" type="submit" class="btn btn-success addCar" ng-click="saveAuto()" data-dismiss="modal">
+                <button id="submit" type="submit" class="btn btn-success addCar" ng-click="saveAuto()"
+                        >
                     Dodaj
                     Auto
                 </button>
 
             </div>
+
+
         </div>
-        <!--</div>-->
-    </div>
+         </div>
 
 </div>
 
