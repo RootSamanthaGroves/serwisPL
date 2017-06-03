@@ -59,9 +59,9 @@ public class AutoController {
 
     @DeleteMapping("delete/id/{id}")
     public ResponseEntity<Auto> deleteAuto(@PathVariable long id) {
-        System.out.println("AutoController.deleteAuto");
+     //   System.out.println("AutoController.deleteAuto");
         if (id != -1) {
-            System.out.println("AutoController.deleteAuto");
+         //   System.out.println("AutoController.deleteAuto");
             Auto a = autoRepository.findOne(id);
             autoRepository.removeOne(id);
             if (a != null) {
@@ -93,8 +93,11 @@ public class AutoController {
 
     @DeleteMapping("/deleteNap/id/{id}/{idNap}")
     public ResponseEntity<?> deleteNap(@PathVariable long id, @PathVariable long idNap) {
-        System.out.println("dotarłem");
-        autoRepository.deleteRelInAuto(id, idNap);
+     //   System.out.println("dotarłem");
+
+            autoRepository.deleteRelInAuto(id, idNap);
+
+
         return new ResponseEntity<>(idNap, new HttpHeaders(), HttpStatus.OK);
     }
     @PostMapping("/putRelationPolisa/{id}")
@@ -106,7 +109,7 @@ public class AutoController {
 
     @DeleteMapping("/deleteRelPolisa/id/{id}/{idPol}")
     public ResponseEntity<?> deleteRelPol(@PathVariable long id, @PathVariable long idPol) {
-        System.out.println("dotarłem");
+     //   System.out.println("dotarłem");
         autoRepository.deleteRelInAutoPol(id, idPol);
         return new ResponseEntity<>(idPol, new HttpHeaders(), HttpStatus.OK);
     }

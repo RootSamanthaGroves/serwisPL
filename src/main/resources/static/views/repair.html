@@ -9,14 +9,10 @@
 
                     <h3>Dodaj Naprawę</h3>
 
-
-
-
-
                     <form role="form">
-                        <legend><i> Dodaj paragon fakture:</i></legend>
+                        <legend><i>Dodaj rachunek</i></legend>
                         <div class="row">
-                            <div class=" col-sm-4">
+                            <div class="form-group col-sm-4">
                                 <div class="img-picker"></div>
                             </div>
                         </div>
@@ -31,7 +27,6 @@
                                         {{x.model}}
                                     </option>
                                 </select>
-                                <!--<h1>You selected: {{selectCar}} </h1>-->
                             </div>
 
                         </div>
@@ -69,10 +64,10 @@
                                    placeholder="Koszt naprawy" ng-model="kosztNaprawy">
                         </div>
                         <div class="fo ">
-                        <button type="submit" type="submit" class="btn btn-block btn-info" ng-click="saveNaprawa()">
-                            Dodaj
-                            informacje do bazy
-                        </button>
+                            <button type="submit" type="submit" class="btn btn-block btn-info" ng-click="saveNaprawa()">
+                                Dodaj
+                                informacje do bazy
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -80,10 +75,10 @@
                 <div class="col-sm-6  jumbotron">
 
                     <select ng-model="selectCarOne" class="form-control btn-default"
-                    ng-init="selectCarOne = carList[0]">
-                    <option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}
-                    {{x.model}}
-                    </option>
+                            ng-init="selectCarOne = carList[0]">
+                        <option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}
+                            {{x.model}}
+                        </option>
                     </select>
 
                     <button type="button" ng-click="loadData()"
@@ -91,48 +86,40 @@
 
                         <span class="glyphicon glyphicon-arrow-down"></span> Załaduj auto
                     </button>
-                    <table class="table table-hover " style="margin-left: 20px; width: 500px">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>data</th>
-                            <th>Przebieg</th>
-                            <th>Rorzaj</th>
-                            <th>Opis</th>
-                            <th>Koszt</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-init="selectCarOne = carList[0]"
-                            ng-repeat="r in repairOneCar.naprawa |orderBy:'data'">
-                            <td>{{ r.id }}</td>
-                            <td>{{r.date}}
-                                {{r.data | date: "yyyy-MM-dd"}}
-                            </td>
-                            <td>{{ r.przebieg }}</td>
-                            <td>{{ r.rodzaj}}</td>
-                            <td>{{ r.opis}}</td>
-                            <td>{{ r.koszt}}</td>
-                            <td><a href="" class="btn btn-danger"
-                                   ng-click="deleteOneRepair(r.id)">
+
+
+                    <dir ng-init="selectCarOne = carList[0]"
+                         ng-repeat="r in repairOneCar.naprawa |orderBy:'data'">
+                        <div class="imageform">
+                            <img class="img-rounded center-block"
+                                 ng-src="data:image/JPEG;base64,{{r.paragon}}"
+                                 style=" height: 130px; width: 180px;" data-target="#exampleModalLong2">
+                        </div>
+
+
+                        <center>
+                            <a href="" class="btn btn-danger"
+                               ng-click="deleteOneRepair(r.id)">
                                 <span class="glyphicon glyphicon-trash"></span>
-                            </a></td>
-                            <td>
-                                <button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"
-                                        class="btn btn-primary btn btn-inf" data-toggle="modal"
-                                        data-target="#exampleModalLong2">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
+                            </a>
+                            <button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"
+                                    class="btn btn-primary btn btn-inf" data-toggle="modal"
+                                    data-target="#exampleModalLong2">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+
+                            <button type="button" alt="{{r.id}}" ng-click="showRepair(r.id)"
+                                    class="btn btn-success btn btn-inf" data-toggle="modal"
+                                    data-target="#showBill">
+                                <span class="glyphicon glyphicon-open"></span>
+                            </button>
+                        </center>
 
 
-                    </table>
+                    </dir>
                 </div>
 
             </div>
-
 
 
         </div>
@@ -155,6 +142,12 @@
 
 
                 <form>
+
+                    <img class="img-rounded center-block"
+                         ng-src="data:image/JPEG;base64,{{paragonE}}"
+                         style=" height: 130px; width: 180px;">
+
+
                     <div class="form-group">
                         <label>Data:</label>
                         <input id="dataE" type="date" class="form-control"
@@ -190,10 +183,42 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-dangern-" data-dismiss="modal">Zamknij</button>
                 <button type="button" class="btn btn-primary" ng-click="editRepair()" data-dismiss="modal">Zapisz
                     zmiany
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Wyświetlanie faktury -->
+<div class="modal fade" id="showBill" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form>
+
+                    <img class="img-rounded center-block"
+                         ng-src="data:image/JPEG;base64,{{paragonE}}"
+                         style=" height: 100%; width: 100%;">
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dangern-" data-dismiss="modal">Zamknij</button>
             </div>
         </div>
     </div>

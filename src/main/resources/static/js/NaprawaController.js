@@ -36,6 +36,10 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
     };
 
     $scope.saveNaprawa = function () {
+
+        if ($scope.gallery[0]=  "undefined") {
+
+        }
         if ($scope.gallery[0].indexOf('data:image/jpeg;base64,') >= 0) {
             $scope.image = $scope.gallery[0].replace('data:image/jpeg;base64,', '');
         }
@@ -43,10 +47,10 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             $scope.image = $scope.gallery[0].replace('data:image/png;base64,', '');
         }
 
-
+// alert($scope.gallery);
 
         var naprawaObject = {
-            image: $scope.image,
+            paragon: $scope.image,
             data: $scope.dataNaprawy,
             przebieg: $scope.przebiegAuto,
             rodzaj: $scope.rodzajNaprawy,
@@ -57,7 +61,7 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
 
         $http.post('/naprawa/add', naprawaObject).success(function (data) {
         $http.post('/auto/putRelation/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
-         alert("Auto dodane");
+         alert("Dodano");
             });
 
             loadAllRepair();
@@ -165,6 +169,7 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             $scope.idE = data.id;
 
             var myDate = new Date(data.data);
+            $scope.paragonE= data.paragon;
             $scope.dataE = myDate;
             $scope.przebiegE = data.przebieg;
             $scope.rodzajE = data.rodzaj;
@@ -192,7 +197,8 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             koszt: $scope.kosztE
         };
         $http.post('/naprawa/put/', repairObj).success(function () {
-            loadAllRepair();
+            // loadAllRepair();
+            loadAllRepairOfMyCar();
         }).error(function (error) {
             alert("nie udało się ")
             //Showing error message
@@ -267,8 +273,8 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
             // The preview image
             var picker_preview_image = $('<img src="' + src + '" class="img-responsive img-rounded" />');
             //MOJE
-            // alert(src);
-            // $scope.immmg = src;
+          //  alert(src);
+             $scope.immmg = src;
             $scope.gallery.push(src);
             // The remove image button
             var picker_preview_remove = $('<button class="btn btn-warning"><small>' +

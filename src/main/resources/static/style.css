@@ -1,5 +1,5 @@
 /*.tabs {*/
-    /*width: 80px;*/
+/*width: 80px;*/
 /*}*/
 
 .img-upload-btn {
@@ -34,11 +34,11 @@
     margin-left: -8px;
 }
 
- div.background {
-     /*background: url(ikony/tło.jpg) repeat;*/
-     background-color: #0f0f0f;
-     border: 2px solid black;
- }
+div.background {
+    /*background: url(ikony/tło.jpg) repeat;*/
+    background-color: #0f0f0f;
+    border: 2px solid black;
+}
 
 div.transbox {
     margin: 30px;
@@ -87,8 +87,6 @@ footer .glyphicon {
 body {
     position: relative;
 }
-
-
 
 .bg-2 {
     background-image: url("ikony/engine.jpg");
@@ -230,7 +228,7 @@ div.ex2 {
     opacity: 0.8;
 }
 
-.jumbBack{
+.jumbBack {
 
     background-color: black;
     background-color: #262626;
@@ -315,9 +313,11 @@ footer {
     transition: .5s ease;
     background-color: #008CBA;
 }
+
 .container:hover .overlay {
     opacity: 1;
 }
+
 .text {
     color: white;
     font-size: 20px;
@@ -326,5 +326,9 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+}
+
+.wysokosc {
+    height: 110px;
 }
 

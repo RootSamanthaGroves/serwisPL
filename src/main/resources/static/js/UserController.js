@@ -6,34 +6,31 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
     $scope.message = 'Hello from Accountuser';
 
     // dwalidania do nazwy usera
-    $(document).ready(function(){
-        $('.sendButton').attr('disabled',true);
+    $(document).ready(function () {
+        $('.sendButton').attr('disabled', true);
 
-        $('#imie').keyup(function(){
-            if($(this).val().length >=3){
+        $('#imie').keyup(function () {
+            if ($(this).val().length >= 3) {
                 $('.sendButton').attr('disabled', false);
             }
-            else
-            {
+            else {
                 $('.sendButton').attr('disabled', true);
             }
         })
     });
 
 
-
 // do hasła
-    $(document).ready(function(){
-        $('.sendButton').attr('disabled',true);
+    $(document).ready(function () {
+        $('.sendButton').attr('disabled', true);
 
-        $('#password').keyup(function(){
+        $('#password').keyup(function () {
 
 
-            if($(this).val().length >=5){
+            if ($(this).val().length >= 5) {
                 $('.sendButton').attr('disabled', false);
             }
-            else
-            {
+            else {
                 $('.sendButton').attr('disabled', true);
             }
         })
@@ -41,23 +38,20 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
 
 
 // do maila
-    $(document).ready(function(){
-        $('.sendButton').attr('disabled',true);
+    $(document).ready(function () {
+        $('.sendButton').attr('disabled', true);
 
-        $('#email').keyup(function(){
+        $('#email').keyup(function () {
 
 
-            if($(this).val().length >=4){
+            if ($(this).val().length >= 4) {
                 $('.sendButton').attr('disabled', false);
             }
-            else
-            {
+            else {
                 $('.sendButton').attr('disabled', true);
             }
         })
     });
-
-
 
 
     $scope.saveUser = function () {
@@ -66,7 +60,6 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
         var email = $scope.email;
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
         var password = $scope.passwordOfUser;
-
 
 
         var userObject = {
@@ -78,16 +71,14 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
         };
 
 
-            $http.post('/user/add', userObject).success(function () { //wywloujemy
-                alert('Konto zostało utoworzone');
-                $scope.email = "";
-                $scope.firstNameOfUser = ""; //pobieramy imie z pola w html
-                $scope.passwordOfUser = "";
+        $http.post('/user/add', userObject).success(function () { //wywloujemy
+            alert('Konto zostało utoworzone');
+             window.location.reload(false);
 
-            }).error(function () {
-                alert(' Konto nie zostało utworzone. Możliwe że podany e-mail jest już używany.Podaj poprawne dane!');
-            })
 
+        }).error(function () {
+            alert(' Konto nie zostało utworzone. Możliwe że podany e-mail jest już używany.Podaj poprawne dane!');
+        })
 
 
     };

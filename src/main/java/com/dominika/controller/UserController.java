@@ -29,7 +29,7 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity<Uzytkownik> postUser(@RequestBody Uzytkownik user) {
         user.setRole(Role.ROLE_USER);
-        System.out.println(user.getEmail());
+    //    System.out.println(user.getEmail());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -59,7 +59,7 @@ public class UserController {
     public ResponseEntity<Uzytkownik> getDetailsOfUsers(@PathVariable Optional<Long> id) {
         if (id.isPresent()) {
             Uzytkownik user = userRepository.findOne(id.get());
-            System.out.println(user.getEmail() + " " + user.getFirstName());
+       //     System.out.println(user.getEmail() + " " + user.getFirstName());
             if (user != null) {
                 return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
             } else {

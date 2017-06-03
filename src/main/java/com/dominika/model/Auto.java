@@ -7,7 +7,8 @@ import java.util.List;
 
 /**
  * Created by Dominika on 2017-05-03.
- */@Entity
+ */
+@Entity
 public class Auto {
     @Id
     @NotNull
@@ -23,7 +24,8 @@ public class Auto {
     private int mocSilnika;
     private String rodzajPaliwa;
     @Lob
-    private  byte[] image;
+//    @Column( columnDefinition = "LONGBLOB default 'ikony/car.jpg'")
+    private byte[] image;
     @ManyToMany
     private List<Naprawa> naprawa;
     @ManyToMany

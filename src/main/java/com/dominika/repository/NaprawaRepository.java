@@ -26,7 +26,7 @@ public class NaprawaRepository {
     @Transactional
     public Naprawa save(Naprawa n) {
         entityManager.persist(n);
-        return(n);
+        return (n);
 
     }
 
@@ -58,11 +58,8 @@ public class NaprawaRepository {
     @Transactional //to moze byc zle
     public Naprawa update(long id, Naprawa naprawa) {
 
-
-        Naprawa n = entityManager.find(Naprawa.class, id);
-
-
-
+        Naprawa nap = entityManager.find(Naprawa.class, id);
+        naprawa.setParagon(nap.getParagon());
         entityManager.merge(naprawa);
         return naprawa;
     }

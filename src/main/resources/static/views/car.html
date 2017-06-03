@@ -41,20 +41,23 @@
                                                 <div class="row">
                                                     <img class="img-rounded center-block"
                                                          ng-src="data:image/JPEG;base64,{{c.image}}"
-                                                         style=" height: 150px; width: 180px;">
+                                                         style="  height: auto;
+                                                                     width: 90%;">
+
+
                                                     <br/>
                                                     <div class="col-md-12">
                                                         <h6><p class="uppercase" align="left"><i class="fa fa-id-card-o"
                                                                                                  aria-hidden="true"></i>:
                                                             {{c.numerRejestracyjny}} </p></h6>
-                                                        <h6 class="uppercase" align="left"> VIN: {{c.numerVIN}}</h6>
+                                                        <h6 style=" text-transform: uppercase" align="left"> VIN: {{c.numerVIN}}</h6>
 
                                                         <h6><span class="glyphicon glyphicon-calendar"></span>
                                                             {{c.rokProdukcji | date:"yyyy-MM-dd"}}</h6>
                                                         <p class="h7">&#9981; {{c.rodzajPaliwa}}</p>
                                                         <p class="h7" align="right">
                                                             <!--<img class="icon icons8-Engine" width="12" height="12"-->
-                                                                 <!--src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAABXUlEQVRIS92V3U0DMRCEZzqghKMCoALoAFEBUAGig1ABLUAFpAPogLsKIB2ECibayAbfj9e+nJQH/BJZPu/nnZ3dEEdaPBIH1SBJLwBunYe1JC9y53NAHwAuPQVIZuPNAZUy6kieL84oDSBJce9lkd6pzmipaYogSScA3gBczYCNjOGCAuQdQFb7bE0GxsiClkAMPqwdJUXbrkneSGoBnBVkeiV5J6kB8AnA5O0tA0laA7gG0Nqm56B078BOSX57TRxAf7EPAMVszBxWv8nlgipc9QOgIbmtlPg3ZE+6CtATyVX8TpKbVa9hK2sS75hRtgDuw+/XlBGmHnyIGTYkm8St82s0LGBGykerE4AHR+r9gO0ZLSlqPCz1kYGePYiNq4FhutJksGZOm9dcZ70xatAA7iJk1MCe08IYGsJyV7KQ/UgqWTrAbJR4/64upApUekjteTGj2kCl7/4faAeyFbKYy5pFEQAAAABJRU5ErkJggg==">-->
+                                                            <!--src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAABXUlEQVRIS92V3U0DMRCEZzqghKMCoALoAFEBUAGig1ABLUAFpAPogLsKIB2ECibayAbfj9e+nJQH/BJZPu/nnZ3dEEdaPBIH1SBJLwBunYe1JC9y53NAHwAuPQVIZuPNAZUy6kieL84oDSBJce9lkd6pzmipaYogSScA3gBczYCNjOGCAuQdQFb7bE0GxsiClkAMPqwdJUXbrkneSGoBnBVkeiV5J6kB8AnA5O0tA0laA7gG0Nqm56B078BOSX57TRxAf7EPAMVszBxWv8nlgipc9QOgIbmtlPg3ZE+6CtATyVX8TpKbVa9hK2sS75hRtgDuw+/XlBGmHnyIGTYkm8St82s0LGBGykerE4AHR+r9gO0ZLSlqPCz1kYGePYiNq4FhutJksGZOm9dcZ70xatAA7iJk1MCe08IYGsJyV7KQ/UgqWTrAbJR4/64upApUekjteTGj2kCl7/4faAeyFbKYy5pFEQAAAABJRU5ErkJggg==">-->
                                                             <i class="fa fa-fire" aria-hidden="true"></i>
                                                             {{c.mocSilnika}} KM
                                                         </p>
@@ -117,14 +120,15 @@
             <div class="modal-body">
 
 
-                <form>
+                <form name="myForm" novalidate>
                     <img class="img-rounded center-block"
-                         ng-src="data:image/JPEG;base64,{{test.image}}"
-                         style=" height: 150px; width: 180px;">
+                         ng-src="data:image/JPEG;base64,{{imageE}}"
+                         style=" height: 130px; width: 180px;">
+
                     <!--<div class="form-group">-->
-                        <!--<label>Id:</label>-->
-                        <!--<input id="idAutoE" type="text" class="form-control" name="idAutoE" value="IdAutoE"-->
-                               <!--placeholder="id" ng-model="idAutoE">-->
+                    <!--<label>Id:</label>-->
+                    <!--<input id="idAutoE" type="text" class="form-control" name="idAutoE" value="IdAutoE"-->
+                    <!--placeholder="id" ng-model="idAutoE">-->
                     <!--</div>-->
                     <div class="form-group">
                         <label>Marka:</label>
@@ -139,8 +143,11 @@
                     <div class="form-group">
                         <label>Numer VIN:</label>
                         <input id="numerVinE" type="text" class="form-control" name="NumerVinE"
-                               value="numerVinE"
-                               placeholder="Numer VIN" ng-model="numerVinE">
+                               value="numerVinE" required="required"
+                               placeholder="Numer VIN" ng-model="numerVinE" class="help-block" data-toggle="tooltip"
+                               data-placement="right"
+                               title=" Numer VIN musi zawierać 17 znaków!">
+
                     </div>
                     <div class="form-group">
                         <label>Numer rejestracyjny:</label>
@@ -152,7 +159,7 @@
                     <div class="form-group">
                         <label>Rok produkcji:</label>
                         <input id="rokProE" type="date" class="form-control" name="rokProE"
-                               value="YYYY-MM-DD"
+                               value="yyyy-MM-dd"
                                placeholder="Rok produkcji " ng-model="rokProE ">
 
                         <!--<input id="rokProAuto" type="date" class="form-control" name="rokProAuto" value=""-->
@@ -166,7 +173,7 @@
                                placeholder="Rodzaj nadwozia" ng-model="rodzNadwoziaE">
                     </div>
                     <div class="form-group">
-                        <label>Pojemność silnika:</label>
+                        <label>Pojemność silnika [cm<sup>3</sup>]:</label>
 
                         <input id="pojSilnikE" type="number" class="form-control" name="pojSilnikaE"
                                value="pojSilnikaE"
@@ -174,7 +181,7 @@
 
                     </div>
                     <div class="form-group">
-                        <label>Moc silnika:</label>
+                        <label>Moc silnika [KM]:</label>
                         <input id="mocAutoE" type="number" class="form-control" name="mocAutoE" value="mocAutoE"
                                placeholder=" Moc silnika" ng-model="mocAutoE">
                     </div>
@@ -192,8 +199,10 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                <button type="button" class="btn btn-primary" ng-click="editCar()">Zapisz zmiany</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-success sendButton" ng-click="editCar()" data-dismiss="modal">
+                    Zapisz zmiany
+                </button>
             </div>
         </div>
     </div>
@@ -224,7 +233,7 @@
                         </div>
                     </form>
 
-                    <form>
+                    <form class="row">
                         <div class="form-group">
                             <label>Marka:</label>
                             <input id="markaAuto" type="text" class="form-control" name="Marka" value="Marka"
@@ -236,11 +245,14 @@
                                    value="Model"
                                    placeholder="Model" ng-model="modelAuto">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label>Numer VIN:</label>
-                            <input id="numerVINAuto" type="text" class="form-control" name="NumerVin" value=""
-                                   placeholder="Numer VIN" ng-model="numerVinAuto">
-                        </div>
+                            <input id="numerVINAuto" type="text" class="form-control" style=" text-transform: uppercase"
+                                   name="NumerVin" value=""
+                                   placeholder="WVW ZZZ1KZ 4W135988" ng-model="numerVinAuto" class="help-block" data-toggle="tooltip"
+                                   data-placement="right"
+                                   title=" Numer VIN musi zawierać 17 znaków!"></div>
+
                         <div class="form-group">
                             <label>Numer rejestracyjny:</label>
                             <input id="numerRejAuto" type="text" class="form-control" name="numerRej" value=""
@@ -288,7 +300,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 
-                <button id="submit" type="submit" class="btn btn-success" ng-click="saveAuto()">Dodaj
+                <button id="submit" type="submit" class="btn btn-success addCar" ng-click="saveAuto()" data-dismiss="modal">
+                    Dodaj
                     Auto
                 </button>
 

@@ -26,8 +26,16 @@ public class AutoRepository {
 
     @Transactional
     public Auto save(Auto a) {
+
+        System.out.println(a.getImage()+" wnetrze");
+      if(a.getImage()==null){
+          long id=11;  // UWAGA NA ID OBIEKTU
+          Auto auto = entityManager.find(Auto.class, id);
+          System.out.println("udało sie");
+            a.setImage(auto.getImage());
+       }
         entityManager.persist(a);
-//        System.out.println(a.getId());
+
         return (a);
 
     }
@@ -59,15 +67,6 @@ public class AutoRepository {
     public Auto update(long id, Auto a) {
               Auto auto = entityManager.find(Auto.class, id);
 
-//        if (!auto.getMarka().isEmpty()) {
-//            auto.setMarka(a.getMarka());
-//        }
-//        if (!auto.getModel().isEmpty()) {
-//            auto.setMarka(a.getMarka());
-//        }
-//        if (!auto.getMocSilnika().) {
-//            auto.setMarka(a.getMarka());
-//        }
 
         a.setImage(auto.getImage());
         entityManager.merge(a);
@@ -91,7 +90,7 @@ public class AutoRepository {
     @Transactional
     public Auto deleteRelInAuto(long id, long idNap) {
         Auto auto = entityManager.find(Auto.class, id);
-        System.out.println(auto.getNaprawa().size());
+      //  System.out.println(auto.getNaprawa().size());
         for (int i = 0; i < auto.getNaprawa().size(); i++) {
             auto.getNaprawa().indexOf(i);
             if (auto.getNaprawa().get(i).getId() == idNap) {
@@ -117,7 +116,7 @@ public class AutoRepository {
     @Transactional
     public Auto deleteRelInAutoPol(long id, long idPol) {
         Auto auto = entityManager.find(Auto.class, id);
-        System.out.println(auto.getPolisa().size());
+      //  System.out.println(auto.getPolisa().size());
         for (int i = 0; i < auto.getPolisa().size(); i++) {
             auto.getPolisa().indexOf(i);
             if (auto.getPolisa().get(i).getId() == idPol) {

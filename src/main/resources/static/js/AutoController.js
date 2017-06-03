@@ -6,6 +6,38 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         $scope.gallery = [];
         $scope.items = [];
         $scope.selected = [];
+
+
+
+        // walidania do nazwy numeru vin
+        $(document).ready(function () {
+            $('.sendButton').attr('disabled', true);
+
+            $('#numerVinE').keyup(function () {
+                if ($(this).val().length == 17) {
+                    $('.sendButton').attr('disabled', false);
+                }
+                else {
+                    $('.sendButton').attr('disabled', true);
+                }
+            })
+        });
+
+        // walidania do nazwy numeru vin
+        $(document).ready(function () {
+            $('.addCar').attr('disabled', true);
+
+            $('#numerVINAuto').keyup(function () {
+                if ($(this).val().length == 17) {
+                    $('.addCar').attr('disabled', false);
+                }
+                else {
+                    $('.addCar').attr('disabled', true);
+                }
+            })
+        });
+
+
         var idUser = function () {
             LoginService.getCurrentUser().then(function (response) {
                 if (response.status == 200) {
@@ -17,12 +49,20 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
         idUser();
 
         $scope.saveAuto = function () {
+
+
+
+            if ($scope.gallery[0]=  "undefined") {
+
+            }
+
             if ($scope.gallery[0].indexOf('data:image/jpeg;base64,') >= 0) {
                 $scope.image = $scope.gallery[0].replace('data:image/jpeg;base64,', '');
             }
             if ($scope.gallery[0].indexOf('data:image/png;base64,') >= 0) {
                 $scope.image = $scope.gallery[0].replace('data:image/png;base64,', '');
             }
+
 
             var autoObject = {
                 image: $scope.image,
@@ -87,7 +127,6 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             }).success(function (data) {
 
                 $scope.idAutoE = data.id;
-
                 $scope.imageE = data.image;
                 $scope.markaE = data.marka;
                 $scope.modelE = data.model;
@@ -98,7 +137,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 $scope.pojSilnikaE = data.pojemnoscSilnika;
                 $scope.mocAutoE = data.mocSilnika;
                 $scope.rodzajPaliE = data.rodzajPaliwa;
-    console.log(data.image);
+                 // console.log(data.image);
             })
                 .error(function (error) {
                     //Showing error message
@@ -114,7 +153,6 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             var carObj = {
 
                 id: $scope.idAutoE,
-
                 marka: $scope.markaE,
                 model: $scope.modelE,
                 numerVIN: $scope.numerVinE,
@@ -180,7 +218,6 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
                 var picker_btn = $('<div class="' + settings.class + ' img-upload-btn"></div>')
                     .append(picker_btn_icon)
                     .append(picker_btn_input);
-
                 // File load listener
                 picker_btn_input.change(function () {
                     if ($(this).prop('files')[0]) {
@@ -195,6 +232,7 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
 
                         // Load image
                         reader.readAsDataURL(picker_btn_input.prop('files')[0]);
+                        // console.log(picker_btn_input.prop('files')[0]);
                         //MOJE
                         // alert(reader.readAsDataURL(picker_btn_input.prop('files')[0]));
                     }
@@ -206,11 +244,17 @@ angular.module('nikoApp').controller('AutoController', function ($scope, $resour
             // Private function for creating a preview element
             function create_preview(that, src, settings) {
 
+
                 // The preview image
                 var picker_preview_image = $('<img src="' + src + '" class="img-responsive img-rounded" />');
+
+
+
+
                 //MOJE
-                // alert(src);
-                // $scope.immmg = src;
+
+                  console.log(src);
+                $scope.immmg = src;
                 $scope.gallery.push(src);
                 // The remove image button
                 var picker_preview_remove = $('<button class="btn btn-warning"><small>' +
