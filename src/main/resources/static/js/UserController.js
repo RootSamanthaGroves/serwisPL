@@ -5,7 +5,7 @@
 angular.module('nikoApp').controller('UserController', function ($scope, $resource, $http) {
     $scope.message = 'Hello from Accountuser';
 
-    // dwalidania do nazwy usera
+    // do  walidania do nazwy usera
     $(document).ready(function () {
         $('.sendButton').attr('disabled', true);
 
