@@ -1,7 +1,10 @@
 package com.dominika.controller;
 
+import com.dominika.model.Auto;
 import com.dominika.model.BadanieTechniczne;
 import com.dominika.model.Polisa;
+import com.dominika.repository.AutoRepository;
+import com.dominika.repository.CarsRepository;
 import com.dominika.repository.DatyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +25,9 @@ public class DatyController
 {
     @Autowired
     DatyRepository datyRepository;
+
+    @Autowired
+    CarsRepository carsRepository;
 
 
 
@@ -143,6 +149,21 @@ public class DatyController
             return ResponseEntity.ok(bt);
         }
 return new ResponseEntity<BadanieTechniczne>(HttpStatus.BAD_GATEWAY);
+    }
+
+
+    @Transactional
+    @PostMapping("addBadanie/{id}")
+    public ResponseEntity<BadanieTechniczne> saveBadnanieTechniczeIAuto(@RequestBody BadanieTechniczne bt,
+                                                                        @PathVariable long id) {
+        datyRepository.saveBadanie(bt);
+        if (bt.getId() != -1) {
+            Auto car = carsRepository.findOne(id);
+            car.getBadanieTechnicznes().add(bt);
+            carsRepository.save(car);
+            return ResponseEntity.ok(bt);
+        }
+        return new ResponseEntity<BadanieTechniczne>(HttpStatus.BAD_GATEWAY);
     }
 
 

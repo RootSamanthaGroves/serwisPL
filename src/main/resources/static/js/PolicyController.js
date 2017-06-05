@@ -2,7 +2,8 @@
  * Created by Dominika on 2017-05-04.
  */
 
-angular.module('nikoApp').controller('PolicyController', function ($scope, $resource, $http, $localStorage, LoginService, AutoService, UserService) {
+angular.module('nikoApp').controller('PolicyController', function ($scope, $resource, $http, $localStorage,
+                                                                   LoginService, AutoService, UserService) {
     $scope.message = 'Hello from AccountController';
 
     $scope.loadData = function () {

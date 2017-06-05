@@ -4,6 +4,7 @@ import com.dominika.model.Auto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CarsRepository extends JpaRepository<Auto, Long> {
     Auto findOne(long id);
