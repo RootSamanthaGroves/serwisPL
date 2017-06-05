@@ -92,6 +92,13 @@ public class UserRepository {
     }
 
     @Transactional
+    public Uzytkownik updateCars(Uzytkownik uzytkownik){
+        Uzytkownik u = entityManager.find(Uzytkownik.class, uzytkownik.getId());
+        u.setAuto(uzytkownik.getAuto());
+        return uzytkownik;
+    }
+
+    @Transactional
     public Uzytkownik deleteRel(long id, long idCar) {
         Uzytkownik user = entityManager.find(Uzytkownik.class, id);
         System.out.println(user.getAuto().size());

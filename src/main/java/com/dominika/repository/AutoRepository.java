@@ -4,6 +4,7 @@ import com.dominika.model.Auto;
 import com.dominika.model.Naprawa;
 import com.dominika.model.Polisa;
 import com.dominika.model.Uzytkownik;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,16 +25,19 @@ public class AutoRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    NaprawaRepository naprawaRepository;
+
     @Transactional
     public Auto save(Auto a) {
 
-        System.out.println(a.getImage()+" wnetrze");
-      if(a.getImage()==null){
-          long id=11;  // UWAGA NA ID OBIEKTU
-          Auto auto = entityManager.find(Auto.class, id);
-          System.out.println("udało sie");
+        System.out.println(a.getImage() + " wnetrze fota auto");
+        if (a.getImage() == null) {
+            long id = 1;  // UWAGA NA ID OBIEKTU
+            Auto auto = entityManager.find(Auto.class, id);
+            System.out.println("udało sie");
             a.setImage(auto.getImage());
-       }
+        }
         entityManager.persist(a);
 
         return (a);
@@ -64,8 +68,22 @@ public class AutoRepository {
     }
 
     @Transactional
+    public Auto deleteOne(Auto a) {
+        System.out.println("AutoRepository.deleteOne");
+        System.out.println(a.getNaprawa());
+        if (a.getNaprawa() != null)
+            if (a.getNaprawa().size() > 0) {
+                for (Naprawa naprawa : a.getNaprawa()) {
+                    naprawaRepository.removeOne(naprawa.getId());
+                }
+            }
+        entityManager.remove(a);
+        return a;
+    }
+
+    @Transactional
     public Auto update(long id, Auto a) {
-              Auto auto = entityManager.find(Auto.class, id);
+        Auto auto = entityManager.find(Auto.class, id);
 
 
         a.setImage(auto.getImage());
@@ -85,12 +103,10 @@ public class AutoRepository {
     }
 
 
-
-
     @Transactional
     public Auto deleteRelInAuto(long id, long idNap) {
         Auto auto = entityManager.find(Auto.class, id);
-      //  System.out.println(auto.getNaprawa().size());
+        //  System.out.println(auto.getNaprawa().size());
         for (int i = 0; i < auto.getNaprawa().size(); i++) {
             auto.getNaprawa().indexOf(i);
             if (auto.getNaprawa().get(i).getId() == idNap) {
@@ -112,11 +128,10 @@ public class AutoRepository {
     }
 
 
-
     @Transactional
     public Auto deleteRelInAutoPol(long id, long idPol) {
         Auto auto = entityManager.find(Auto.class, id);
-      //  System.out.println(auto.getPolisa().size());
+        //  System.out.println(auto.getPolisa().size());
         for (int i = 0; i < auto.getPolisa().size(); i++) {
             auto.getPolisa().indexOf(i);
             if (auto.getPolisa().get(i).getId() == idPol) {

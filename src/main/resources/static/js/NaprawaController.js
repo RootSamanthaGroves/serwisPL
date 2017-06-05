@@ -3,16 +3,13 @@
  */
 
 angular.module('nikoApp').controller('NaprawaController', function ($scope, $resource, $http, $localStorage, LoginService, AutoService, UserService) {
-
         $scope.items = [];
         $scope.selected = [];
         $scope.gallery = [];
 
         $scope.loadData = function () {
             loadAllRepairOfMyCar();
-
         };
-
 
         $scope.toggle = function (item, list) {
             var idx = list.indexOf(item);
@@ -36,41 +33,38 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
         };
 
         $scope.saveNaprawa = function () {
+            if ($scope.gallery.length === 0) {
+                $scope.image = undefined;
+            } else {
+                if ($scope.gallery[0].indexOf('data:image/jpeg;base64,') >= 0) {
+                    $scope.image = $scope.gallery[0].replace('data:image/jpeg;base64,', '');
+                }
+                if ($scope.gallery[0].indexOf('data:image/png;base64,') >= 0) {
+                    $scope.image = $scope.gallery[0].replace('data:image/png;base64,', '');
+                }
+
+                var naprawaObject = {
+                    paragon: $scope.image,
+                    data: $scope.dataNaprawy,
+                    przebieg: $scope.przebiegAuto,
+                    rodzaj: $scope.rodzajNaprawy,
+                    opis: $scope.opisNaprawy,
+                    koszt: $scope.kosztNaprawy
+                };
 
 
-            if ($scope.gallery[0].indexOf('data:image/jpeg;base64,') >= 0) {
-                $scope.image = $scope.gallery[0].replace('data:image/jpeg;base64,', '');
+                $http.post('/naprawa/add', naprawaObject).success(function (data) {
+                    $http.post('/auto/putRelation/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
+                        alert("Dodano");
+                    });
+
+                    loadAllRepair();
+                }).error(function () {
+                    alert('Coś poszło nie tak');
+                })
+
             }
-            if ($scope.gallery[0].indexOf('data:image/png;base64,') >= 0) {
-                $scope.image = $scope.gallery[0].replace('data:image/png;base64,', '');
-            }
-            if ($scope.gallery[0] = "undefined") {
-            }
-
-
-
-            var naprawaObject = {
-                paragon: $scope.image,
-                data: $scope.dataNaprawy,
-                przebieg: $scope.przebiegAuto,
-                rodzaj: $scope.rodzajNaprawy,
-                opis: $scope.opisNaprawy,
-                koszt: $scope.kosztNaprawy
-            };
-
-
-            $http.post('/naprawa/add', naprawaObject).success(function (data) {
-                $http.post('/auto/putRelation/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
-                    alert("Dodano");
-                });
-
-                loadAllRepair();
-            }).error(function () {
-                alert('Coś poszło nie tak');
-            })
-
-
-        };
+             };
 
 
         var idUser = function () {
@@ -269,7 +263,7 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
                 // The preview image
                 var picker_preview_image = $('<img src="' + src + '" class="img-responsive img-rounded" />');
                 //MOJE
-                  alert(src);
+                //   alert(src);
                 $scope.immmg = src;
                 $scope.gallery.push(src);
                 // The remove image button
@@ -299,6 +293,5 @@ angular.module('nikoApp').controller('NaprawaController', function ($scope, $res
         })
 
 
-    }
-);
+    });
 

@@ -332,3 +332,6 @@ footer {
     height: 110px;
 }
 
+.ui-datepicker-calendar {
+    display: none;
+}

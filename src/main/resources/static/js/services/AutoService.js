@@ -29,6 +29,9 @@ angular.module('nikoApp').service('AutoService', function ($http) {
         });
     };
 
+
+
+
     this.deleteOneRepair = function (id, idNap) {
         return $http({
             method: 'DELETE',
@@ -61,6 +64,36 @@ angular.module('nikoApp').service('AutoService', function ($http) {
         }, function errorCallback(response) {
             return response.status;
         });
+    };
+
+    this.bodyTypesCar = function () {
+        var bodyTypes = [
+            "Hatchback",
+            "Sedan/Limuzyna",
+            "SUV",
+            "Van",
+            "Minivan",
+            "Kombi",
+            "Sportowy/Coupe",
+            "Terenowy",
+            "Pick-up",
+            "Kabriolet"
+        ];
+        return bodyTypes;
+    };
+
+    this.fuelTypesCar = function () {
+        var fuelTypes = [
+            "Benzyna",
+            "Diesel",
+            "Benzyna+LPG",
+            "Benzyna+CNG",
+            "Elektryczny",
+            "Etanol",
+            "Hybryda",
+            "Wodór"
+        ];
+        return fuelTypes;
     };
 
 });

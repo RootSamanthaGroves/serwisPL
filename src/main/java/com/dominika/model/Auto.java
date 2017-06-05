@@ -1,5 +1,7 @@
 package com.dominika.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -26,10 +28,12 @@ public class Auto {
     @Lob
 //    @Column( columnDefinition = "LONGBLOB default 'ikony/car.jpg'")
     private byte[] image;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Naprawa> naprawa;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Polisa> polisa;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<BadanieTechniczne> badanieTechnicznes;
 
     public Auto() {
     }
@@ -153,5 +157,13 @@ public class Auto {
 
     public void setNaprawa(List<Naprawa> naprawa) {
         this.naprawa = naprawa;
+    }
+
+    public List<BadanieTechniczne> getBadanieTechnicznes() {
+        return badanieTechnicznes;
+    }
+
+    public void setBadanieTechnicznes(List<BadanieTechniczne> badanieTechnicznes) {
+        this.badanieTechnicznes = badanieTechnicznes;
     }
 }

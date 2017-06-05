@@ -1,8 +1,12 @@
 package com.dominika.controller;
 
 import com.dominika.model.Auto;
+import com.dominika.model.Naprawa;
 import com.dominika.model.Role;
 import com.dominika.model.Uzytkownik;
+import com.dominika.repository.AutoRepository;
+import com.dominika.repository.CarsRepository;
+import com.dominika.repository.NaprawaRepository;
 import com.dominika.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -11,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -23,13 +29,21 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    AutoRepository autoRepository;
+
+    @Autowired
+    CarsRepository autoRepo;
+
+    @Autowired
+    NaprawaRepository naprawaRepository;
 
 
     //    @Transactional
     @PostMapping("/add")
     public ResponseEntity<Uzytkownik> postUser(@RequestBody Uzytkownik user) {
         user.setRole(Role.ROLE_USER);
-    //    System.out.println(user.getEmail());
+        //    System.out.println(user.getEmail());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -59,7 +73,7 @@ public class UserController {
     public ResponseEntity<Uzytkownik> getDetailsOfUsers(@PathVariable Optional<Long> id) {
         if (id.isPresent()) {
             Uzytkownik user = userRepository.findOne(id.get());
-       //     System.out.println(user.getEmail() + " " + user.getFirstName());
+            //     System.out.println(user.getEmail() + " " + user.getFirstName());
             if (user != null) {
                 return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
             } else {
@@ -70,18 +84,6 @@ public class UserController {
     }
 
 
-//    @GetMapping(value = "/email")
-//    public ResponseEntity<Uzytkownik> getUsersByEmail(@RequestBody String email) {
-//        System.out.println(email);
-//        Uzytkownik unewU = (Uzytkownik) userRepository.findOneByEmail(email);
-//        if (unewU != null) {
-//            return new ResponseEntity<Uzytkownik>(unewU, new HttpHeaders(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
-//        }
-//    }
-
-
     @PostMapping("/putRelation/{id}")
     public ResponseEntity<?> updateRel(@PathVariable long id, @RequestBody Auto car) {
         userRepository.updateRel(id, car);
@@ -89,50 +91,45 @@ public class UserController {
     }
 
 
+    @Transactional
     @DeleteMapping("/deleteCar/id/{id}/{idCar}")
     public ResponseEntity<?> deleteCar(@PathVariable long id, @PathVariable long idCar) {
-        userRepository.deleteRel(id, idCar);
+
+        Uzytkownik u = userRepository.findOne(id);
+        List<Auto> carList = u.getAuto();
+        System.out.println(u.getAuto());
+        autoRepo.deleteAutoById(idCar);
+//        autoRepo.deleteAutoById(idCar);
+        Auto b = null;
+        for (Auto a : u.getAuto()) {
+            if (a.getId() == idCar) {
+                b = a;
+                //  carList.remove(a);
+            }
+        }
+        carList.remove(b);
+        u.setAuto(carList);
+//        userRepository.updateCars(u);
+//        if (carList != null)
+//            for (Auto a : u.getAuto()) {
+//                if (a.getId() == idCar) {
+//                    if (a.getNaprawa() != null) {
+//                        List<Naprawa> fixList = a.getNaprawa();
+//                        a.setNaprawa(null);
+//                        for (Naprawa n : fixList) {
+//                            naprawaRepository.removeOne(n.getId());
+//                        }
+//                        a.setNaprawa(null);
+//                    }
+//
+//                    carList.remove(a);
+//                    u.setAuto(carList);
+//                    autoRepository.deleteOne(a);
+//                }
+//            }
+        userRepository.updateCars(u);
         return new ResponseEntity<>(idCar, new HttpHeaders(), HttpStatus.OK);
     }
-
-//    @PostMapping("/put/{id}")
-//    public ResponseEntity<Uzytkownik> update(@PathVariable long id, @RequestBody Uzytkownik user) {
-////        System.out.println("controller"+id+" "+user.toString());
-//        userRepository.update(Long.valueOf(id), user);
-//        return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
-//    }
-
-
-
-
-//    @RequestMapping(value = "/email/{email}")
-//    public ResponseEntity<Uzytkownik> getOfUsersByEMail(@PathVariable String email) {
-//        if (!email.isEmpty()) {
-//            Uzytkownik user = userRepository.findOneByEmail(email);
-//            if (user != null) {
-//                return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
-//            }
-//        }
-//        return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
-//    }
-
-//    @RequestMapping("/log/{a}/{b}")
-
-//    public ResponseEntity<Uzytkownik> getByEmailAndPassword(@PathVariable String a, @PathVariable String b) {
-//
-//        System.out.println(a);
-//        System.out.println(b);
-//        Uzytkownik user = (Uzytkownik) userRepository.findByEmailAndPassword(a, b);
-//        if (user != null) {
-//            return new ResponseEntity<Uzytkownik>(user, new HttpHeaders(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<Uzytkownik>(HttpStatus.NO_CONTENT);
-//        }
-//
-////      return new ResponseEntity<Uzytkownik>(HttpStatus.BAD_REQUEST);
-//    }
 
 
 }
