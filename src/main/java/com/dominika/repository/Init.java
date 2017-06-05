@@ -44,7 +44,7 @@ public class Init {
             user.setEmail("user@o2.pl");
             user.setFirstName("User");
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            user.setPassword(encoder.encode("user"));
+            user.setPassword(encoder.encode("admin"));
             user.setRole(Role.ROLE_USER);
             userRepository.save(user);
         }
