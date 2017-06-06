@@ -16,6 +16,17 @@ angular.module('nikoApp').service('AutoService', function ($http) {
         });
     };
 
+    this.getCar = function (id) {
+        var url = '/auto/id/' + id;
+        return $http({
+            method: "GET",
+            url: url
+        }).then(function successCallback(response) {
+            return response;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    };
 
     this.deleteCar = function (id) {
         return $http({

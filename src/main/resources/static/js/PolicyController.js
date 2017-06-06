@@ -12,7 +12,6 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
     };
 
 
-
     var idUser = function () {
         LoginService.getCurrentUser().then(function (response) {
             if (response.status == 200) {
@@ -35,9 +34,6 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
             $scope.status = 'Unable to delete a person:';
         });
     };
-
-
-
 
 
     $scope.selectQ = function (id) {
@@ -114,7 +110,7 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
 
     $scope.showPolicy = function (Id) {
 
-        alert(Id)
+
         $http({
             method: 'GET',
             url: '/daty/polisa/id/' + Id
@@ -136,7 +132,7 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
     }
 
 
-    $scope.savePolicy = function () {
+    $scope.savePolicy = function (id) {
 
         //Potrzebujemy stworzyc nasz obiekt, ktorego zadamy w Javie patrz RequestBody
         var policyObject = {
@@ -150,8 +146,9 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
         loadAllPolicyOfMyCar();
 
         $http.post('/daty/addPolisa', policyObject).success(function (data) {
-            $http.post('/auto/putRelationPolisa/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
+            $http.post('/auto/putRelationPolisa/' + $scope.idToGet, data).success(function (data2) { //wywloujemy
                 alert("Polisa dodane");
+                window.location.reload(true);
             });
 
 
@@ -175,9 +172,9 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
             skladka: $scope.SkladkaE
         };
 
-        alert("indeks " + policyObj.id)
         $http.post('daty/polisa/put/', policyObj).success(function () { //wywloujemy
             loadAllPolicyOfMyCar();
+            window.location.reload(true);
 
         }).error(function (error) {
             alert("nie udało się ")
@@ -188,5 +185,27 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
 
     };
 
+    var carPolicy = function (id) {
+        AutoService.getCar(id).then(function (response2) {
+            console.log(" polisa"+policy.size);
+
+            if (response2.status == 200) {
+                if (response2.policy.size == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        });
+    };
+
+    $scope.getCarId= function (id) {
+
+
+     $scope.idToGet =id;
+
+    }
 
 });
