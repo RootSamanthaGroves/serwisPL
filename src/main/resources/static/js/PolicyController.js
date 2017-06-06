@@ -72,12 +72,12 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
     loadAllBadanieTechniczne();
 
 
-    var loadAllPolicyOfMyCar = function () {
+    var loadAllPolicyOfMyCar = function (id) {
 
-        console.log($scope.selectCarOne);
+        console.log(id);
         $http({
             method: 'GET',
-            url: '/auto/id/' + $scope.selectCarOne
+            url: '/auto/id/' + id
         }).success(function (data) {
             $scope.policyOneCar = data;
             console.log(data);
@@ -147,15 +147,14 @@ angular.module('nikoApp').controller('PolicyController', function ($scope, $reso
             skladka: $scope.Skladka
 
         };
-
-
+        loadAllPolicyOfMyCar();
 
         $http.post('/daty/addPolisa', policyObject).success(function (data) {
             $http.post('/auto/putRelationPolisa/' + $scope.selectCar, data).success(function (data2) { //wywloujemy
                 alert("Polisa dodane");
             });
 
-            loadAllPolicy();
+
         }).error(function () {
             alert('Coś poszło nie tak');
         })
