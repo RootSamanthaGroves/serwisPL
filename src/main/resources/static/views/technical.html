@@ -1,88 +1,225 @@
+<!--<div class="account backgroundT">-->
+<!--<div class="container-fluid">-->
+<!--<div class="row content">-->
+<!--<div class="row">-->
+<!--<div class="col-sm-12">-->
+<!--<div class="col-lg-2 col-md-3 col-sm-3 ">-->
+
+<!--<label>Wybierz auto:</label>-->
+<!--<select-->
+
+<!--ng-model="selectedCar"-->
+<!--ng-init = "selectedCar = listOfCars[0]"-->
+<!--class="form-control btn-default"-->
+<!--ng-change = "selectedItemChanged()"-->
+<!--ng-selected="true"-->
+<!--ng-options = "x as (x.marka +' '+ x.model) for x in listOfCars">-->
+<!--&lt;!&ndash;<option ng-repeat="x in listOfCars" value="{{x.id}}">{{x.marka}}-->
+<!--{{x.model}}-->
+<!--</option>&ndash;&gt;-->
+<!--</select>-->
+
+<!--<br/>-->
+
+<!--<div class="container " style="margin-left: 20px">-->
+<!--&lt;!&ndash;<h1>Twoje Pojazdy</h1>&ndash;&gt;-->
+<!--<button type="button" ng-click="setEdit(false)"-->
+<!--class="btn btn-primary btn btn-success" data-toggle="modal"-->
+<!--data-target="#exampleModalLong" ng-click>-->
+<!--<span class="glyphicon glyphicon-arrow-down"></span> Dodaj informacje-->
+<!--</button>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-lg-1 col-md-1 col-sm-1">-->
+<!--</div>-->
+<!--<div class="jumbotron">-->
+<!--<table style="margin-left: 20px; margin-right: 20px;">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Id</th>-->
+<!--<th>data badania</th>-->
+<!--<th>data ważności</th>-->
+<!--<th></th>-->
+<!--<th></th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr ng-repeat="b in study |orderBy:'datawaznosci'">-->
+
+<!--<td>{{ b.id }}</td>-->
+<!--<td>{{ b.dataBadania| date: "yyyy-MM-dd"}}</td>-->
+<!--<td>{{ b.dataWaznosci | date: "yyyy-MM-dd"}}</td>-->
+
+<!--<td><a href="" class="btn btn-danger"-->
+<!--ng-click="deleteStudy(b.id)">-->
+<!--<span class="glyphicon glyphicon-trash"></span>-->
+<!--</a></td>-->
+<!--<td>-->
+<!--<button type="button" alt="{{b.id}}" ng-click="setEdit(true); showStudy(b.id) "-->
+<!--class="btn btn-primary btn btn-inf" data-toggle="modal"-->
+<!--data-target="#exampleModalLong">-->
+<!--<span class="glyphicon glyphicon-edit"></span>-->
+<!--</button>-->
+<!--</td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+
+<!--</div>-->
+
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-sm-12">-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;Edycja badania&ndash;&gt;-->
+<!--<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"-->
+<!--aria-labelledby="exampleModalLongTitle" aria-hidden="true">-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<h5 class="modal-title" id="exampleModalLongTitle2"></h5>-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+
+
+<!--<h3 ng-if=!edit>Dodaj badanie techniczne</h3>-->
+<!--<h3 ng-if=edit>Edytuj informacje</h3>-->
+<!--<form>-->
+<!--<div ng-if=edit class="form-group">-->
+<!--<label>Id:</label>-->
+<!--<input id="idTech" type="text" class="form-control"-->
+<!--name="idTech" value=""-->
+<!--placeholder="IdTech"-->
+<!--ng-model="idTech">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label>Data wykonania badania:</label>-->
+<!--<input id="datawykonaniaBadania" type="date" class="form-control"-->
+<!--name="datawykonaniaBadania" value=""-->
+<!--placeholder="Data wykonania Badania technicznego"-->
+<!--ng-model="datawykonaniaBadania">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label>Termin ważności badania:</label>-->
+<!--<input id="terminBadania" type="date" class="form-control"-->
+<!--name="terminBadania" value=""-->
+<!--placeholder="Termin Badania technicznego" ng-model="terminBadania">-->
+<!--</div>-->
+
+<!--</form>-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>-->
+<!--<button ng-if=!edit type="button" class="btn btn-primary" ng-click="saveStudy2Car(selectedCar.id); selectedItemChanged();"-->
+<!--data-dismiss="modal">Dodaj-->
+<!--</button>-->
+<!--<button ng-if=edit type="button" class="btn btn-primary" ng-click="editStudy()"-->
+<!--data-dismiss="modal">Zapisz-->
+<!--zmiany-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+
+<!--</div>-->
 <div class="account backgroundT">
     <div class="container-fluid">
-        <div class="row content">
-            <div class="row">
-            <div class="col-sm-12">
-                 <div class="col-lg-2 col-md-3 col-sm-3 ">
+        <div class=" content row">
+            <div class="col-sm-12 jumbotron">
+                <div class=" col-lg-8 col-md-10 col-sm-8 col-md-offset-1 col-lg-offset-2 col-sm-offset-2" align="left">
+                    <div class="col-md-6" ng-repeat="c in myCar.auto |orderBy:'marka'">
+                        <div class="panel panel-dangerl-">
+                            <div class="panel-heading">
+                                <h5 align="center">
+                                    {{ c.marka }} {{ c.model }}
+                                </h5>
+                            </div>
+                            <div class="panel-body">
+                                <img class="img-rounded center-block"
+                                     ng-src="data:image/JPEG;base64,{{c.image}}"
+                                     style=" max-height: 20%; width: 90%;">
+                                <br/>
+                                <div align="center" ng-if="c.badanieTechnicznes[0]">
+                                    <h5>
+                                        Data od: <b> {{ c.badanieTechnicznes[0].dataBadania | date: "yyyy-MM-dd"}}</b>
+                                    </h5>
+                                    <h5>
+                                        Data do: <b> {{ c.badanieTechnicznes[0].dataWaznosci | date: "yyyy-MM-dd"}}</b>
+                                    </h5>
+                                </div>
 
-                             <label>Wybierz auto:</label>
-                            <select
+                                <button ng-if="!c.badanieTechnicznes[0]" alt="c.id" type="button"
+                                        ng-click="setEdit(false); getCarId(c.id)"
+                                        class="btn btn-info btn-block" data-toggle="modal"
+                                        data-target="#AddNewInspection">
+                                    Ustaw badanie techniczne
+                                </button>
 
-                                    ng-model="selectedCar"
-                                    ng-init = "selectedCar = listOfCars[0]"
-                                    class="form-control btn-default"
-                                    ng-change = "selectedItemChanged()"
-                                    ng-selected="true"
-                            ng-options = "x as (x.marka +' '+ x.model) for x in listOfCars">
-                                 <!--<option ng-repeat="x in listOfCars" value="{{x.id}}">{{x.marka}}
-                                     {{x.model}}
-                                 </option>-->
-                            </select>
-
-                     <br/>
-
-                        <div class="container " style="margin-left: 20px">
-                            <!--<h1>Twoje Pojazdy</h1>-->
-                            <button type="button" ng-click="setEdit(false)"
-                                    class="btn btn-primary btn btn-success" data-toggle="modal"
-                                    data-target="#exampleModalLong" ng-click>
-                                <span class="glyphicon glyphicon-arrow-down"></span> Dodaj informacje
-                            </button>
-
+                                <button type="button" ng-if="c.badanieTechnicznes[0]" alt="{{c.badanieTechnicznes[0].id}}"
+                                        ng-click="showInspection(c.badanieTechnicznes[0].id)"
+                                        class="btn btn-primary btn-block" data-toggle="modal"
+                                        data-target="#exampleModalLong">
+                                    Edytuj badanie techniczne
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-1 col-sm-1">
-                    </div>
-<div class="jumbotron">
-    <table style="margin-left: 20px; margin-right: 20px;">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>data badania</th>
-            <th>data ważności</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="b in study |orderBy:'datawaznosci'">
-
-            <td>{{ b.id }}</td>
-            <td>{{ b.dataBadania| date: "yyyy-MM-dd"}}</td>
-            <td>{{ b.dataWaznosci | date: "yyyy-MM-dd"}}</td>
-
-            <td><a href="" class="btn btn-danger"
-                   ng-click="deleteStudy(b.id)">
-                <span class="glyphicon glyphicon-trash"></span>
-            </a></td>
-            <td>
-                <button type="button" alt="{{b.id}}" ng-click="setEdit(true); showStudy(b.id) "
-                        class="btn btn-primary btn btn-inf" data-toggle="modal"
-                        data-target="#exampleModalLong">
-                    <span class="glyphicon glyphicon-edit"></span>
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
-
-
                 </div>
             </div>
         </div>
-        <div class="col-sm-12">
-        </div>
-
     </div>
 </div>
 
-
-
-<!--Edycja badania-->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Edytuj badanie techniczne</h3>
+                <form>
+                    <div class="form-group">
+                        <label>Data od:</label>
+                        <input id="DataOdE" type="date" class="form-control" name="DataOdE"
+                               placeholder="DataOdE" ng-model="DataOdE">
+                    </div>
+                    <div class="form-group">
+                        <label>Data do:</label>
+                        <input id="DataDoE" type="date" class="form-control" name="DataDoE"
+                               placeholder="DataDoE" ng-model="DataDoE">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-success" ng-click="editInspection()">Zapisz zmiany</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--dodawanie badania-->
+<div class="modal fade" id="AddNewInspection" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLong" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -92,48 +229,28 @@
                 </button>
             </div>
             <div class="modal-body">
-
-
-                <h3 ng-if=!edit>Dodaj badanie techniczne</h3>
-                <h3 ng-if=edit>Edytuj informacje</h3>
+                <h3>Ustaw daty badania technicznego</h3>
                 <form>
-                    <div ng-if=edit class="form-group">
-                        <label>Id:</label>
-                        <input id="idTech" type="text" class="form-control"
-                               name="idTech" value=""
-                               placeholder="IdTech"
-                               ng-model="idTech">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Data badania:</label>
+                            <input type="date" class="form-control"
+                                   placeholder="Data badania" ng-model="DataOd">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Do kiedy:</label>
+                            <input type="date" class="form-control"
+                                   placeholder="Do kiedy jest ważne" ng-model="DataDo">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Data wykonania badania:</label>
-                        <input id="datawykonaniaBadania" type="date" class="form-control"
-                               name="datawykonaniaBadania" value=""
-                               placeholder="Data wykonania Badania technicznego"
-                               ng-model="datawykonaniaBadania">
-                    </div>
-                    <div class="form-group">
-                        <label>Termin ważności badania:</label>
-                        <input id="terminBadania" type="date" class="form-control"
-                               name="terminBadania" value=""
-                               placeholder="Termin Badania technicznego" ng-model="terminBadania">
-                    </div>
-
                 </form>
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                <button ng-if=!edit type="button" class="btn btn-primary" ng-click="saveStudy2Car(selectedCar.id); selectedItemChanged();"
-                        data-dismiss="modal">Dodaj
-                </button>
-                <button ng-if=edit type="button" class="btn btn-primary" ng-click="editStudy()"
-                        data-dismiss="modal">Zapisz
-                    zmiany
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                <button id="submitsave" type="submit" class="btn btn-default" ng-click="saveInspection(c.id)">
+                    Ustaw badanie techniczne
                 </button>
             </div>
         </div>
-        <!--</div>-->
     </div>
-
 </div>
-

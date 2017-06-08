@@ -1,9 +1,6 @@
 package com.dominika.repository;
 
-import com.dominika.model.Auto;
-import com.dominika.model.Naprawa;
-import com.dominika.model.Polisa;
-import com.dominika.model.Uzytkownik;
+import com.dominika.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -123,6 +120,14 @@ public class AutoRepository {
     public Auto updateRelPol(long id, Polisa polisa) {
         Auto auto = entityManager.find(Auto.class, id);
         auto.getPolisa().add(polisa);
+        entityManager.merge(auto);
+        return auto;
+    }
+
+    @Transactional
+    public Auto updateRelInspection(long id, BadanieTechniczne badanie) {
+        Auto auto = entityManager.find(Auto.class, id);
+        auto.getBadanieTechnicznes().add(badanie);
         entityManager.merge(auto);
         return auto;
     }

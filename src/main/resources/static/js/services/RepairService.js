@@ -8,7 +8,7 @@ angular.module('nikoApp').service('RepairService', function ($http) {
         var url = '/auto/id ' + id;
         return $http({
             method: "GET",
-            url: url,
+            url: url
         }).then(function successCallback(response) {
             return response;
         }, function errorCallback(response) {

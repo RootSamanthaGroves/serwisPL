@@ -35,7 +35,6 @@ public class DatyRepository {
     public Polisa savePolisa(Polisa a) {
         entityManager.persist(a);
         return(a);
-
     }
 
 

@@ -3,12 +3,11 @@
  */
 
 angular.module('nikoApp').controller('PolicyController', function ($scope, $resource, $http, $localStorage,
-                                                                   LoginService, AutoService, UserService) {
+                                                                   LoginService, AutoService) {
     $scope.message = 'Hello from AccountController';
 
     $scope.loadData = function () {
         loadAllPolicyOfMyCar();
-
     };
 
 

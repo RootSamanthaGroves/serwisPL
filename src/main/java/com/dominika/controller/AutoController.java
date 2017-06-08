@@ -1,6 +1,7 @@
 package com.dominika.controller;
 
 import com.dominika.model.Auto;
+import com.dominika.model.BadanieTechniczne;
 import com.dominika.model.Naprawa;
 import com.dominika.model.Polisa;
 import com.dominika.repository.AutoRepository;
@@ -104,6 +105,11 @@ public class AutoController {
     public ResponseEntity<?> updateRelPol(@PathVariable long id, @RequestBody Polisa polisa) {
         autoRepository.updateRelPol(id, polisa);
         return new ResponseEntity<>(polisa, new HttpHeaders(), HttpStatus.OK);
+    }
+    @PostMapping("/putRelationBadanie/{id}")
+    public ResponseEntity<?> updateRelInspection(@PathVariable long id, @RequestBody BadanieTechniczne badanie) {
+        autoRepository.updateRelInspection(id, badanie);
+        return new ResponseEntity<>(badanie, new HttpHeaders(), HttpStatus.OK);
     }
 
 

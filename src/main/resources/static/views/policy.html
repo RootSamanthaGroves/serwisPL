@@ -17,9 +17,9 @@
                                      ng-src="data:image/JPEG;base64,{{c.image}}"
                                      style=" max-height: 20%; width: 90%;">
                                 <br/>
-                                <div style="margin-left: 50px" ng-if="c.polisa[0]">
+                                <div style="margin-left: 30px" ng-if="c.polisa[0]">
                                     <h5>
-                                        Numer plisy: <b> {{ c.polisa[0].numerPolisy }}</b></h5>
+                                        Numer polisy: <b> {{ c.polisa[0].numerPolisy }}</b></h5>
                                     <h5>
                                         Data od: <b> {{ c.polisa[0].dataOd | date: "yyyy-MM-dd" }}</b>
                                     </h5>
@@ -32,7 +32,7 @@
 
 
                                 <button ng-if="!c.polisa[0]" alt="c.id" type="button" ng-click="setEdit(false); getCarId(c.id)"
-                                        class="btn btn-info  btn-block" data-toggle="modal"
+                                        class="btn btn-danger  btn-block" data-toggle="modal"
                                         data-target="#AddNewPolice">
                                    Dodaj polisę
                                 </button>
@@ -135,13 +135,7 @@
                 <form>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <!--<label>Wybierz auto:</label>-->
-                            <!--<select ng-model="selectCar" class="form-control btn-default"-->
-                                    <!--ng-init="selectCar = carList[0]">-->
-                                <!--<option ng-repeat="x in myCar.auto" value="{{x.id}} ">{{x.marka}}-->
-                                    <!--{{x.model}}-->
-                                <!--</option>-->
-                            <!--</select>-->
+
                         </div>
 
                         <div class="form-group col-md-12">
@@ -176,7 +170,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-                <button id="submitsave" type="submit" class="btn btn-default " ng-click="savePolicy(c.id)">
+                <button id="submitsave" type="submit" class="btn btn-success " ng-click="savePolicy(c.id)">
                     Dodaj
                     Polise
                 </button>
