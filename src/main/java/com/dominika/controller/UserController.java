@@ -5,7 +5,6 @@ import com.dominika.model.Naprawa;
 import com.dominika.model.Role;
 import com.dominika.model.Uzytkownik;
 import com.dominika.repository.*;
-import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -139,6 +140,9 @@ public class UserController {
     public ResponseEntity<?> sendmail() {
         System.out.println("UserController.sendmail");
         List<Uzytkownik> all = userRepository.findAll();
+//        List<String> odbiorcy7 = new ArrayList<>();
+//        List<String> odbiorcyUbezpieczenie = new ArrayList<>();
+        Map<String, byte[]> attachments = new HashMap<>();
         for (Uzytkownik u : all) {
             for (Auto a : u.getAuto()) {
                 System.out.println(a.getId() + " " + a.getBadanieTechnicznes().size() + " " + a.getPolisa().size());
@@ -152,19 +156,38 @@ public class UserController {
                 long daysBetweenBadanie = ChronoUnit.DAYS.between(now2, dataBadania);
                 long daysBetweenPolisy = ChronoUnit.DAYS.between(now2, dataPolisy);
                 System.out.println(daysBetweenBadanie);
+
                 if (daysBetweenBadanie == 7) {
-                    Map<String, byte[]> attachments = new HashMap<>();
-                    mailClient.prepareAndSend(new String[]{u.getEmail()}, "GarazPL Badanie techniczne pojazdu się kończy",
-                            "Witaj " + u.getFirstName() + "\n\nChcemy cię poinformować że za tydzień skończy Ci się " +
+//                    odbiorcy7.add(u.getEmail());
+                    try {
+                        mailClient.prepareAndSend(new String[]{u.getEmail()},
+                                "GarazPL Badanie techniczne pojazdu",
+                            "Witaj " +
+                                    u.getFirstName() + "\n\nChcemy cię poinformować że za tydzień skończy Ci się " +
                                     "badanie techniczne pojazdu " + a.getMarka() + " " + a.getModel() + " pamiętaj aby " +
-                                    "je przeprowadzić w najbliższym czasie.\n\nPozdrawiamy \n Serwis GarazPL", attachments);
+                                    "je przeprowadzić w najbliższym czasie.\n\nPozdrawiamy " +
+                                    "\nSerwis GarazPL", attachments);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                    }
+//
                 }
                 if (daysBetweenPolisy == 7) {
-                    Map<String, byte[]> attachments = new HashMap<>();
-                    mailClient.prepareAndSend(new String[]{u.getEmail()}, "GarazPL Badanie techniczne pojazdu się kończy",
-                            "Witaj " + u.getFirstName() + "\n\nChcemy cię poinformować że za tydzień skończy się " +
-                                    "polisa twojego pojazdu " + a.getMarka() + " " + a.getModel() + " pamiętaj aby " +
-                                    "ją opłacić przed jej zakończeniem.\n\nPozdrawiamy \nSerwis GarazPL", attachments);
+//                    odbiorcyUbezpieczenie.add(u.getEmail());
+                    try {
+                        mailClient.prepareAndSend(new String[]{u.getEmail()}, "GarazPL Polisa pojazdu",
+                                "Witaj " +
+                                        u.getFirstName() + "\n\nChcemy cię poinformować że za tydzień skończy się " +
+                            "polisa twojego pojazdu " + a.getMarka() + " " + a.getModel() + " pamiętaj aby " +
+                            "ją opłacić przed jej zakończeniem.\n\nPozdrawiamy " +
+                            "\nSerwis GarazPL", attachments);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 //            if (true) {
@@ -174,6 +197,17 @@ public class UserController {
 //                return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
 //            }
         }
+//        String[] array = new String[odbiorcy7.size()];
+//        for (int i = 0; i < odbiorcy7.size(); i++) {
+//            array[i] = odbiorcy7.get(i);
+//        }
+//        try {
+//            mailClient.prepareAndSend(array, "", "", attachments);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//        }
         return ResponseEntity.ok(true);
     }
 }
